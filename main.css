@@ -1,0 +1,138 @@
+body{
+    margin: 0;
+}
+.navbar{
+    display:flex;
+    float:left;
+    background-color: rgb(6, 83, 155);
+    height: 70px;
+    width: 100%;
+    color: white;
+    padding-top: 6px;
+    /* margin-top: -20px; */
+}
+
+.bar{
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: -20px;
+    
+}
+.fa-bars{
+    padding: 15px;
+    font-size: 20px;
+    background-color: rgb(30, 30, 119);
+    border-radius: 20px 20px;
+}
+
+.logo img{
+    margin-top: -20px;
+    height: 100px;
+    width: 130px;
+    
+}
+
+.menu ul{
+    
+    list-style-type: none;
+    /* margin-right: 12px; */
+}
+.menu ul li{
+    display: inline;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-weight: bold;
+}
+.date{
+    margin-left: 610px;
+
+}
+
+.profile{
+  
+   padding: 10px;
+}
+.profile img{
+    height: 50px;
+    width: 50px;
+    border-radius: 30px 30px;
+    margin-top: -17px;
+}
+.arrowDown{
+    padding: 21.8px;
+    
+}
+.subMenu{
+    display:flex;
+    float:left;
+    background-color: white;
+    height: auto;
+    width: 100%;
+      /* justify-content: space-around; */
+      /* margin-top: 100px; */
+      padding-left: 200px;
+   
+
+    
+}
+
+.subMenu i{
+    font-size: 50px;
+    padding: 50px;
+    margin-left: 70px;
+    margin-right: 70px;
+    margin-top: 70px;
+    color: red;
+    background-color: white;
+    border-radius: 130px;
+    box-shadow: rgb(177, 175, 175) 2px 2px 5px 2px;
+    /* margin-left: 10px; */
+    border: none;
+    /* margin: 70px */
+}
+
+.subMenu h5{
+    margin-top: 20px;
+    margin-left: 100px;
+    font-size: 15px
+}
+
+
+
+
+.content{
+    display: flex;
+    float: left;
+    background-color: rgb(235, 235, 235);
+    padding: 50px;
+    width: 100%;
+    margin-top: 70px;
+}
+
+
+
+
+.card{
+    margin-top: 10px !important;
+    border-top-left-radius: 20px !important;
+    border-bottom-left-radius: 20px !important;
+    border-top-right-radius: 20px !important;
+    border-bottom-right-radius: 20px !important;
+}
+
+.para{
+    background-color: gray;
+    width: 100%;
+    height: 200px;
+}
+
+.card-title{
+ font-size: 20px;
+ font-weight: bold;
+
+}
+
+.content h6{
+    font-weight: bold;
+}
+
