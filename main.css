@@ -1,15 +1,17 @@
 body{
-    margin: 0;
+    margin: 0px;
+    padding: 0px;
 }
 .navbar{
-    display:flex;
-    float:left;
+    /* display:flex; */
+    /* float:left; */
     background-color: rgb(6, 83, 155);
     height: auto;
     width: 100%;
     color: white;
     padding-top: 6px;
     /* margin-top: -20px; */
+    justify-content: space-around;
 
 }
 
@@ -27,11 +29,20 @@ body{
     background-color: rgb(30, 30, 119);
     border-radius: 20px 20px;
 }
+.fa-bars:hover{
+    background-color: rgb(42, 42, 185);
+}
+.list:hover{
+background-color: rgb(44, 44, 126);
+padding: 20px;
+border-radius: 20px;
+}
 
 .logo img{
     margin-top: -15px;
     height: 100px;
     width: 130px;
+    
     
 }
 
@@ -119,7 +130,9 @@ body{
     /* margin-top: 14px; */
 }
 
-
+.content .link a:hover{
+    color: rgb(82, 121, 228);
+}
 
 
 .card{
@@ -160,3 +173,142 @@ body{
     height: auto; 
     padding-top: 10px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+/* --------------------------------Table Page------------------------------------ */
+
+
+/* .heading{
+    margin-top:100px
+} */
+.fa-globe, .fa-history{
+    padding: 10px;
+    font-size: 20px;
+    background-color: white;
+    border-radius: 20px 20px;
+    box-shadow: 2px 2px 14px;
+    margin: 5px;
+}
+.button{
+    padding: 10px;
+    font-size: 20px;
+    background-color: rgb(56, 86, 170);
+    border-bottom-left-radius: 25px;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    width: 150px;
+    color: white;
+    font-family: monospace;
+}
+
+.button:hover{
+    background-color: rgb(60, 60, 155);
+}
+
+.fa-globe:hover, .fa-history:hover{
+    background-color: rgb(235, 231, 231);
+}
+
+.table {
+    margin-top: 20px;
+    border: 1px solid gray;
+    
+}
+
+.deferrals{
+    margin-top: 25px;
+    font-family:sans-serif;
+    color: gray;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.table-striped>tbody>tr:nth-child(odd)>td, 
+.table-striped>tbody>tr:nth-child(odd)>th {
+   background-color: rgb(237, 236, 238) 
+ }
+
+ .fa-copy, .fa-trash, .fa-pencil-alt{
+     color: gray;
+ }
+
+ .fa-copy:hover, .fa-trash:hover, .fa-pencil-alt:hover{
+    color: rgb(194, 186, 186);
+}
+.rightArrow:hover{
+    color: rgb(128, 126, 126);
+}
+
+
+
+
+
+
+/* --------------Form Page-------------------- */
+
+.modal-dialog{
+    width: 1000px !important;
+    height: auto;
+}
+
+
+
+ input[type=text]{
+    border: none;
+    border-bottom: 1px solid gray;
+    width: 100%;
+    padding: 20px;
+    color: rgb(100, 96, 96);
+}
+
+
+
+
+.floating{
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.modal-title{
+    font-weight: bold;
+    padding-top: 40px;
+    padding-left: 50px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.col-form-label{
+    margin-top: 40px;
+    margin-bottom: 60px;
+    font-size: 20px !important;
+}
+
+.form-check{
+    padding: 15px;
+    color: gray;
+}
+
+.form-select{
+    border: none !important;
+    border-bottom: 1px solid gray !important;
+    margin-bottom: 20px !important;
+    color: gray !important;
+}
+
+.btn-secondary, .btn-primary{
+    margin-left: 50px !important;
+    width: 300px !important;
+    height: 50px;
+    margin-bottom: 50px;
+    border-radius: 50px !important;
+}
+
