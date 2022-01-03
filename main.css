@@ -36,6 +36,7 @@ body{
 background-color: rgb(44, 44, 126);
 padding: 20px;
 border-radius: 20px;
+cursor: pointer;
 }
 
 .logo img{
@@ -223,6 +224,7 @@ border-radius: 20px;
 .table {
     margin-top: 20px;
     border: 1px solid gray;
+    margin-bottom: 50px !important;
     
 }
 
