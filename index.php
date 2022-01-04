@@ -78,13 +78,26 @@
     </div>
     </div>
     </div>
+    <?php 
+            include "db_config.php";
+            $sql = "SELECT * FROM widget";
+            $result = $conn->query($sql); 
+               
+            if(mysqli_num_rows($result)>0){
 
+    ?>
     <div class="content">
+
         <div class="row">
+           <?php 
+           $i=0;
+           while($rows = mysqli_fetch_array($result)){
+            ?>
+        
         <div class="col-md-6">
             <div class="donorActivity">
         <div class="card">
-         
+            
             <div class="card-body" style="color: black; font-weight: bold; padding: 30px; padding-left: 30px;">
               <h5 class="card-title">Today's Donor Activity</h5>
               <div class="row">
@@ -115,18 +128,15 @@
           </div>
         </div>
           </div>
+
+         
           <div class="col-md-6">
           <div class="card" style="border: 1px solid red;   background: linear-gradient(to right, #e7f0f3 0%, #dd9a98 100%);">
             <div class="card-body">
               <h5 class="card-title">Announcement(s)</h5>
-              <p class="card-text">orem Ipsum is simply dummy text of the printing and typesetting industry. 
-                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown 
-                printer took a galley of type and scrambled it to make a type specimen book. 
-                It has survived not only five centuries, but also the leap into electronic typesetting.
-                orem Ipsum is simply dummy text of the printing and typesetting industry. 
-                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown 
+              <p class="card-text">
+                  <?php echo $rows["announcement"];?>
                </p>
-              
             </div>
             </div>
             </div>
@@ -137,10 +147,7 @@
                 <div class="card-body">
                   <h5 class="card-title">Widget</h5>
                   <h6>3</h6>
-                  <p class="card-text">orem Ipsum is simply dummy text of the printing and typesetting industry. 
-                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown 
-                    printer took a galley of type and scrambled it to make a type specimen book. 
-                    It has survived not only five centuries, but also the leap into electronic typesetting.</p>
+                  <p class="card-text"> <?php echo $rows["widget3"];?> </p>
                  
                 </div>
               </div>
@@ -151,10 +158,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Widget</h5>
                         <h6>4</h6>
-                      <p class="card-text">orem Ipsum is simply dummy text of the printing and typesetting industry. 
-                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown 
-                        printer took a galley of type and scrambled it to make a type specimen book. 
-                        It has survived not only five centuries, but also the leap into electronic typesetting.</p>
+                      <p class="card-text"><?php echo $rows["widget4"];?></p>
                       
                     </div>
                   </div>
@@ -165,20 +169,23 @@
                         <div class="card-body">
                             <h5 class="card-title">Widget</h5>
                             <h6>5</h6>
-                          <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown 
-                              printer took a galley of type and scrambled it to make a type specimen book. 
-                              It has survived not only five centuries, but also the leap into electronic typesetting.</p>
+                          <p class="card-text"><?php echo $rows["widget5"];?></p>
                           
                         </div>
                       </div>
                   </div>
                   </div>
-              
+              <?php
+              $i++;
+                }
+
+              ?>
             
           </div>
   
-
+           <?php
+           }
+           ?>
  
         <!-- Footer -->
 <footer class="page-footer font-small blue-grey lighten-5" >

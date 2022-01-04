@@ -314,3 +314,16 @@ cursor: pointer;
     border-radius: 50px !important;
 }
 
+/* ----------UpdateForm----------- */
+
+.updateForm{
+border: 1px solid gray !important;
+margin-top: 100px;
+}
+
+.updateButton{
+    display: flex !important;
+    float:left !important;
+    justify-content: center !important; 
+    height: 100px;
+}

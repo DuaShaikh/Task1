@@ -14,7 +14,7 @@
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="index.html">
+    
     <title>Table</title>
 </head>
 
@@ -84,10 +84,12 @@
     <?php
     session_start();
     require "function.php";
-    $result = retrivedData($conn);
-    
+    $limit = 4;
+    $result = retrivedData($conn, $limit);
+    $count = $result['count']->fetch_object();
+    $pages = ceil($count->count / $limit);
 
-   if (mysqli_num_rows($result) > 0) {
+   if (mysqli_num_rows($result['data']) > 0) {
 
      
     ?>
@@ -108,14 +110,14 @@
 
       
           $i=0;
-         while($row = mysqli_fetch_array($result)) {
+         while($row = mysqli_fetch_array($result['data'])) {
       ?>
         <tr >
           <td><?php echo $row["name"];  ?></td>
           <td><?php echo $row["description"];  ?> </td>
           <td></td>
-          <td><i class="fas fa-pencil-alt"></i></td>
-          <td><i class="far fa-copy"></i></td>
+          <td ><a href="http://task.me/function.php?function=show&id=<?php echo $row["id"]; ?>"> <i class="fas fa-pencil-alt"></i></a></td>
+          <td><a href="http://task.me/table.php?function=duplicateData&id=<?php echo $row["id"]; ?>"><i class="far fa-copy"></i> </a></td>
         	<td><a href="http://task.me/function.php?function=deleteData&id=<?php echo $row["id"]; ?>"> <i class="fas fa-trash"> </i> </a></td>
         
         </tr>
@@ -128,33 +130,22 @@
 
     </table>
     <?php
+    echo '<ul class="pagination">';
+    for($j=1; $j<=$pages; $j++){
+     echo '<li class="page-item"><a class="page-link" href="http://task.me/table.php?page='.$j.'">'.$j.'</a></li>';
+    }
+    echo '</ul>';
   }
     else{
       echo "No result found";
   }
- include "db_config.php";
-
-  $sql1 = "SELECT * from deferral";
-  $result1 = mysqli_query($conn, $sql1) or die("Query Failed");
-
-  if(mysqli_num_rows($result1) > 0){
-  $total_records = mysqli_num_rows($result1);
-  $limit = 4;
-  $total_page = ceil($total_records/$limit);
-  
-  echo '<ul class="pagination justify-content-center">';
-  for($i=1; $s<=$total_page; $i++){
-   echo '<li class="page-item"><a class="page-link" href="task.me/table.php?page='.$i.'">'.$s.'</a></li>';
-  }
-  echo '</ul>';
- 
-}
-
   ?>
+
  
+
 
   </div>
-  
+ 
 
 
 
@@ -175,9 +166,9 @@
                 <div class="row mb-3">
                   <!-- <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label> -->
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" placeholder="Display Name" name="name" value="<?php echo $name;?>">
+                    <input type="text" class="form-control" placeholder="Display Name" name="name" >
                     <input type="hidden" name="function" value="submitForm">
-                    <span class="error">* <?php echo $nameErr;?></span>
+               
                   </div>
                 </div>
                 <div class="row mb-3">
@@ -327,10 +318,6 @@ return $data;
 
 
 ?>
-
-
-
-
 
 
 </section>
