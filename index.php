@@ -15,38 +15,7 @@
 <body>
     <header>
         <div class="container-fuild">
-            
-         <div class="navbar">
-          
-          <div class="menu">
-              
-              <div class="col">
-              <ul>
-                  <li class="bar"> <i class="fas fa-bars"></i></li>
-                  <li class="logo">
-                    <img src="images/blood-donation-logo-drop-vector-illustration-149924786-removebg-preview.png">
-                  </li>
-                 <a href="table.php"><li class="list" >Donors</li></a> 
-                  <li class="list">Products</li>
-                  <li class="list">Patients</li>
-                  <li class="list">Quality</li>
-                  <li class="list">Billing</li>
-                  <li class="list">Reports</li>
-              </ul>
-          </div>
-        </div>
-       
-          <div class="date1">
-            <div class="col">
-              <ul>
-                  <li class="date">December 28, 2021 09:31 PM</li>
-                  <li class="profile"><img src="images/istockphoto-1311564458-170667a.jpg"></li>
-                  <li class="arrowDown">  <i class="fas fa-sort-down"></i></li>
-              </ul>
-        </div>
-    </div>
-    
-        </div>
+        <?php include "header.php";?>
         </div>
     </header>
 

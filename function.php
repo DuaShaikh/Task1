@@ -3,11 +3,11 @@ error_reporting(E_ALL);
 session_start();
 
 include_once 'db_config.php';
+
 if (isset($_GET['function'])) {
     $_GET['function']($conn);
 } elseif(isset($_POST['function'])) {
     $_POST['function']($conn);
-  
 } 
 
 
@@ -50,7 +50,7 @@ function retrivedData($conn, $limit) {
     // } 
     mysqli_close($conn);
 
-    return ["data" => $result, "count" => $count];
+    return ["data" => $result, "count" => $count, "currentPage" => $page];
 }
 
 
@@ -90,19 +90,15 @@ function update($conn){
     $lookback = $_POST['lookback'];
     $deferralType = $_POST['deferralType'];
 	
-    $update ="UPDATE deferral SET `name`='{$name}', `description`='{$description}', `interval`='{$interval}', `count`='{$count}', `compute`='{$compute}', `override`='{$override}', 
-    confidentia`l`='{$confidential}', `lookback`='{$lookback}', `deferralType`='{$deferralType}'  WHERE `id`='{$id}'";
-	print_r($update);
-    $result=mysqli_query($conn,$update) or die("failed to update");
-
-    // print_r($result);
-    // die();
-    if($result){
-        $_SESSION['success'] = "Record updated Successfully";
-       header("location:table.php");
-    } else {
-        die('Failed to update');
-    }
+    $sql ="UPDATE deferral SET `name`='{$name}', `description`='{$description}', `interval`='{$interval}', `count`='{$count}', `compute`='{$compute}', `override`='{$override}', 
+    `confidential`='{$confidential}', `lookback`='{$lookback}', `deferralType`='{$deferralType}'  WHERE `id`='{$id}'";
+   if ($conn->query($sql) === TRUE) {
+    $_SESSION['success'] = "Record Updated Successfully";
+    header("location:table.php");
+} else {
+    echo "Error updating record: " . mysqli_error($conn);
+}
+  mysqli_close($conn);
     
     
     

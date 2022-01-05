@@ -19,49 +19,10 @@
 </head>
 
 <body>
-
-
-
-
-  <header>
-    <div class="container-fuild">
-    <div class="navbar">
-          
-          <div class="menu">
-              
-              <div class="col">
-              <ul>
-                  <li class="bar"> <i class="fas fa-bars"></i></li>
-                  <li class="logo">
-                    <img src="images/blood-donation-logo-drop-vector-illustration-149924786-removebg-preview.png">
-                  </li>
-                 <a href="table.php"><li class="list" >Donors</li></a> 
-                  <li class="list">Products</li>
-                  <li class="list">Patients</li>
-                  <li class="list">Quality</li>
-                  <li class="list">Billing</li>
-                  <li class="list">Reports</li>
-              </ul>
-          </div>
-        </div>
-       
-          <div class="date1">
-            <div class="col">
-              <ul>
-                  <li class="date">December 28, 2021 09:31 PM</li>
-                  <li class="profile"><img src="images/istockphoto-1311564458-170667a.jpg"></li>
-                  <li class="arrowDown">  <i class="fas fa-sort-down"></i></li>
-              </ul>
-        </div>
-    </div>
-    
-        </div>
-        </div>
-    </div>
-  </header>
-
+  <?php include "header.php"; ?>
 
   <div class="container">
+  
     <div class="heading " >
       <div class="container" >
         <div class="row">
@@ -72,13 +33,15 @@
             <i class="far fa-globe"></i>
             <i class="far fa-history"></i>
             <!-- <input type="button" value="Add" class="button"> -->
-            <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap" style="margin-top: 100px;">Add</button>
+            <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap" style="margin-top: 100px; margin-bottom:20px;">Add</button>
 
           </div>
 
         </div>
       </div>
     </div>
+
+    <input type="text" name="search" id="searchbar" placeholder="Search">
      
    
     <?php
@@ -88,6 +51,7 @@
     $result = retrivedData($conn, $limit);
     $count = $result['count']->fetch_object();
     $pages = ceil($count->count / $limit);
+    
 
    if (mysqli_num_rows($result['data']) > 0) {
 
@@ -116,7 +80,7 @@
           <td><?php echo $row["name"];  ?></td>
           <td><?php echo $row["description"];  ?> </td>
           <td></td>
-          <td ><a href="http://task.me/function.php?function=show&id=<?php echo $row["id"]; ?>"> <i class="fas fa-pencil-alt"></i></a></td>
+          <td ><a href="http://task.me/function.php?function=show&id=<?php echo $row["id"]; ?>" > <i class="fas fa-pencil-alt"></i></a></td>
           <td><a href="http://task.me/table.php?function=duplicateData&id=<?php echo $row["id"]; ?>"><i class="far fa-copy"></i> </a></td>
         	<td><a href="http://task.me/function.php?function=deleteData&id=<?php echo $row["id"]; ?>"> <i class="fas fa-trash"> </i> </a></td>
         
@@ -130,34 +94,52 @@
 
     </table>
     <?php
+
+    $pre = $result['currentPage'] - 1;
+    $next = $result['currentPage'] + 1;
+      
+ 
     echo '<ul class="pagination">';
-    for($j=1; $j<=$pages; $j++){
-     echo '<li class="page-item"><a class="page-link" href="http://task.me/table.php?page='.$j.'">'.$j.'</a></li>';
+    $disabled= '';
+    if($result['currentPage'] == 1) {
+      $disabled = 'disabled';
     }
+      echo '<li class="page-item ' . $disabled . '" >
+        <a class="page-link" href="http://task.me/table.php?page=' . $pre . '">Previous</a>
+      </li>'; 
+
+    for($j=1; $j<=$pages; $j++){
+      $active = "";
+      if($result['currentPage'] == $j) {
+        $active = "active";
+      }
+      echo '<li class="page-item ' . $active . '"><a class="page-link" href="http://task.me/table.php?page=' . $j . '">' . $j . '</a></li>';
+    }
+    $disabled= '';
+    if($result['currentPage'] == $pages) {
+     $disabled = 'disabled';
+    }
+    
+      echo '<li class="page-item '. $disabled. '">
+        <a class="page-link"  href="http://task.me/table.php?page=' . $next . '">Next</a>
+      </li>'; 
+     
+    
     echo '</ul>';
   }
     else{
       echo "No result found";
   }
   ?>
-
- 
-
-
   </div>
  
-
-
 
 <section>
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
     <div class="modal-dialog modal-dialog-centered  modal-lg" >
       <div class="modal-content">
         <div >
-
-
           <h5 class="modal-title" >Add Deferral Reason</h5>
-        
         </div>
         <div class="modal-body" style="padding: 30px;">
             <form method="post" action="function.php" >
@@ -274,7 +256,7 @@
 
 $nameErr=" ";
 
-$name = $description = $count = $gridRadios = " ";
+$name = $description = $count = $compute = " ";
 
 if($_SERVER("REQUEST_METHOD")== "POST"){
  
@@ -300,11 +282,11 @@ if($_SERVER("REQUEST_METHOD")== "POST"){
     $count=test_input($_POST["count"]);
   }
 
-  if(empty($_POST["gridRadios"])){
-    $gridRadios="";
+  if(empty($_POST["compute"])){
+    $compute="";
   }
   else{
-    $gridRadios=test_input($_POST["gridRadios"]);
+    $compute=test_input($_POST["compute"]);
   }
 }
 
@@ -344,6 +326,32 @@ return $data;
 
 
 
+<script type="text/javascript">
+
+$(document).ready(function(){
+    $("#searchbar").keyup(function(){
+ 
+        search_table($(this).val());
+    });
+
+    function search_table(value){
+      $("tableBody tr td").each(function(){
+        var found= 'false';
+        $(this).each(function(){
+          if($(this).text().toLowerCase().indexOf(value.toLowerCase())>=0)
+          {
+            found= 'true';
+          }
+        });
+        if(found=='true'){
+          $(this).show();
+        } else {
+          $(this).hide();
+        }
+    });
+    }
+});
+</script>
 
 
 

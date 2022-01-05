@@ -115,15 +115,9 @@ $row = $_SESSION['deferral'];
         <button type="submit"  style="background-color:rgb(6, 83, 155); margin-left:180px; margin-bottom:20px;height:50px;width:150px;border-radius:30px;color:white;margin-top:20px">Save</button>
         </div>
         </div>
-        <?php
-        // $i++;
-        //     }
-        ?>
         </div>
               </form>
-              <?php
-            // }
-              ?>
 </section>
 </body>
 </html>
+
