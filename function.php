@@ -5,7 +5,10 @@ session_start();
 include_once 'db_config.php';
 
 if (isset($_GET['function'])) {
+    // print_r($_GET['function']);
+    // exit();
     $_GET['function']($conn);
+   
 } elseif(isset($_POST['function'])) {
     $_POST['function']($conn);
 } 
@@ -36,18 +39,66 @@ if ($conn->query($sql) === TRUE) {
 }
 
 
-function retrivedData($conn, $limit) {
+function retrivedData($conn, $limit = 10) {
     $page = $_GET['page'] ?? 1;
     $offset = ($page - 1)*$limit;
-    $sql = "SELECT * FROM deferral ORDER BY id DESC LIMIT {$offset},{$limit}";
-    $result = $conn->query($sql);
+if(isset($_GET["search"])) {
+	$search = ($_GET["search"]);
+    print_r($search);
+    $sql = "SELECT * FROM deferral WHERE 'name' LIKE '%$search%' LIMIT {$offset},{$limit}  ";
+    // print_r($sql);
+} else {
+    $sql = "SELECT * FROM deferral ORDER BY id DESC LIMIT {$offset},{$limit}";  
+}
 
+$result = $conn->query($sql) or die('failed');
 
+// print_r($result);
+    
     $sql = "SELECT count('id') as count FROM deferral";
-    $count = $conn->query($sql);
-    // if ($conn->query($sql) === TRUE) {
-    //     echo "New record created successfully";
-    // } 
+    $count = $conn->query($sql) or die('failed') ;
+    
+//     $sql = "SELECT * FROM deferral WHERE 'name' LIKE '%" . $_POST["search"] ."%'";
+//     $data= $conn->query($sql) or die('Failed');
+//     print_r($sql);
+
+//     $output = '';
+//     if (mysqli_num_rows($result) > 0) {
+//         $ouput .= '
+//         <table class="table table-striped table-borderless" >
+//         <thead>
+//         <tr style="font-family: monospace; font-size: 12px">
+//           <th scope="col" >Name</th>
+//           <th scope="col">Discription</th>
+//           <th scope="col">Associated Profile</th>
+//           <th scope="col" colspan="3"> Actions</th>
+//         </tr>
+//         </thead>
+//       <tbody id="table_data">';
+//        $i=0;
+//         while ($row = mysqli_fetch_array($result)) {
+//             $output .= '<tr>
+//     <td>' . $row['name'] . '</td>
+//     <td>' . $row['description'] . '</td>
+    
+//   </tr>
+//    </tbody>
+//    </table>
+//   ';
+//     $i++;
+//         }
+//     } else {
+//         $output = '
+//   <tr>
+//     <td colspan="4"> No result found. </td>   
+//   </tr>';
+//     }
+
+//     echo $output;
+
+    
+//     print_r($data);
+
     mysqli_close($conn);
 
     return ["data" => $result, "count" => $count, "currentPage" => $page];

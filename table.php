@@ -5,28 +5,29 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="main.css">
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
     integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" 
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+   
     
+    <link rel="stylesheet" href="main.css">
     <title>Table</title>
 </head>
 
 <body>
   <?php include "header.php"; ?>
 
-  <div class="container">
+  <div class="container"style="margin-top:-40px">
   
     <div class="heading " >
       <div class="container" >
         <div class="row">
-          <div class="col-md-9">
+          <div class="col-md-9" id="data" >
             <h3 class="deferrals" style="margin-top:120px;"> <b style="color: black;">Deferrals</b> Define your deferrals reasons </h3>
           </div>
           <div class="col">
@@ -41,26 +42,36 @@
       </div>
     </div>
 
-    <input type="text" name="search" id="searchbar" placeholder="Search">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <form>
+          <input type="text" name="search" id="searchbar" placeholder="Search">
+          </form>
+        </div>
+        </div>
+    </div>
      
-   
+
+  <section>
     <?php
     session_start();
     require "function.php";
-    $limit = 4;
+    $limit = 10;
     $result = retrivedData($conn, $limit);
     $count = $result['count']->fetch_object();
     $pages = ceil($count->count / $limit);
     
-
+ 
    if (mysqli_num_rows($result['data']) > 0) {
-
-     
     ?>
     <?php if (isset($_SESSION['success'])) { ?>
       <div class="alert alert-success"><?php echo $_SESSION['success']; ?> </div>
     <?php unset($_SESSION['success']); } ?>
     <table class="table table-striped table-borderless" >
+
+    
+
       <thead>
         <tr style="font-family: monospace; font-size: 12px">
           <th scope="col" >Name</th>
@@ -69,12 +80,12 @@
           <th scope="col" colspan="3"> Actions</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="table_data">
       <?php
 
       
           $i=0;
-         while($row = mysqli_fetch_array($result['data'])) {
+         while($row = mysqli_fetch_array($result['data']) ) {
       ?>
         <tr >
           <td><?php echo $row["name"];  ?></td>
@@ -87,12 +98,17 @@
         </tr>
           <?php
        $i++;
-}
+} 
      ?>
        
       </tbody>
-
+    
     </table>
+ 
+
+    <!-- ----------------------Pagination----------------------- -->
+
+
     <?php
 
     $pre = $result['currentPage'] - 1;
@@ -127,12 +143,14 @@
     
     echo '</ul>';
   }
-    else{
-      echo "No result found";
+  else {
+    echo 'No result found';
   }
   ?>
   </div>
- 
+</section>
+<!-- --------------------------------Form----------------------------------- -->
+
 
 <section>
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
@@ -251,63 +269,10 @@
       </div>
     </div>
   </div>
-
-  <?php
-
-$nameErr=" ";
-
-$name = $description = $count = $compute = " ";
-
-if($_SERVER("REQUEST_METHOD")== "POST"){
- 
-  if(empty($_POST["name"])){
-    $nameErr = "Name is required";
-  }
-  else{
-    $name=test_input($_POST["name"]);
-    if(!preg_match("/^[a-zA-Z-' ]*$/", $name)){
-      $nameErr = "Only letters and white space allowed";
-    }
-  }
-  if(empty($_POST["description"])){
-    $description=" ";
-  }
-  else{
-    $description= test_input($_POST("description"));
-  }
-  if(empty($_POST["count"])){
-    $count=" ";
-  }
-  else{
-    $count=test_input($_POST["count"]);
-  }
-
-  if(empty($_POST["compute"])){
-    $compute="";
-  }
-  else{
-    $compute=test_input($_POST["compute"]);
-  }
-}
+   <footer class="page-footer font-small blue-grey lighten-5" >
 
 
-function test_input($data){
-$data=trim($data);
-$data=stripcslashes($data);
-$data=htmlspecialchars($data);
-return $data;
-}
-
-
-?>
-
-
-</section>
-
-  <footer class="page-footer font-small blue-grey lighten-5" style="margin-top: 130px;">
-
-
-    <div class="col-md-2">
+    <div class="col-md-2" >
       <div class="footer-copyright text-center text-black-50 ">Cloud Dashboard
       </div>
     </div>
@@ -324,37 +289,37 @@ return $data;
   </footer>
 
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
 
 
-<script type="text/javascript">
+
+</section>
+
+<script>
+
 
 $(document).ready(function(){
-    $("#searchbar").keyup(function(){
- 
-        search_table($(this).val());
-    });
-
-    function search_table(value){
-      $("tableBody tr td").each(function(){
-        var found= 'false';
-        $(this).each(function(){
-          if($(this).text().toLowerCase().indexOf(value.toLowerCase())>=0)
-          {
-            found= 'true';
-          }
-        });
-        if(found=='true'){
-          $(this).show();
-        } else {
-          $(this).hide();
+  $('#searchbar').keyup(function(){
+   var search_term = $(this).val();
+   console.log(search_term);
+    $.ajax({
+        url :"function.php?function=retrivedData",
+        METHOD: "GET",
+        data: {search: search_term},
+        dataType:"text",
+        success: function(data){
+        $("#table_data").html(data);
+        //    console.log(data);
+        
         }
     });
-    }
-});
+    });
+
+  
+}); 
+
+
 </script>
-
-
-
 
 
 </body>
