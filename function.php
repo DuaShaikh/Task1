@@ -29,10 +29,10 @@ function submitForm($conn) {
     $sql = "INSERT INTO deferral (`name`, `description`, `interval`, `count`, `compute`, `override`, `confidential`, `lookback`, `deferralType`)
     VALUES ('$name', '$description', '$interval', '$count', '$compute', '$override', '$confidential', '$lookback', '$deferralType')";
 
-if ($conn->query($sql) === TRUE) {
-    $_SESSION['success'] = "Record Inserted Successfully";
-    header("location:table.php");
-} else {
+    if ($conn->query($sql) === TRUE) {
+        $_SESSION['success'] = "Record Inserted Successfully";
+        header("location:table.php");
+    } else {
     echo "Error inserting record: " . mysqli_error($conn);
 }
   mysqli_close($conn);
@@ -42,66 +42,55 @@ if ($conn->query($sql) === TRUE) {
 function retrivedData($conn, $limit = 10) {
     $page = $_GET['page'] ?? 1;
     $offset = ($page - 1)*$limit;
+    $search='';
 if(isset($_GET["search"])) {
 	$search = ($_GET["search"]);
-    print_r($search);
-    $sql = "SELECT * FROM deferral WHERE 'name' LIKE '%$search%' LIMIT {$offset},{$limit}  ";
-    // print_r($sql);
-} else {
-    $sql = "SELECT * FROM deferral ORDER BY id DESC LIMIT {$offset},{$limit}";  
 }
-
-$result = $conn->query($sql) or die('failed');
-
-// print_r($result);
-    
-    $sql = "SELECT count('id') as count FROM deferral";
-    $count = $conn->query($sql) or die('failed') ;
-    
-//     $sql = "SELECT * FROM deferral WHERE 'name' LIKE '%" . $_POST["search"] ."%'";
-//     $data= $conn->query($sql) or die('Failed');
-//     print_r($sql);
-
-//     $output = '';
-//     if (mysqli_num_rows($result) > 0) {
-//         $ouput .= '
-//         <table class="table table-striped table-borderless" >
-//         <thead>
-//         <tr style="font-family: monospace; font-size: 12px">
-//           <th scope="col" >Name</th>
-//           <th scope="col">Discription</th>
-//           <th scope="col">Associated Profile</th>
-//           <th scope="col" colspan="3"> Actions</th>
-//         </tr>
-//         </thead>
-//       <tbody id="table_data">';
-//        $i=0;
-//         while ($row = mysqli_fetch_array($result)) {
-//             $output .= '<tr>
-//     <td>' . $row['name'] . '</td>
-//     <td>' . $row['description'] . '</td>
-    
-//   </tr>
-//    </tbody>
-//    </table>
-//   ';
-//     $i++;
-//         }
-//     } else {
-//         $output = '
-//   <tr>
-//     <td colspan="4"> No result found. </td>   
-//   </tr>';
-//     }
-
-//     echo $output;
-
+   $sql = "SELECT * FROM deferral WHERE `name` LIKE '%$search%' OR `description` LIKE '%$search%' ORDER BY id DESC LIMIT {$offset},{$limit}  ";
+   $result = $conn->query($sql);
+//    print_r($result);
+//    die;
+// $output='';
+// if(mysqli_num_rows($result) > 0)  
+// {  
+//      while($row = mysqli_fetch_array($result))  
+//      {  
+//           $output .= '  
+//               <tbody>
+//                <tr>  
+//                     <td >'.$row["name"].'</td>  
+//                     <td>' .$row["description"]. '</td>  
+                  
+//                </tr>  
+//           ';  
+//      }  
+// }  
+// else  
+// {  
+//      $output .= '<tr>  
+//                          <td colspan="4">Data not Found</td>  
+//                     </tr>
+//                     </tbody>
+//                     '
+//                     ;  
+// }  
+ 
+// echo $output;  
     
 //     print_r($data);
+$sql = "SELECT count('id') as count FROM deferral WHERE `name` LIKE '%$search%' OR `description` LIKE '%$search%'";
+$count = $conn->query($sql) or die('failed') ;
 
     mysqli_close($conn);
 
+    if ($_GET['search']) {
+        // print_r($result->fetch_assoc());
+        echo json_encode(["data" => $result->fetch_all(MYSQLI_ASSOC), "count" => $count->fetch_object(), "currentPage" => $page]);
+        // die;
+    }
+    
     return ["data" => $result, "count" => $count, "currentPage" => $page];
+
 }
 
 
@@ -149,7 +138,7 @@ function update($conn){
 } else {
     echo "Error updating record: " . mysqli_error($conn);
 }
-  mysqli_close($conn);
+   mysqli_close($conn);
     
     
     
