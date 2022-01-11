@@ -9,7 +9,7 @@ if (isset($_GET['function'])) {
     // exit();
     $_GET['function']($conn);
    
-} elseif(isset($_POST['function'])) {
+} elseif (isset($_POST['function'])) {
     $_POST['function']($conn);
 } 
 
@@ -34,7 +34,7 @@ function submitForm($conn) {
         header("location:table.php");
     } else {
     echo "Error inserting record: " . mysqli_error($conn);
-}
+    }
   mysqli_close($conn);
 }
 
@@ -46,40 +46,10 @@ function retrivedData($conn, $limit = 10) {
 if(isset($_GET["search"])) {
 	$search = ($_GET["search"]);
 }
-   $sql = "SELECT * FROM deferral WHERE `name` LIKE '%$search%' OR `description` LIKE '%$search%' ORDER BY id DESC LIMIT {$offset},{$limit}  ";
-   $result = $conn->query($sql);
-//    print_r($result);
-//    die;
-// $output='';
-// if(mysqli_num_rows($result) > 0)  
-// {  
-//      while($row = mysqli_fetch_array($result))  
-//      {  
-//           $output .= '  
-//               <tbody>
-//                <tr>  
-//                     <td >'.$row["name"].'</td>  
-//                     <td>' .$row["description"]. '</td>  
-                  
-//                </tr>  
-//           ';  
-//      }  
-// }  
-// else  
-// {  
-//      $output .= '<tr>  
-//                          <td colspan="4">Data not Found</td>  
-//                     </tr>
-//                     </tbody>
-//                     '
-//                     ;  
-// }  
- 
-// echo $output;  
-    
-//     print_r($data);
-$sql = "SELECT count('id') as count FROM deferral WHERE `name` LIKE '%$search%' OR `description` LIKE '%$search%'";
-$count = $conn->query($sql) or die('failed') ;
+    $sql = "SELECT * FROM deferral WHERE `name` LIKE '%$search%' OR `description` LIKE '%$search%' ORDER BY id DESC LIMIT {$offset},{$limit}  ";
+    $result = $conn->query($sql);
+    $sql = "SELECT count('id') as count FROM deferral WHERE `name` LIKE '%$search%' OR `description` LIKE '%$search%'";
+    $count = $conn->query($sql) or die('failed') ;
 
     mysqli_close($conn);
 
@@ -96,9 +66,7 @@ $count = $conn->query($sql) or die('failed') ;
 
 
 function deleteData($conn){
-
     $id =  $_GET["id"];
-
     $sql = "DELETE FROM deferral WHERE id=$id";
     if (mysqli_query($conn, $sql)) {
         $_SESSION['success'] = "Record Deleted Successfully";
@@ -107,7 +75,6 @@ function deleteData($conn){
         echo "Error deleting record: " . mysqli_error($conn);
     }
     mysqli_close($conn);
-    
 }
 
 function show($conn){
@@ -119,7 +86,6 @@ function show($conn){
 
 function update($conn){
     $id = $_POST['id']; 
-   
     $name = $_POST['name'];
     $description = $_POST['description'];
     $interval = $_POST['interval'];
@@ -132,17 +98,13 @@ function update($conn){
 	
     $sql ="UPDATE deferral SET `name`='{$name}', `description`='{$description}', `interval`='{$interval}', `count`='{$count}', `compute`='{$compute}', `override`='{$override}', 
     `confidential`='{$confidential}', `lookback`='{$lookback}', `deferralType`='{$deferralType}'  WHERE `id`='{$id}'";
-   if ($conn->query($sql) === TRUE) {
+    if ($conn->query($sql) === TRUE) {
     $_SESSION['success'] = "Record Updated Successfully";
     header("location:table.php");
-} else {
+    } else {
     echo "Error updating record: " . mysqli_error($conn);
-}
+    }
    mysqli_close($conn);
-    
-    
-    
-    mysqli_close($conn);
 }
 
  function duplicateData($conn){
@@ -157,14 +119,8 @@ function update($conn){
          die('Failed to update');
      }
      
-     
-     
      mysqli_close($conn);
-    
- 
  }
- 
-
 ?>
 
 
