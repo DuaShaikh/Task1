@@ -1,0 +1,329 @@
+body{
+    margin: 0px;
+    padding: 0px;
+}
+.navbar{
+    /* display:flex; */
+    /* float:left; */
+    background-color: rgb(6, 83, 155);
+    height: auto;
+    width: 100%;
+    color: white;
+    padding-top: 6px;
+    /* margin-top: -20px; */
+    justify-content: space-around;
+
+}
+
+.bar{
+ 
+    /* margin-left: 150px; */
+    /* margin-right: 50px; */
+    margin-top: 20px !important;
+    /* padding-left: 10px !important; */
+    
+}
+.fa-bars{
+    padding: 15px;
+    font-size: 20px;
+    background-color: rgb(30, 30, 119);
+    border-radius: 20px 20px;
+}
+.fa-bars:hover{
+    background-color: rgb(42, 42, 185);
+}
+.list:hover{
+background-color: rgb(44, 44, 126);
+padding: 20px;
+border-radius: 20px;
+cursor: pointer;
+}
+
+.logo img{
+    margin-top: -15px;
+    height: 100px;
+    width: 130px;
+}
+
+.menu ul, .date1 ul{
+    
+    list-style-type: none;
+    /* margin-right: 12px; */
+}
+.menu ul li{
+    display: inline;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-weight: bold;
+}
+
+.date{
+    margin-top: 10px;
+
+}
+.date1 ul li{
+    display: inline;
+}
+
+.profile img{
+    height: 50px;
+    width: 50px;
+    border-radius: 30px 30px;
+    margin-top: -17px;
+}
+.arrowDown{
+    margin-top: -20px;
+    padding: 50px;
+    
+}
+.subMenu{
+    display:flex;
+    float:left;
+    background-color: white;
+    height: auto;
+    width: 100%;
+      /* justify-content: space-around; */
+      /* margin-top: 100px; */
+      /* padding-left: 200px; */
+      padding-bottom: 39px;
+}
+
+.subMenu i{
+    font-size: 50px;
+    padding: 50px;
+    /* margin-left: 70px; */
+    margin-right: 70px;
+    margin-top: 55px;
+    color: red;
+    background-color: white;
+    border-radius: 130px;
+    box-shadow: rgb(177, 175, 175) 2px 2px 5px 2px;
+    /* margin-left: 10px; */
+    border: none;
+    /* margin: 70px */
+}
+
+.subMenu h5{
+    margin-top: 20px;
+    margin-left: 40px;
+    font-size: 16px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+.content{
+    display: flex;
+    float: left;
+    background-color: rgb(235, 235, 235);
+    padding: 50px;
+    width: 100%;
+    /* margin-top: 14px; */
+}
+
+.content .link a:hover{
+    color: rgb(82, 121, 228);
+}
+
+
+.card{
+    margin-top: 10px !important;
+    border-top-left-radius: 20px !important;
+    border-bottom-left-radius: 20px !important;
+    border-top-right-radius: 20px !important;
+    border-bottom-right-radius: 20px !important;
+}
+
+.para{
+    background-color: gray;
+    width: 100%;
+    height: 200px;
+}
+
+.card-title{
+ font-size: 20px;
+ font-weight: bold;
+
+}
+
+.content h6{
+    font-weight: bold;
+}
+
+.fa-tint:hover , .fa-prescription-bottle-alt:hover , .fa-user:hover, .fa-thumbs-up:hover, .fa-money-bill-wave:hover{
+    background-color: rgb(240, 236, 231);
+    
+}
+
+.page-footer{
+    background-color: rgb(196, 196, 196); 
+    display:flex; 
+    float:left; 
+    width: 100%; 
+    justify-content: space-between; 
+    height: auto; 
+    padding-top: 10px;
+    margin-top:30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* --------------------------------Table Page------------------------------------ */
+
+
+/* .heading{
+    margin-top:100px
+} */
+.fa-globe, .fa-history{
+    padding: 10px;
+    font-size: 20px;
+    background-color: white;
+    border-radius: 20px 20px;
+    box-shadow: 2px 2px 14px;
+    margin: 5px;
+}
+.button{
+    padding: 10px;
+    font-size: 20px;
+    background-color: rgb(56, 86, 170);
+    border-bottom-left-radius: 25px;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    width: 150px;
+    color: white;
+    font-family: monospace;
+   
+
+}
+
+.button:hover{
+    background-color: rgb(60, 60, 155);
+}
+
+.fa-globe:hover, .fa-history:hover{
+    background-color: rgb(235, 231, 231);
+}
+
+.table {
+    margin-top: 20px;
+    border: 1px solid gray;
+    margin-bottom: 50px !important;
+    
+}
+
+.deferrals{
+    margin-top: 25px;
+    font-family:sans-serif;
+    color: gray;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.table-striped>tbody>tr:nth-child(odd)>td, 
+.table-striped>tbody>tr:nth-child(odd)>th {
+   background-color: rgb(237, 236, 238) 
+ }
+
+ .fa-copy, .fa-trash, .fa-pencil-alt{
+     color: gray;
+ }
+
+ .fa-copy:hover, .fa-trash:hover, .fa-pencil-alt:hover{
+    color: rgb(194, 186, 186);
+}
+.rightArrow:hover{
+    color: rgb(128, 126, 126);
+}
+
+
+
+
+
+
+/* --------------Form Page-------------------- */
+
+.modal-dialog{
+    width: 1000px !important;
+    height: auto;
+}
+
+ input[type=text]{
+    border: none;
+    border-bottom: 1px solid gray;
+    width: 90%;
+    margin-left:20px;
+    padding: 15px;
+    color: rgb(100, 96, 96);
+}
+
+.Label{
+    margin-top: 15px !important;
+}
+
+
+.floating{
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.modal-title{
+    font-weight: bold;
+    padding-top: 40px;
+    padding-left: 50px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.col-form-label{
+    margin-top: 40px;
+    margin-bottom: 10px;
+    font-size: 20px !important;
+}
+
+.form-check{
+    padding: 15px;
+    color: gray;
+}
+
+
+.form-select{
+    border: none !important;
+    border-bottom: 1px solid gray !important;
+    margin-bottom: 20px !important;
+    color: gray !important;
+}
+
+.btn-secondary, .btn-primary{
+    margin-left: 50px !important;
+    width: 300px !important;
+    height: 50px;
+    margin-bottom: 50px;
+    border-radius: 50px !important;
+}
+
+/* ----------UpdateForm----------- */
+
+.updateForm{
+border: 1px solid gray !important;
+margin-top: 100px;
+margin-bottom: 100px !important;
+}
+
+.updateButton{
+    display: flex !important;
+    float:left !important;
+    justify-content: center !important; 
+    height: 100px;
+}
+.edit{
+    padding: 30px;
+    font-family: monospace;
+    color: rgb(6, 83, 155);
+    font-weight: bold;
+}
