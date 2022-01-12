@@ -1,31 +1,9 @@
 
+@extends('layout.master')
+@section('title','Registration')
+@section('main')
     
-{{-- @if ($errors->any())
-<div class="alert alert-danger">
-    <ul>
-        @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-</div>
-@endif --}}
 
-{{-- <h1> Login Page</h1>
-@foreach($users as $user)
-    <p> {!! $user->name !!} </p>
-    <p> {!! $user->description !!} </p>
-@endforeach --}}
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
     <form action="user" method="post" style="border: 2px solid gray; width:30%; margin-left:600px;margin-top:100px; border-radius:20px; padding-top:30px">
         <h1 style="margin-left:130px">Registration Form</h1>
         @csrf
@@ -41,5 +19,4 @@
         <span style="color:red;margin-left:20px">@error('date'){{$message}}@enderror</span><br>
         <input type="submit" name="submit" value="Login" style="width:150px; height:50px; border-radius:20px; margin-bottom:50px; margin-left:200px; color:white;background-color:rgb(48, 48, 124);font-weight:bold;">
     </form>
-</body>
-</html>
+@endsection

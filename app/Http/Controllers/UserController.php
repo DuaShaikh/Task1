@@ -15,15 +15,17 @@ class UserController extends Controller
     }
 
     //
-    function getData(){
+    function getData()
+    {
         $users = $this->deferralService->getDeferrals();
 
-        return view('user', compact('users'));
+        return view('table', compact('users'));
     }
 
-    function postData(DeferralRequest $request){
-        $users = $this->deferralService->getDeferrals();
+    function postData(DeferralRequest $request)
+    {
+        $users = $this->deferralService->postDeferrals($request);
 
-        return view('user', compact('users'));
+        return $this->getData();
     }
 }
