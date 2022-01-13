@@ -6,15 +6,34 @@ use Illuminate\Http\Request;
 
 class DeferralService
 {    //
-    function getDeferrals(){
+    function getDeferrals()
+    {
         return Deferral::orderByDesc('id')->get();
     }
     
-    function postDeferrals($request) {
+    function postDeferrals($request) 
+    {
         return Deferral::create($request->all());
     }
 
-    function deleteDeferrals($id) {
-        return Deferral::where('id', $id)->delete();
+    function deleteDeferrals($id) 
+    {
+        return Deferral::find($id)->delete();
+       
+    }
+
+    function replicateDeferrals($id) 
+    {
+        return Deferral::find($id)->replicate();
+        
+    }
+    function showDeferrals($id) 
+    {
+         return Deferral::find($id);
+         
+    }
+    function updateDeferrals($id)
+    {
+        return Deferral::find($id)->update();
     }
 }

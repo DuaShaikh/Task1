@@ -310,16 +310,17 @@ cursor: pointer;
 /* ----------UpdateForm----------- */
 
 .updateForm{
-border: 1px solid gray !important;
-margin-top: 100px;
+border: 2px solid gray !important;
+margin-top: 100px !important;
 margin-bottom: 100px !important;
+width:500px !important;
 }
 
 .updateButton{
     display: flex !important;
     float:left !important;
     justify-content: center !important; 
-    height: 100px;
+    height: 100px !important;
 }
 .edit{
     padding: 30px;

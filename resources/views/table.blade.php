@@ -4,6 +4,17 @@
      
   
 <x-form />
+<div class="container">
+  <div class="row">
+        @if (Session::get('status'))
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{ session::get('status') }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        @endif
+    </div>
+</div>
+
   <section>
     <div class="container">
         <div class="row">
@@ -27,9 +38,9 @@
                 <td>{{$deferral->name}}</td>
                 <td>{{$deferral->description}}</td>
                 <td></td>
-                <td><a href="#" > <i class="fas fa-pencil-alt"></i></a></td>
-                <td><a href="#" ><i class="far fa-copy"></i> </a></td>
-                <td><a href="{{ URL::to('table?' . $deferral->id) }}"> <i class="fas fa-trash"> </i> </a></td>
+                <td><a href="{{URL::to('update/' . $deferral->id) }}"> <i class="fas fa-pencil-alt"></i></a></td>
+                <td><a href="{{ URL::to('rep/' . $deferral->id) }}"><i class="far fa-copy"></i> </a></td>
+                <td><a href="{{ URL::to('delete/' . $deferral->id) }}"> <i class="fas fa-trash"> </i> </a></td>
               </tr>
               @endforeach
             </tbody>
