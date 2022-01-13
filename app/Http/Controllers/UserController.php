@@ -28,4 +28,11 @@ class UserController extends Controller
 
         return $this->getData();
     }
+
+    function delData($id)
+    {
+        $users = $this->deferralService->deleteDeferrals($id);
+        return $this->getData();
+        
+    }
 }

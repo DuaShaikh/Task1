@@ -18,6 +18,6 @@ class WidgetController extends Controller
     {
         $widgets = $this->widgetService->getWidgets();
 
-        return view('/home', compact('widgets'));
+        return view('home', compact('widgets'));
     }
 }

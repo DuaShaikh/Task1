@@ -10,7 +10,11 @@ class DeferralService
         return Deferral::orderByDesc('id')->get();
     }
     
-    function postDeferrals($request){
+    function postDeferrals($request) {
         return Deferral::create($request->all());
+    }
+
+    function deleteDeferrals($id) {
+        return Deferral::where('id', $id)->delete();
     }
 }

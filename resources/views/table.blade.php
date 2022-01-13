@@ -29,7 +29,7 @@
                 <td></td>
                 <td><a href="#" > <i class="fas fa-pencil-alt"></i></a></td>
                 <td><a href="#" ><i class="far fa-copy"></i> </a></td>
-                <td><a href="#"> <i class="fas fa-trash"> </i> </a></td>
+                <td><a href="{{ URL::to('table?' . $deferral->id) }}"> <i class="fas fa-trash"> </i> </a></td>
               </tr>
               @endforeach
             </tbody>
