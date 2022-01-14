@@ -41,7 +41,15 @@
                         <ul>
                             <li class="date">December 28, 2021 09:31 PM</li>
                             <li class="profile"><img src="{{ URL::to('/images/profilePic.jpg') }}"></li>
-                            <li class="arrowDown">  <i class="fas fa-sort-down"></i></li>
+                            <li class="arrowDown" >  
+                                <div class="btn-group">
+                                    <i class=" dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                    <ul class="dropdown-menu">
+                                      <li><a class="dropdown-item" href="#">Login</a></li>
+                                      
+                                    </ul>
+                                  </div>
+                            </li>
                         </ul>
                     </div>
                 </div>

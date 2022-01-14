@@ -18,11 +18,12 @@
   <section>
     <div class="container">
         <div class="row">
+          <form method="post" action="table">
           <div class="col-lg-12"  style="margin-bottom:20px">
-            <input type="text" name="search" id="searchbar" placeholder="Search">
+            <input type="text" name="search" name="searchBar"  placeholder="Search">
           </div>
+        </form>
         </div>
-        
           <table class="table table-striped table-borderless" id="table_data" >
             <thead>
               <tr style="font-family: monospace; font-size: 12px">
@@ -46,14 +47,9 @@
             </tbody>
             
           </table>
+        
           <span>{{$users->links("pagination::bootstrap-4")}}</span>
         </div>
     </section>   
-    <style>
-      .w-5{
-        width:25px;
-        display: inline;
-      }
-    </style>
 @endsection  
    

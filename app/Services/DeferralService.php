@@ -8,7 +8,12 @@ class DeferralService
 {    //
     function getDeferrals()
     { 
-        return Deferral::orderByDesc('id')->paginate(4);
+        // $search='';
+        // if(isset($req['searchBar'])){
+        //     $search = $req['searchBar'];
+        // }
+            return Deferral::orderByDesc('id')->paginate(4);
+            // where('name','LIKE','%'.$search.'%')->orWhere('description','LIKE','%'.$search.'%')
     }
     
     function postDeferrals($request) 
@@ -32,8 +37,9 @@ class DeferralService
          return Deferral::find($id);
          
     }
-    function updateDeferrals($id)
+    function updateDeferrals($id,$request)
     {
-        return Deferral::find($id)->update();
+        return Deferral::find($id)->update($request->all());
     }
+  
 }

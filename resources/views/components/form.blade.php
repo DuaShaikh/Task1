@@ -49,13 +49,14 @@
                           <div class="row mb-5">
                             <div class="col-sm-10">
                               @csrf
-                              <input type="text" class="form-control" placeholder="Display Name" name="name" >
+                              <input type="text" class="form-control" placeholder="Display Name" name="name" required>
+                              <span style="color:red; margin-left:20px">@error('name'){{$message}}@enderror</span><br>
                               {{-- <input type="hidden" name="function" value="submitForm"> --}}
                             </div>
                           </div>
                           <div class="row mb-5">
                               <div class="col-sm-10" style="padding-bottom: 30px">
-                                <input type="text" class="form-control" placeholder="Description" name="description">
+                                <input type="text" class="form-control" placeholder="Description" name="description" required>
                               </div>
                           </div>
                           <div class="row g-2">
@@ -66,7 +67,7 @@
                               </div>
                               <div class="col-md ">
                                   <div class="form-floating">
-                                    <select class="form-select" id="floatingSelectGrid" name="interval" aria-label="Floating label select example" >
+                                    <select class="form-select" id="floatingSelectGrid" name="interval" aria-label="Floating label select example" required>
                                       <option selected>None</option>
                                       <option value="m">One</option>
                                       <option value="d">Two</option>

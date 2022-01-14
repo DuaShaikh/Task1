@@ -1,10 +1,8 @@
 @extends('layout.master')
 @section('title','Update')
-
-
 @section('main')
 <div class="container" class="updateForm" style="border:1px solid gray; margin-top:20px; width:650px; margin-bottom:100px; border-radius:20px">
-    <form method="post" action="update" >
+    <form method="post" action="update">
         <div class="container">
                   <h4 class="edit"> Update Deferral Record </h4>
           
@@ -32,11 +30,11 @@
                     </div>
                     <div class="col-md ">
                         <div class="form-floating">
-                          <select class="form-select" id="floatingSelectGrid" name="interval" aria-label="Floating label select example" value="{{$users->interval}}">
+                          <select class="form-select" id="floatingSelectGrid" name="interval" aria-label="Floating label select example" >
                             <option selected>None</option>
-                            <option value="m">One</option>
-                            <option value="d">Two</option>
-                            <option value="y">Three</option>
+                            <option value="m" {{$users->interval == "m" ? "selected" : ''}} >One</option>
+                            <option value="d" {{$users->interval == "d" ? "selected" : ''}}>Two</option>
+                            <option value="y" {{$users->interval == "y" ? "selected" : ''}}>Three</option>
                           </select>
                           <label for="floatingSelectGrid">Interval</label>
                         </div>
@@ -55,25 +53,25 @@
 
                   <div class="col-sm-10">
                       <div class="form-check">
-                          <input class="form-check-input" type="radio" name="compute" id="gridRadios1"  checked value="1">
+                          <input class="form-check-input" type="radio" name="compute" id="gridRadios1"  checked value="1" {{$users->compute == "1" ? "checked" : ''}}>
                           <label class="form-check-label" for="gridRadios1">
                             Occurrence Date Capture in the Questionnaire
                           </label>
                       </div>
                       <div class="form-check">
-                          <input class="form-check-input" type="radio" name="compute" id="gridRadios1"  checked value="0">
+                          <input class="form-check-input" type="radio" name="compute" id="gridRadios1"  value="0" {{$users->compute == "0" ? "checked" : ''}}>
                           <label class="form-check-label" for="gridRadios1">
                             From Appearance Date as Confidential
                           </label>
                       </div>
                       <div class="form-check">
-                          <input class="form-check-input" type="checkbox" name="confidential" value="1" id="flexCheckDefault">
+                          <input class="form-check-input" type="checkbox" name="confidential" value="1" id="flexCheckDefault" {{$users->confidential == "1" ? "checked" : ''}} >
                           <label class="form-check-label" for="flexCheckDefault">
                             Treat This Deferral as Confidential
                           </label>
                       </div>
                       <div class="form-check">
-                          <input class="form-check-input" type="checkbox" name="override" value="1" id="flexCheckChecked" >
+                          <input class="form-check-input" type="checkbox" name="override" value="1" id="flexCheckChecked" {{$users->override == "1" ? "checked" : ''}} >
                           <label class="form-check-label" for="flexCheckChecked">
                             Require Supervisor Override to Post this Deferral
                           </label>
@@ -81,14 +79,14 @@
                   </div>
                        <select class="form-select" aria-label="Default select example" name="lookback" style="margin-top: 30px;" >
                           <option selected>LookBack Perform</option>
-                          <option value="TY" >One</option>
-                          <option value="ASAP">Two</option>
-                          <option value="MP">Three</option>
+                          <option value="TY" {{$users->lookback == "TY" ? "selected" : ''}} >One</option>
+                          <option value="ASAP" {{$users->lookback == "ASAP" ? "selected" : ''}}>Two</option>
+                          <option value="MP" {{$users->lookback == "MP" ? "selected" : ''}}>Three</option>
                         </select>
                         <select class="form-select" aria-label="Default select example" name="deferralType" style="margin-top: 30px;" >
                           <option selected>Deferral Type</option>
-                          <option value="primary">One</option>
-                          <option value="secondary">Two</option>
+                          <option value="primary" {{$users->deferralType == "primary" ? "selected" : ''}}>One</option>
+                          <option value="secondary" {{$users->deferralType == "secondary" ? "selected" : ''}}>Two</option>
                         </select>
                 </div>
 

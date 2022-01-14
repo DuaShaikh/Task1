@@ -18,7 +18,7 @@
 </head>
 <body>
     <x-header />
-@yield('main');
+@yield('main')
 <x-footer/>
 
 </body>

@@ -46,13 +46,16 @@ class UserController extends Controller
     {
         $users = $this->deferralService->showDeferrals($id);
         return view('update',['users'=>$users]);
-        
-        
     }
-
-    function updateData($id)
+    function updateData($id, DeferralRequest $request)
     {
-        $users = $this->deferralService->updateDeferrals($id);
+        $users = $this->deferralService->updateDeferrals($id, $request);
         return $this->getData();
     }
+
+    // function searchData()
+    // {
+    //     $users = $this->deferralService->searchDeferrals();
+    //     return $this->getData();
+    // } 
 }
