@@ -44,9 +44,16 @@
               </tr>
               @endforeach
             </tbody>
+            
           </table>
+          <span>{{$users->links("pagination::bootstrap-4")}}</span>
         </div>
     </section>   
-    
+    <style>
+      .w-5{
+        width:25px;
+        display: inline;
+      }
+    </style>
 @endsection  
    

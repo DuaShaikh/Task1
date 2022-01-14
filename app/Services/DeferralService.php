@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 class DeferralService
 {    //
     function getDeferrals()
-    {
-        return Deferral::orderByDesc('id')->get();
+    { 
+        return Deferral::orderByDesc('id')->paginate(4);
     }
     
     function postDeferrals($request) 
