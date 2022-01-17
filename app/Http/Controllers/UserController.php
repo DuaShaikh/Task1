@@ -15,9 +15,9 @@ class UserController extends Controller
     }
 
     //
-    function getData()
+    function getData(Request $req)
     {
-        $users = $this->deferralService->getDeferrals();
+        $users = $this->deferralService->getDeferrals($req);
 
         return view('table', compact('users'));
     }
@@ -36,9 +36,10 @@ class UserController extends Controller
         return $this->getData();
     }
 
-    function copyData($id)
+    function copyData($id, Request $req)
     {
         $users = $this->deferralService->replicateDeferrals($id);
+        $req->session()->flash('status','Record Replicated successfully!');
         return $this->getData();
     }
 
@@ -53,9 +54,5 @@ class UserController extends Controller
         return $this->getData();
     }
 
-    // function searchData()
-    // {
-    //     $users = $this->deferralService->searchDeferrals();
-    //     return $this->getData();
-    // } 
+   
 }

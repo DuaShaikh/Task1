@@ -6,15 +6,18 @@ use Illuminate\Http\Request;
 
 class DeferralService
 {    //
-    function getDeferrals()
+    function getDeferrals($req)
     { 
-        // $search='';
-        // if(isset($req['searchBar'])){
-        //     $search = $req['searchBar'];
-        // }
-            return Deferral::orderByDesc('id')->paginate(4);
-            // where('name','LIKE','%'.$search.'%')->orWhere('description','LIKE','%'.$search.'%')
-    }
+            $search = $req['searchBar'] ?? "";
+            if($search != ''){
+                return Deferral::where('name','LIKE','%'.$search.'%')->orderByDesc('id')->paginate(5);
+            } else {
+                return Deferral::orderByDesc('id')->paginate(5);
+            }
+
+            
+        }
+        
     
     function postDeferrals($request) 
     {
@@ -29,7 +32,7 @@ class DeferralService
 
     function replicateDeferrals($id) 
     {
-        return Deferral::find($id)->replicate();
+        return Deferral::find($id)->replicate()->save();
         
     }
     function showDeferrals($id) 
@@ -39,7 +42,7 @@ class DeferralService
     }
     function updateDeferrals($id,$request)
     {
-        return Deferral::find($id)->update($request->all());
+        return Deferral::find($id)->update($request->all())->save();
     }
   
 }

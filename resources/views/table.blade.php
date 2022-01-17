@@ -18,9 +18,9 @@
   <section>
     <div class="container">
         <div class="row">
-          <form method="post" action="table">
+          <form method="get" action="table">
           <div class="col-lg-12"  style="margin-bottom:20px">
-            <input type="text" name="search" name="searchBar"  placeholder="Search">
+            <input type="text" name="searchBar"  placeholder="Search" >
           </div>
         </form>
         </div>
@@ -40,7 +40,7 @@
                 <td>{{$deferral->description}}</td>
                 <td></td>
                 <td><a href="{{URL::to('update/' . $deferral->id) }}"> <i class="fas fa-pencil-alt"></i></a></td>
-                <td><a href="{{ URL::to('rep/' . $deferral->id) }}"><i class="far fa-copy"></i> </a></td>
+                <td><a href="{{ URL::to('replicate/' . $deferral->id) }}"><i class="far fa-copy"></i> </a></td>
                 <td><a href="{{ URL::to('delete/' . $deferral->id) }}"> <i class="fas fa-trash"> </i> </a></td>
               </tr>
               @endforeach
