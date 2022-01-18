@@ -115,7 +115,7 @@
                             </div>
                          </div>
                         
-                          <select class="form-select" aria-label="Default select example" name="lookback" style="margin-top: 30px;">
+                            <select class="form-select" aria-label="Default select example" name="lookback" style="margin-top: 30px;">
                               <option selected>LookBack Perform</option>
                               <option value="TY">One</option>
                               <option value="ASAP">Two</option>

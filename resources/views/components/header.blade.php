@@ -28,7 +28,7 @@
                                 <img src="{{ URL::to('/images/logo.png') }}">
                             </li>
                             <a href="table"><li class="list" >Donors</li></a> 
-                            <li class="list">Products</li>
+                            <li href="shop.login" class="list">Products</li>
                             <li class="list">Patients</li>
                             <li class="list">Quality</li>
                             <li class="list">Billing</li>

@@ -1,21 +1,25 @@
 @extends('layout.ecommerce')
 @section('title', 'Login')
 @section('main')
-<div class="container bcontent">
-    <hr />
-    <div class="card" style="width: 500px; margin-top:300px">
-        <div class="row no-gutters">
-            <div class="col-sm-5">
-                <img class="card-img" src="/images/defaultimg.png" alt="Suresh Dasari Card">
-            </div>
-            <div class="col-sm-7">
-                <div class="card-body">
-                    <h5 class="card-title">Suresh Dasari</h5>
-                    <p class="card-text">Suresh Dasari is a founder and technical lead developer in tutlane.</p>
-                    <a href="#" class="btn btn-primary">View Profile</a>
-                </div>
-            </div>
+
+<div class="login-reg-panel">
+                        
+    <div class="register-info-box">
+        <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" class="loginLogo"/>
+        <h2>Don't have an account?</h2>
+        <p>Register Now</p>
+        <label id="label-register" > <a href="register">Register </a></label>
+    </div>
+                        
+    <div class="white-panel ">
+        <div class="login-show show-log-panel">
+            <h2>LOGIN</h2>
+            <input type="text" placeholder="Email">
+            <input type="password" placeholder="Password">
+            <input type="button" value="Login">
+            <a href="">Forgot password?</a>
         </div>
+     
     </div>
 </div>
 @endsection
