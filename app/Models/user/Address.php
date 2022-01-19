@@ -16,17 +16,26 @@ class Address extends Model
      */
     public function UserAddress(): HasOne
     {
-        return $this->hasOne(User::class, 'address_id', 'App\Models\User');
+        return $this->hasOne(User::class, 'id', 'App\Models\user\User');
     }
 
     public function ShipperAddress(): HasOne
     {
-        return $this->hasOne(Shipper::class, 'address_id', 'App\Models\Shipper');
+        return $this->hasOne(Shipper::class, 'id', 'App\Models\shop\Shipper');
     }
 
     public function OrderAddress(): HasOne
     {
-        return $this->hasOne(Order::class, 'address_id', 'App\Models\Order');
+        return $this->hasOne(Order::class, 'id', 'App\Models\shop\Order');
     }
 
+    protected $fillable = [
+        'address',
+        'city',
+        'region',
+        'country',
+        'postalCode'
+    ];
+
+    protected $guarded = ['token'];
 }

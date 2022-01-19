@@ -20,31 +20,33 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         @csrf
-                                        <input type="text" class="form-control" placeholder="Full Name *" name="fullName" value="" required/>
-                                        <span style="color:red; margin-left:10px">@error('fullName'){{$message}}@enderror</span>
+                                        <input type="text" class="form-control @error('fullName') is-invalid @enderror" placeholder="Full Name *" name="fullName" value="{{old('fullName')}}"/>
+                                        @error('fullName')<span class="invalid-feedback" role="alert" style="color:red"><strong>{{ $message }}</strong></span>@enderror
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control" placeholder="Password *" value="" name="password" required/>
-                                        <span style="color:red; margin-left:10px">@error('password'){{$message}}@enderror</span>
+                                        <input type="text" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="current-password" placeholder="Password *"/>
+                                        @error('password')<span class="invalid-feedback" role="alert" style="color:red"><strong>{{ $message }}</strong></span>@enderror
                                     </div>
-                                    {{-- <div class="form-group">
-                                        <input type="password" class="form-control"  placeholder="Confirm Password *" value=""  />
-                                    </div> --}}
+                                    <div class="form-group">
+                                        <input type="text" class="form-control @error('password') is-invalid @enderror"  name="password_confirmation" placeholder="Confirm Password *"   />
+                                        @error('password')<span class="invalid-feedback" role="alert" style="color:red"><strong>{{ $message }}</strong></span>@enderror
+
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="email" class="form-control" placeholder="Email *" value="" name="email" required/>
-                                        <span style="color:red; margin-left:10px">@error('email'){{$message}}@enderror</span>
+                                        <input type="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email *"  name="email" value="{{old('email')}}"/>
+                                        @error('email')<span class="invalid-feedback" role="alert" style="color:red"><strong>{{ $message }}</strong></span>@enderror
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" minlength="11" maxlength="11" name="phone" class="form-control" placeholder="Phone *" value="" required/>
-                                        <span style="color:red; margin-left:10px">@error('phone'){{$message}}@enderror</span>
+                                        <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror"  placeholder="Phone *"  value="{{old('phone')}}"/>
+                                        @error('phone')<span class="invalid-feedback" role="alert" style="color:red"><strong>{{ $message }}</strong></span>@enderror
                                     </div>
                                     <div class="form-group">
                                         <div class="maxl">
                                             <label class="radio inline"> 
                                                 Gender <br>
-                                                <input type="radio" name="gender" value="M" checked required>
+                                                <input type="radio" name="gender" value="M" checked >
                                                 <span> Male </span> 
                                             </label>
                                             <label class="radio inline"> 

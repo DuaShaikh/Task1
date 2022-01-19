@@ -15,9 +15,10 @@ class CreateMediaTable extends Migration
     {
         Schema::create('media', function (Blueprint $table) {
             $table->id();
-            $table->binary('imageURL', 255)->nullable(false);
+            $table->binary('photo', 255);
             $table->string('imageName', 100)->nullable(false);
-            $table->string('imageType', 100)->nullable(false);
+            // $table->decimal('imageSize', 10, 4);
+            $table->enum('imageType', ['jpg', 'png ','jpeg'])->default('jpg');
             $table->timestamps();
         });
     }

@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\UserController;
 use App\Http\Controllers\WidgetController;
 use App\Http\Controllers\user\UserController;
+use App\Http\Controllers\user\AddressController;
+use App\Http\Controllers\common\MediaController;
 
 // Route::get('home',[WidgetController::class,'getData']);
 // Route::get("table",[UserController::class,'getData']);
@@ -16,21 +18,27 @@ use App\Http\Controllers\user\UserController;
 
 
 Route::get('/address', function () {
-    return view('shop.address');
+    return view('user.address');
 });
 Route::get('/media', function () {
-    return view('shop.media');
+    return view('common.media');
 });
 Route::get('/register', function () {
-    return view('shop.register');
+    return view('user.register');
 });
 
 Route::get('/login', function () {
-    return view('shop.login');
+    return view('user.login');
 });
 Route::group(['namespace' => 'user'], function () {
   
     Route::post('register', [UserController::class, 'postUser']);
-    Route::post('address', [UserController::class, 'userAddress']);
+    Route::post('address', [AddressController::class, 'saveAddress']);
+    Route::post('media', [MediaController::class, 'uploadImage']);
+   
+});
+Route::group(['namespace' => 'common'], function () {
+    
+    Route::post('media', [MediaController::class, 'uploadImage']);
    
 });
