@@ -11,6 +11,12 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+      <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+       <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+
+       <!-- Styles -->
     <link rel="stylesheet" href="{{ URL::asset('css/shop/style.css') }}" />
     <title>@yield('title')</title>
 </head>

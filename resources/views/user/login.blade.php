@@ -10,16 +10,25 @@
         <p>Register Now</p>
         <label id="label-register" > <a href="register">Register </a></label>
     </div>
-                        
-    <div class="white-panel ">
-        <div class="login-show show-log-panel">
-            <h2>LOGIN</h2>
-            <input type="text" placeholder="Email">
-            <input type="password" placeholder="Password">
-            <input type="button" value="Login">
-            <a href="">Forgot password?</a>
+      
+        <div class="white-panel ">
+            <div class="login-show show-log-panel">
+                <form method="post" action="login">   
+                <h2>LOGIN</h2>
+                @csrf
+                <div class="form-group">
+                    <input type="email" class="form-control "  placeholder="email"  name="email" value="{{old('email')}}"/>
+                    {{-- @error('email')<span class="invalid-feedback" role="alert" style="color:red"><strong>{{ $message }}</strong></span>@enderror --}}
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control "  placeholder="password"  name="password" />
+                    {{-- @error('password')<span class="invalid-feedback" role="alert" style="color:red"><strong>{{ $message }}</strong></span>@enderror --}}
+                </div>
+                <input type="submit" value="Login">
+                <a href="">Forgot password?</a>
+            </form>
+            </div>
         </div>
-     
-    </div>
+   
 </div>
 @endsection

@@ -17,10 +17,10 @@ class CreateUsersTable extends Migration
         
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('fullName', 100)->nullable(false);
+            $table->string('fullName', 100)->nullable();
             $table->string('email')->unique()->nullable(false);
             $table->foreignId('address_id')->nullable()->constrained('addresses');
-            $table->string('phone', 100)->nullable(false);
+            $table->string('phone', 100)->default(0);
             $table->string('password', 100)->nullable(false);
             $table->foreignId('media_id')->nullable()->constrained('media');
             $table->timestamps();

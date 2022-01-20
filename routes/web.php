@@ -17,19 +17,29 @@ use App\Http\Controllers\common\MediaController;
 
 
 
-Route::get('/address', function () {
-    return view('user.address');
-});
-Route::get('/media', function () {
-    return view('common.media');
-});
-Route::get('/register', function () {
-    return view('user.register');
-});
+
+
 
 Route::get('/login', function () {
     return view('user.login');
 });
+
+
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
+
+Route::get('/register', function () {
+    return view('user.register');
+});
+
 Route::group(['namespace' => 'user'], function () {
   
     Route::post('register', [UserController::class, 'postUser']);
@@ -41,4 +51,11 @@ Route::group(['namespace' => 'common'], function () {
     
     Route::post('media', [MediaController::class, 'uploadImage']);
    
+});
+
+Route::get('/address', function () {
+    return view('user.address');
+});
+Route::get('/media', function () {
+    return view('common.media');
 });

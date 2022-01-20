@@ -24,11 +24,11 @@
                                         @error('fullName')<span class="invalid-feedback" role="alert" style="color:red"><strong>{{ $message }}</strong></span>@enderror
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="current-password" placeholder="Password *"/>
+                                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="current-password" placeholder="Password *"/>
                                         @error('password')<span class="invalid-feedback" role="alert" style="color:red"><strong>{{ $message }}</strong></span>@enderror
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control @error('password') is-invalid @enderror"  name="password_confirmation" placeholder="Confirm Password *"   />
+                                        <input type="password" class="form-control @error('password') is-invalid @enderror"  name="password_confirmation" placeholder="Confirm Password *"   />
                                         @error('password')<span class="invalid-feedback" role="alert" style="color:red"><strong>{{ $message }}</strong></span>@enderror
 
                                     </div>
