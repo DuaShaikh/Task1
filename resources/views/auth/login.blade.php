@@ -62,13 +62,17 @@
 
 <div class="login-reg-panel">                   
     <div class="register-info-box">
-        <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" class="loginLogo"/>
-        <h2>Don't have an account?</h2>
-        <p>Register Now</p>
-        <label id="label-register" > <a href="register">Register </a></label>
+        <div class="col">
+        <img src="{{ URL::to('/images/logoEcommerce.png') }}" class="logoEcom">
+        </div>
+        <div class="col-xs-4"><h2>Don't have an account?</h2></div>
+        <div class="col-xs-4"> <p>Register Now</p></div>
+        <div class="col-xs-4">        
+           <label id="label-register" style="color:#9E9E9E"> <a href="register">Register </a></label>
+        </div>
     </div>
       
-        <div class="white-panel ">
+        <div class="white-panel">
             <div class="login-show show-log-panel">
                 <form method="POST" action="{{ route('login') }}">   
                     <h2>LOGIN</h2>

@@ -25,7 +25,7 @@ class Media extends Model
     }
 
     protected $fillable = [
-        'photo',
+        'url',
         'imageName',
         'imageType'
         

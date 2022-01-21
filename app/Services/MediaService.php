@@ -9,17 +9,16 @@ class MediaService
 
     function userMedia($request) 
     {
-        
-         $request->file('photo')->store('public/users/');
+        $imageName = $request->file('photo')->getClientOriginalName();
+        $type = $request->file('photo')->getClientOriginalExtension();
+        $url = $request->file('photo')->storeAs('public/users/', $imageName);
+
+        $request->merge([
+            "imageType" => $type,
+            "url" => $url
+        ]);
 
         return Media::create($request->all());
     }
-    // $imageName = $request->file('photo')->getClientOriginalName();
-        // // $imageType = $request->file('photo')->getClientOriginalExtension();
-        // $request->file('photo')->storeAs('public/users/', $imageName);
 
-        // $media = new Media();
-        // $media->imageName = $imageName;
-        // $media->imageType = $imageType;
-        // $media->save();
 }

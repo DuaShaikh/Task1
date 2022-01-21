@@ -4,7 +4,7 @@
 <div class="container register">
     <div class="row">
         <div class="col-md-3 register-left">
-            <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+            <img src="{{ URL::to('/images/logoEcommerce.png') }}" class="logoEcom">
             <h2>Step - 3/3</h2>
             {{-- <p>You are 30 seconds away from earning your own money!</p> --}}
          

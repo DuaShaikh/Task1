@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WidgetController;
 use App\Http\Controllers\user\UserController;
 use App\Http\Controllers\user\AddressController;
+use App\Http\Controllers\shop\ProductController;
 use App\Http\Controllers\common\MediaController;
 
 // Route::get('home',[WidgetController::class,'getData']);
@@ -25,11 +26,9 @@ Route::get('/login', function () {
 });
 
 
-
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['namespace' => 'user'], function () {
+Route::get('/', [ProductController::class,'getProduct']);
 });
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');

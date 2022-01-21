@@ -2,8 +2,9 @@
 
 namespace App\Models\shop;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\common\Media;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
@@ -11,6 +12,10 @@ class Product extends Model
 
     function ProductCategory(){
         return $this->belongsToMany(Category::class,'Product_category','product_id','category_id');
+    }
+    public function ProductMedia()
+    {
+        return $this->hasOne(Media::class, 'id', 'media_id');
     }
 
 }
