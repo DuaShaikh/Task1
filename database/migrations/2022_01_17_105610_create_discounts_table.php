@@ -17,7 +17,7 @@ class CreateDiscountsTable extends Migration
             $table->id();
             $table->string('name', 100)->nullable(false);
             $table->text('description')->nullable(false);
-            $table->decimal('discount_percentage', 10, 4)->nullable(false);
+            $table->decimal('discount_percentage', 10, 2)->nullable(false);
             $table->timestamps();
         });
     }

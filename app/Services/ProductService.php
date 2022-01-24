@@ -14,5 +14,12 @@ class ProductService
 
         return $products;
     }
+
+    function getProductsbyId($id)
+    {
+        $products = Product::where('id',$id)->with(['ProductMedia']);
+        return $products->get();
+    }
+
 }
 

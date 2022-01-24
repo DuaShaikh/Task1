@@ -2,8 +2,10 @@
 
 namespace App\Models\shop;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
+use App\Models\shop\Product;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Cart extends Model
 {
@@ -13,8 +15,23 @@ class Cart extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function cartProduct(): HasOne
+
+    public function CartProduct()
     {
-        return $this->hasOne(Product::class, 'cart_id', 'App\Models\Product');
+        return $this->hasOne(Product::class, 'id', 'product_id');
     }
+
+    public function CartUser()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
+
+    protected $fillable = [
+        'product_id',
+        'quantity',
+        'user_id',
+        'size',
+    ];
+
+    protected $guarded = ['token'];
 }

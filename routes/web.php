@@ -6,6 +6,7 @@ use App\Http\Controllers\WidgetController;
 use App\Http\Controllers\user\UserController;
 use App\Http\Controllers\user\AddressController;
 use App\Http\Controllers\shop\ProductController;
+use App\Http\Controllers\shop\CartController;
 use App\Http\Controllers\common\MediaController;
 
 // Route::get('home',[WidgetController::class,'getData']);
@@ -57,4 +58,13 @@ Route::get('/address', function () {
 });
 Route::get('/media', function () {
     return view('common.media');
+});
+
+
+Route::group(['namespace' => 'shop'], function () {
+    
+    Route::get('view-product/{id}', [ProductController::class, 'getProductByid']);
+    Route::post('view-product/add-to-cart', [CartController::class, 'addToCart']);
+    // Route::get('/', [CartController::class, 'cartItem']);
+   
 });

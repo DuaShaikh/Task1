@@ -31,7 +31,9 @@
         </form>
     </div>
     <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6 iconLink">
+         <i> {{ Auth::user()->fullName }}</i>
         <a href="login"><i class="far fa-user"></i></a>
-        <i class="fas fa-shopping-cart"></i>
+        <i class="fas fa-shopping-cart" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
     </div>
+    <x-add-to-cart />
   </nav>

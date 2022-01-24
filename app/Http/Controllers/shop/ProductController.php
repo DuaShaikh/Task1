@@ -19,4 +19,10 @@ class ProductController extends Controller
         $products = $this->productService->getProducts();
         return view('welcome', compact('products'));
     }
+    function getProductByid($id) 
+    {
+        $products = $this->productService->getProductsbyId($id);
+        return view('shop.view-product', compact('products'));
+    }
+    
 }
