@@ -9,8 +9,6 @@ class cartService
     function postAddToCart($req) 
     {
         if(auth()->check()) {
-            ddd($req->all());
-            die();
             $req->merge([
                 "user_id" => auth()->user()->id
             ]);
@@ -21,10 +19,33 @@ class cartService
         }
     }
      
-    function cartItems() 
+    function countCartItems() 
     {
         $userId = auth()->user()->id;
         return Cart::where('id',$userId)->count();
+    }
+
+    function viewCartItems()
+    { 
+        return auth()?->user()?->cart()?->with(['CartProduct.ProductMedia'])->get();
+    }
+
+    function deleteCartItems($id)
+    {
+        return Cart::where('id',$id)->delete();
+    }
+
+    function updateCartItems($req)
+    {
+        $data = $req->cart;
+        data_set($data, "*.user_id", auth()->user()->id);
+        auth()->user()->cart()->delete();
+        return Cart::insert($data);
+    }
+
+    function getUpdateCarts()
+    {
+        return auth()->user()->cart()->with(['CartProduct.ProductMedia'])->get();
     }
 
 }

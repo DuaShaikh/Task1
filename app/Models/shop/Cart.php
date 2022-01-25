@@ -23,7 +23,7 @@ class Cart extends Model
 
     public function CartUser()
     {
-        return $this->hasOne(User::class, 'id', 'user_id');
+        return $this->belongsTo(User::class, 'id', 'user_id');
     }
 
     protected $fillable = [

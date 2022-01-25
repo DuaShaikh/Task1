@@ -290,6 +290,8 @@ a{
     color: #495057;
 }
 
+/* -----------------NavBar----------------- */
+
 .contact ul{
     list-style-type: none;
     margin-top: 10px;
@@ -314,6 +316,11 @@ a{
     color: white;
     padding: 10px;
     font-size: 30px;
+}
+.fa-user:hover, .fa-shopping-cart:hover{
+    background-color: rgb(15, 99, 209) !important;
+    padding: 10px !important;
+    color: white !important;
 }
 .dropdown-menu .dropdown-item:hover{
     background-color: rgb(15, 99, 209) !important;
@@ -499,10 +506,74 @@ a{
     }
   }
 
-
+/* ----------------View-Product------------------ */
   .product_view .modal-dialog{max-width: 800px; width: 100%;}
   .pre-cost{text-decoration: line-through; color: #a5a5a5;}
-  .space-ten{
+  .space-ten {
       padding: 10px 0;
       margin-top:30px !important;
+}
+.cost {
+    color: rgb(80, 80, 155) !important;
+    font-family: sans-serif;
+}
+.productTitle {
+    color: rgb(80, 80, 155) !important;
+    font-family: sans-serif;
+    font-size: 30px;
+}
+.quantity input[type="number"] {
+     padding: 15px;
+     
+}
+
+/* -------------------------Add-to-Cart---------------------------- */
+
+.table>tbody>tr>td, .table>tfoot>tr>td {
+    vertical-align: middle;
+}
+@media screen and (max-width: 600px) {
+    table#cart tbody td .form-control{
+		width:20%;
+		display: inline !important;
+	}
+	.actions .btn{
+		width:36%;
+		margin:1.5em 0;
+	}
+	
+	.actions .btn-info{
+		float:left;
+	}
+	.actions .btn-danger{
+		float:right;
+	}
+	
+	table#cart thead { display: none; }
+	table#cart tbody td { display: block; padding: .6rem; min-width:320px;}
+	table#cart tbody tr td:first-child { background: #333; color: #fff; }
+	table#cart tbody td:before {
+		content: attr(data-th); font-weight: bold;
+		display: inline-block; width: 8rem;
+	}
+	
+	
+	
+	table#cart tfoot td{display:block; }
+	table#cart tfoot td .btn{display:block;}
+	
+}
+
+.fa-trash a:visited{
+    text-decoration:none !important;
+    color:#444444 !important;
+}
+
+.cartCount{
+    font-size: 15px;
+    color: white;
+    border: 1px solid gray;
+    border-radius: 25px;
+    background-color: gray;
+    padding: 3px;
 }

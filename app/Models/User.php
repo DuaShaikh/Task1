@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\shop\Cart;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,11 +12,6 @@ class User extends Authenticatable
 {
     use HasFactory;
     use Notifiable;
-
-    public function UserOrder(): HasOne
-    {
-        return $this->hasMany(Order::class, 'id', 'App\Models\shop\Order');
-    }
 
     protected $fillable = [
         'fullName',
@@ -28,4 +24,14 @@ class User extends Authenticatable
     ];
 
     protected $guarded = ['token'];
+
+    public function UserOrder(): HasOne
+    {
+        return $this->hasMany(Order::class, 'id', 'App\Models\shop\Order');
+    }
+
+    public function cart(): mixed
+    {
+        return $this->hasMany(Cart::class);
+    }
 }

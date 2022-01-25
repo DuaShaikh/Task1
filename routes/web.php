@@ -22,9 +22,6 @@ use App\Http\Controllers\common\MediaController;
 
 
 
-Route::get('/login', function () {
-    return view('user.login');
-});
 
 
 Route::group(['namespace' => 'user'], function () {
@@ -65,6 +62,16 @@ Route::group(['namespace' => 'shop'], function () {
     
     Route::get('view-product/{id}', [ProductController::class, 'getProductByid']);
     Route::post('view-product/add-to-cart', [CartController::class, 'addToCart']);
+    Route::get('view-cart', [CartController::class, 'viewCart']);
+    Route::get('deleteCart/{id}', [CartController::class, 'deleteCart']);
+    Route::post('checkout', [CartController::class, 'updateCart']);
+    Route::get('checkout', [CartController::class, 'getUpdateCart']);
+    
     // Route::get('/', [CartController::class, 'cartItem']);
    
 });
+
+// Route::get('/checkout', function () {
+//     return view('shop.checkout');
+// });
+

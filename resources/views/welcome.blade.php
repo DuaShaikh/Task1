@@ -1,6 +1,12 @@
 @extends('layout.ecommerce')
 @section('title','Home')
 @section('main')
+@if (Session::get('status'))
+          <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+            <strong>{{ session::get('status') }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        @endif
 <x-sub-navbar/>
 <x-navbar />
 <x-slider />

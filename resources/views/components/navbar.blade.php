@@ -1,3 +1,7 @@
+<?php
+// use App\Http\Controllers\shop\CartController;
+// $count = CartController::cartItem();
+?>
 <nav class="navbar navbar-expand-lg  navbar-dark bg-primary">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -31,9 +35,9 @@
         </form>
     </div>
     <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6 iconLink">
-         <i> {{ Auth::user()->fullName }}</i>
-        <a href="login"><i class="far fa-user"></i></a>
-        <i class="fas fa-shopping-cart" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+         {{-- <i> {{ Auth::user()->fullName }}</i> --}}
+         <button class="btn btn-primary"><a href="login"><i class="far fa-user"></i></a></button>
+       <button class="btn btn-primary"><a href = "view-cart"> <i class="fas fa-shopping-cart"><span class="cartCount">{{auth()?->user()?->cart()->count()}}</span></i> </a></button>
     </div>
-    <x-add-to-cart />
+    
   </nav>

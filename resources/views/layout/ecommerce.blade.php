@@ -27,6 +27,7 @@
 
        <!-- Styles -->
     <link rel="stylesheet" href="{{ URL::asset('css/shop/style.css') }}" />
+    
     <title>@yield('title')</title>
 </head>
 <body>

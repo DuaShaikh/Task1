@@ -17,13 +17,37 @@ class CartController extends Controller
     function addToCart(Request $req) 
     {
         $carts = $this->cartService->postaddToCart($req);
-        // return view('', compact('carts'));
+        $req->session()->flash('status','Login Your Account!');
         return redirect('/');
     }
 
-    function cartItem()
+    static function cartItem()
     {
-        $carts = $this->cartService->cartItems();
+        $carts = $this->cartService->countCartItems();
         return view('components.navbar', compact('carts'));
+    }
+
+    function viewCart()
+    {
+        $carts = $this->cartService->viewCartItems();
+        return view('shop.add-to-cart', compact('carts'));
+    }
+
+    function deleteCart($id)
+    {
+        $carts = $this->cartService->deleteCartItems($id);
+        return view('shop.add-to-cart', compact('carts'));
+    }
+
+    function updateCart(Request $req)
+    {
+        $cart = $this->cartService->updateCartItems($req);
+        return $this->getUpdateCart();
+    }
+
+    function getUpdateCart()
+    {
+        $carts = $this->cartService->getUpdateCarts();
+        return view('shop.checkout', compact('carts'));
     }
 }
