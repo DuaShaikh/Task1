@@ -30,6 +30,20 @@ class UserService
 
         return $user;
     }
-
-   
+    
+    function getUserdetails()
+    {
+        $userID = auth()->user()->id;
+        
+        return User::where('id',$userID)->with('UserAddress')->get();
+    }
+    
+    // function updateUserdetails($req)
+    // {
+    //     $userID = auth()->user()->id;
+    //     $user   = User::find($userID);
+    //     $user->update($req);
+        
+    //     return $user;
+    // }
 }

@@ -2,21 +2,25 @@
 
 namespace App\Http\Controllers\user;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\user\AddressRequest;
-use App\Http\Requests\user\UserRequest;
-use App\Services\AddressService;
+use App\Services\CartService;
 use App\Services\UserService;
+use App\Services\OrderService;
+use App\Services\AddressService;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\user\UserRequest;
+use App\Http\Requests\user\AddressRequest;
 
 class AddressController extends Controller
 {
     protected $addressService;
     protected $userService;
+   
 
-    function __construct(AddressService $addressService,UserService $userService) {
+    function __construct(AddressService $addressService,UserService $userService ) {
         $this->addressService = $addressService;
         $this->userService = $userService;
+       
     }
 
     function saveAddress(AddressRequest $request) 
@@ -26,4 +30,13 @@ class AddressController extends Controller
        
         return view('common.media', compact('users'));
     }
+
+    // function updateAddress(Request $request)
+    // {
+    //     $address = $this->addressService->updateUserAddress($request);
+    //     return view('shop.checkout', compact('address'));
+        
+       
+    // }
+
 }

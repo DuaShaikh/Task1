@@ -12,4 +12,8 @@ class AddressService
         return Address::create($request->all());
     }
     
+    function updateUserAddress($req) 
+    {
+        return Address::update($req->all());
+    }
 }

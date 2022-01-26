@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers\shop;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\CartService;
+use App\Services\UserService;
+use App\Http\Controllers\Controller;
 
 class CartController extends Controller
 {
     protected $cartService;
+    protected $userService;
 
-    function __construct(CartService $cartService) {
+    function __construct(CartService $cartService, UserService $userService) {
         $this->cartService = $cartService;
+        $this->userService = $userService;
     }
 
     function addToCart(Request $req) 
@@ -36,18 +39,20 @@ class CartController extends Controller
     function deleteCart($id)
     {
         $carts = $this->cartService->deleteCartItems($id);
-        return view('shop.add-to-cart', compact('carts'));
+        return $this->viewCart();
     }
 
     function updateCart(Request $req)
     {
-        $cart = $this->cartService->updateCartItems($req);
-        return $this->getUpdateCart();
+        $cart  = $this->cartService->updateCartItems($req);
+        $users = $this->userService->getUserdetails();
+        return view('shop.checkout', compact('users'));
+        // return $this->getUpdateCart();
     }
-
-    function getUpdateCart()
-    {
-        $carts = $this->cartService->getUpdateCarts();
-        return view('shop.checkout', compact('carts'));
-    }
+     
+    // function getUpdateCart()
+    // {
+    //     $carts = $this->cartService->getUpdateCarts();
+    //     return view('shop.order-detail', compact('carts'));
+    // }
 }

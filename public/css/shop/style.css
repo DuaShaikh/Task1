@@ -572,8 +572,8 @@ a{
 .cartCount{
     font-size: 15px;
     color: white;
-    border: 1px solid gray;
+   /* border: 1px solid gray;
     border-radius: 25px;
-    background-color: gray;
-    padding: 3px;
+    background-color: gray;*/
+  /*  padding: 3px;*/
 }

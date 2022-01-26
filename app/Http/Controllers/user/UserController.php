@@ -23,10 +23,22 @@ class UserController extends Controller
         $users = $this->userService->registerUser($request);
         return view('user.address', compact('users'));
     }
+
     function loginUser(Request $request){
         $users = $this->userService->loginUsers($request);
         return view('shop.product', compact('users'));
        
     }
+
+    function updateDetail() 
+    {
+        $users = $this->userService->updateUser();
+        return view('shop.checkout', compact('users'));
+    }
+    // function getUser()
+    // {
+    //     $users = $this->userService->getUserdetails();
+    //     return view('shop.checkout', compact('users'));
+    // }
 
 }

@@ -3,10 +3,11 @@
 use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\UserController;
 use App\Http\Controllers\WidgetController;
+use App\Http\Controllers\shop\CartController;
 use App\Http\Controllers\user\UserController;
+use App\Http\Controllers\shop\OrderController;
 use App\Http\Controllers\user\AddressController;
 use App\Http\Controllers\shop\ProductController;
-use App\Http\Controllers\shop\CartController;
 use App\Http\Controllers\common\MediaController;
 
 // Route::get('home',[WidgetController::class,'getData']);
@@ -42,6 +43,9 @@ Route::group(['namespace' => 'user'], function () {
     Route::post('register', [UserController::class, 'postUser']);
     Route::post('address', [AddressController::class, 'saveAddress']);
     Route::post('media', [MediaController::class, 'uploadImage']);
+    // Route::post('update-detail', [UserController::class, 'updateDetail']);
+    // Route::post('order-detail', [AddressController::class, 'updateAddress']);
+    // Route::get('order-detail',[AddressController::class,'getDetail']);
    
 });
 Route::group(['namespace' => 'common'], function () {
@@ -65,13 +69,15 @@ Route::group(['namespace' => 'shop'], function () {
     Route::get('view-cart', [CartController::class, 'viewCart']);
     Route::get('deleteCart/{id}', [CartController::class, 'deleteCart']);
     Route::post('checkout', [CartController::class, 'updateCart']);
-    Route::get('checkout', [CartController::class, 'getUpdateCart']);
-    
+    // Route::get('checkout', [CartController::class, 'getUpdateCart']);
+    // Route::get('checkout', [UserController::class, 'getUser']);
+    Route::post('order-detail', [OrderController::class, 'postOrderItem']);
+     
     // Route::get('/', [CartController::class, 'cartItem']);
    
 });
 
-// Route::get('/checkout', function () {
-//     return view('shop.checkout');
-// });
+Route::get('/order-detail', function () {
+    return view('shop.order-detail');
+});
 

@@ -15,6 +15,14 @@ class Cart extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
+    protected $fillable = [
+        'product_id',
+        'quantity',
+        'user_id',
+        'size',
+    ];
+
+    protected $guarded = ['token'];
 
     public function CartProduct()
     {
@@ -26,12 +34,5 @@ class Cart extends Model
         return $this->belongsTo(User::class, 'id', 'user_id');
     }
 
-    protected $fillable = [
-        'product_id',
-        'quantity',
-        'user_id',
-        'size',
-    ];
-
-    protected $guarded = ['token'];
+    
 }
