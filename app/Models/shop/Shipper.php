@@ -14,7 +14,7 @@ class Shipper extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function OrderShipper(): HasOne
+    public function orderShipper()
     {
         return $this->hasOne(Order::class, 'shipper_id', 'App\Models\Shipper');
     }

@@ -35,15 +35,14 @@ class UserService
     {
         $userID = auth()->user()->id;
         
-        return User::where('id',$userID)->with('UserAddress')->get();
+        return User::where('id', $userID)->with('userAddress')->get();
     }
     
-    // function updateUserdetails($req)
-    // {
-    //     $userID = auth()->user()->id;
-    //     $user   = User::find($userID);
-    //     $user->update($req);
-        
-    //     return $user;
-    // }
+    function updateUserdetails($req)
+    {
+        $userID = auth()->user()->id;
+        $user   = User::where('id', $userID);
+        $user->update($req);
+        return $user;
+    }
 }

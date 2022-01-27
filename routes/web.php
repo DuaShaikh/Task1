@@ -6,9 +6,10 @@ use App\Http\Controllers\WidgetController;
 use App\Http\Controllers\shop\CartController;
 use App\Http\Controllers\user\UserController;
 use App\Http\Controllers\shop\OrderController;
-use App\Http\Controllers\user\AddressController;
-use App\Http\Controllers\shop\ProductController;
 use App\Http\Controllers\common\MediaController;
+use App\Http\Controllers\shop\ProductController;
+use App\Http\Controllers\user\AddressController;
+use App\Http\Controllers\shop\Order_ItemController;
 
 // Route::get('home',[WidgetController::class,'getData']);
 // Route::get("table",[UserController::class,'getData']);
@@ -43,7 +44,7 @@ Route::group(['namespace' => 'user'], function () {
     Route::post('register', [UserController::class, 'postUser']);
     Route::post('address', [AddressController::class, 'saveAddress']);
     Route::post('media', [MediaController::class, 'uploadImage']);
-    // Route::post('update-detail', [UserController::class, 'updateDetail']);
+    Route::post('update-detail', [UserController::class, 'updateDetail']);
     // Route::post('order-detail', [AddressController::class, 'updateAddress']);
     // Route::get('order-detail',[AddressController::class,'getDetail']);
    
@@ -71,7 +72,9 @@ Route::group(['namespace' => 'shop'], function () {
     Route::post('checkout', [CartController::class, 'updateCart']);
     // Route::get('checkout', [CartController::class, 'getUpdateCart']);
     // Route::get('checkout', [UserController::class, 'getUser']);
-    Route::post('order-detail', [OrderController::class, 'postOrderItem']);
+    Route::post('order-detail', [OrderController::class, 'postOrder']);
+    Route::post('order-item', [Order_ItemController::class, 'order_item']);
+ 
      
     // Route::get('/', [CartController::class, 'cartItem']);
    

@@ -6,9 +6,8 @@ use Illuminate\Http\Request;
 
 class WidgetService
 {    //
-    function getWidgets(){
+    function getWidgets()
+    {
         return Widget::get();
     }
-    
-    
 }

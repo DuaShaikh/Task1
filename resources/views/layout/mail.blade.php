@@ -31,8 +31,7 @@
     <title>@yield('title')</title>
 </head>
 <body>
-  <x-sub-navbar/>
-  <x-navbar />
     @yield('main')
+    
 </body>
 </html>

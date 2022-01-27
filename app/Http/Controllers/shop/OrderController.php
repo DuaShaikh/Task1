@@ -17,12 +17,13 @@ class OrderController extends Controller
     {
         $this->orderService = $orderService;
         $this->cartService = $cartService;
+
     }
 
-    function postOrderItem(Request $request)
+    function postOrder(Request $request)
     {
         $orders = $this->orderService->order($request);
         $carts  = $this->cartService->getUpdateCarts();
-        return view('shop.order-detail', compact('carts'));
+        return view('shop.order-detail', compact('carts','orders'));
     }
 }

@@ -50,9 +50,9 @@ class CartController extends Controller
         // return $this->getUpdateCart();
     }
      
-    // function getUpdateCart()
+    // function deleteCartUser()
     // {
-    //     $carts = $this->cartService->getUpdateCarts();
+    //     $carts = $this->cartService->deleteCartUser();
     //     return view('shop.order-detail', compact('carts'));
     // }
 }

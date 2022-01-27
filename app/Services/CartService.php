@@ -22,17 +22,17 @@ class cartService
     function countCartItems() 
     {
         $userId = auth()->user()->id;
-        return Cart::where('id',$userId)->count();
+        return Cart::where('id', $userId)->count();
     }
 
     function viewCartItems()
     { 
-        return auth()?->user()?->cart()?->with(['CartProduct.ProductMedia'])->get();
+        return auth()->user()->cart()?->with(['cartProduct.ProductMedia'])->get();
     }
 
     function deleteCartItems($id)
     {
-        return Cart::where('id',$id)->delete();
+        return Cart::where('id', $id)->delete();
     }
 
     function updateCartItems($req)
@@ -45,7 +45,11 @@ class cartService
 
     function getUpdateCarts()
     {
-        return auth()->user()->cart()->with(['CartProduct.ProductMedia'])->get();
+        return auth()->user()->cart()->with(['cartProduct.ProductMedia'])->get();
     }
 
+    function deleteCartUser() 
+    {
+        return auth()->user()->cart()->delete();
+    }
 }

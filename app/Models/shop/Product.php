@@ -10,8 +10,9 @@ class Product extends Model
 {
     use HasFactory;
 
-    function ProductCategory(){
-        return $this->belongsToMany(Category::class,'Product_category','product_id','category_id');
+    function ProductCategory()
+    {
+        return $this->belongsToMany(Category::class, 'Product_category', 'product_id', 'category_id');
     }
     public function ProductMedia()
     {

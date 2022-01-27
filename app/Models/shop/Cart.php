@@ -24,12 +24,12 @@ class Cart extends Model
 
     protected $guarded = ['token'];
 
-    public function CartProduct()
+    public function cartProduct()
     {
         return $this->hasOne(Product::class, 'id', 'product_id');
     }
 
-    public function CartUser()
+    public function cartUser()
     {
         return $this->belongsTo(User::class, 'id', 'user_id');
     }

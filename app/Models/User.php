@@ -26,7 +26,7 @@ class User extends Authenticatable
 
     protected $guarded = ['token'];
 
-    public function UserOrder(): HasOne
+    public function userOrder()
     {
         return $this->hasMany(Order::class, 'id', 'App\Models\shop\Order');
     }
@@ -36,7 +36,7 @@ class User extends Authenticatable
         return $this->hasMany(Cart::class);
     }
 
-    public function UserAddress()
+    public function userAddress()
     {
         return $this->hasOne(Address::class, 'id', 'address_id');
     }

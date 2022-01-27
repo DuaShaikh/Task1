@@ -1,8 +1,6 @@
 @extends('layout.ecommerce')
 @section('title', 'Checkout')
 @section('main')
-<x-navbar />
-
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-10">
@@ -11,7 +9,7 @@
                     <h6>order Details</h6>
                     <hr>
                    
-                    <form class="row g-3" method="post" action="order-detail">
+                    <form class="row g-3" method="post" action="order-item">
                         @csrf
                         <table class="table table-striped">
                             <tr>
@@ -25,12 +23,16 @@
                             @php
                                 $totalPrice = 0;
                             @endphp
-                                @foreach ($carts as $cart )
+                                @foreach ($carts as $key =>  $cart )
                                
                                 <tr>
-                                    <td name="pName">{{$cart->cartProduct->pName}}</td>
-                                    <td name="quantity">{{$cart->quantity}}</td>
-                                    <td name="productPrice">{{$cart->quantity*$cart->cartProduct->productPrice}}</td>
+                                    <input type="hidden" name="orders[{{$key}}][order_id]"  value="{{$orders->id}}">
+                                    <input type="hidden" name="orders[{{$key}}][product_id]" value="{{$cart->cartProduct->id}}">
+                                    <td>{{$cart->cartProduct->pName}}</td>
+                                    <input type="hidden" name="orders[{{$key}}][quantity]" value="{{$cart->quantity}}">
+                                    <td>{{$cart->quantity}}</td>
+                                    <input type="hidden" name="orders[{{$key}}][productPrice]" value="{{$cart->quantity*$cart->cartProduct->productPrice}}">
+                                    <td >{{$cart->quantity*$cart->cartProduct->productPrice}}</td>
                                 </tr>
                                 @php 
                                     $totalPrice += $cart->cartProduct->productPrice * $cart->quantity;
@@ -39,7 +41,7 @@
                             </tbody>
                         </table>
                         <div class="col-md-9" name="price">
-                            <td> <input type="text" name="price" value="{{$totalPrice}}"></td>
+                            <td> Total Price: <strong>{{$totalPrice}}</strong></td>
                         </div>
                         <div class="col-md-3">
                             <input type="submit" class="btn btn-primary btn-block" value="Place Order">

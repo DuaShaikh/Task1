@@ -25,7 +25,7 @@ class AddressController extends Controller
 
     function saveAddress(AddressRequest $request) 
     {   
-        $address = $this->addressService->UserAddress($request);
+        $address = $this->addressService->userAddress($request);
         $users = $this->userService->updateUser(["id" => $request->user_id, "address_id" => $address->id]);
        
         return view('common.media', compact('users'));

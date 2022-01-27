@@ -28,10 +28,18 @@ class UserController extends Controller
         return view('shop.address', compact('users'));
     }
 
-    function userAddress(Request $req) {
+    function userAddress(Request $req) 
+    {
         $address = $this->userService->saveAddress($req);
 
-        $users = $this->userService->updateUser(["id" => $req->user_id, "address_id" => $address->id]);
+        $users = $this
+            ->userService
+            ->updateUser(
+                [
+                    "id"         => $req->user_id,
+                    "address_id" => $address->id
+                ]
+            );
 
         return view('shop.media', compact('users'));
     }

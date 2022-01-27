@@ -2,20 +2,22 @@
 
 namespace App\Models\shop;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Discount extends Model
 {
     use HasFactory;
 
-    public function ProductDiscount(): HasOne
+    public function productDiscount(): HasOne
     {
         return $this->hasOne(Product::class, 'discount_id', 'App\Models\Product');
     }
 
-    public function OrderDiscount(): HasOne
+    public function orderDiscount(): HasOne
     {
-        return $this->hasOne(Order_item::class, 'discount_id', 'App\Models\Order_item');
+        return $this
+                ->hasOne(Order_item::class, 'discount_id', 'App\Models\Order_item');
     }
 }

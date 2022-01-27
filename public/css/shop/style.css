@@ -564,16 +564,35 @@ a{
 	
 }
 
-.fa-trash a:visited{
+.fa-trash a:visited {
     text-decoration:none !important;
     color:#444444 !important;
 }
 
-.cartCount{
+.cartCount {
     font-size: 15px;
     color: white;
    /* border: 1px solid gray;
     border-radius: 25px;
     background-color: gray;*/
   /*  padding: 3px;*/
+}
+.confirmedCard {
+    width: 700px;
+    height: 300px;
+    margin-left: 500px;
+    padding-top: 50px;
+}
+
+.fa-check-circle {
+   color: green;
+   font-size: 100px;
+   /* margin-left: 200px; */
+   margin-bottom: 50px;
+}
+
+.cardBody {
+    margin-top: 150px;
+    width: 700px !important;
+    border-radius: 50px !important;
 }

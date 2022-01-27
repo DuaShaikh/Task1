@@ -7,13 +7,13 @@ use Illuminate\Http\Request;
 class AddressService
 {
 
-    function UserAddress($request) 
+    function userAddress($request) 
     {
         return Address::create($request->all());
     }
     
-    function updateUserAddress($req) 
-    {
-        return Address::update($req->all());
-    }
+    // function updateUserAddress($req) 
+    // {
+    //     return Address::update($req->all());
+    // }
 }

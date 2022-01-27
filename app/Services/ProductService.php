@@ -17,7 +17,8 @@ class ProductService
 
     function getProductsbyId($id)
     {
-        $products = Product::where('id',$id)->with(['ProductMedia']);
+        $products = Product::where('id',$id)
+                    ->with(['ProductMedia']);
         return $products->get();
     }
 
