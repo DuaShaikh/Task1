@@ -23,7 +23,7 @@
                             <div class="single_product">
                                 <div class="product_image">
                                     <img src="{{url($product->productMedia->url)}}" alt="" style="width: 200px;height:200px">
-                                    <div class="new_badge">New</div>
+                                    {{-- <div class="new_badge">New</div> --}}
                                     <div class="box-content">
                                         {{-- <a href="#"><i class="fa fa-heart-o"></i></a> --}}
                                         <a href="view-product/{{$product->id}}}"><i class="fas fa-eye"></i></a>

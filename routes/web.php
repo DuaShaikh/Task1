@@ -73,7 +73,7 @@ Route::group(['namespace' => 'shop'], function () {
     // Route::get('checkout', [CartController::class, 'getUpdateCart']);
     // Route::get('checkout', [UserController::class, 'getUser']);
     Route::post('order-detail', [OrderController::class, 'postOrder']);
-    Route::post('order-item', [Order_ItemController::class, 'order_item']);
+    Route::post('order-item/{id}', [Order_ItemController::class, 'order_item']);
  
      
     // Route::get('/', [CartController::class, 'cartItem']);

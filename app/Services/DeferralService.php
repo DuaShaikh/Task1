@@ -9,8 +9,11 @@ class DeferralService
     function getDeferrals($req)
     { 
         $search = $req['searchBar'] ?? "";
-        if($search != '') {
-            return Deferral::where('name', 'LIKE', '%'. $search .'%')->orderByDesc('id')->paginate(5);
+        if ($search != '') {
+            return Deferral::where(
+                'name', 'LIKE', '%'. $search .'%'
+            )
+                ->orderByDesc('id')->paginate(5);
         } else {
             return Deferral::orderByDesc('id')->paginate(5);
         }   

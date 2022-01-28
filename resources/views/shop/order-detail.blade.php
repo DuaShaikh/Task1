@@ -9,7 +9,7 @@
                     <h6>order Details</h6>
                     <hr>
                    
-                    <form class="row g-3" method="post" action="order-item">
+                    <form class="row g-3" method="post" action="order-item/{{$orders->id}}">
                         @csrf
                         <table class="table table-striped">
                             <tr>

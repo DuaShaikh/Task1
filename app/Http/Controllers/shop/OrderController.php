@@ -24,6 +24,6 @@ class OrderController extends Controller
     {
         $orders = $this->orderService->order($request);
         $carts  = $this->cartService->getUpdateCarts();
-        return view('shop.order-detail', compact('carts','orders'));
+        return view('shop.order-detail', compact('carts', 'orders'));
     }
 }

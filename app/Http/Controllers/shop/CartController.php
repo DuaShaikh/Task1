@@ -20,15 +20,15 @@ class CartController extends Controller
     function addToCart(Request $req) 
     {
         $carts = $this->cartService->postaddToCart($req);
-        $req->session()->flash('status','Login Your Account!');
+        $req->session()->flash('status', 'Login Your Account!');
         return redirect('/');
     }
 
-    static function cartItem()
-    {
-        $carts = $this->cartService->countCartItems();
-        return view('components.navbar', compact('carts'));
-    }
+    // static function cartItem()
+    // {
+    //     $carts = $this->cartService->countCartItems();
+    //     return view('components.navbar', compact('carts'));
+    // }
 
     function viewCart()
     {

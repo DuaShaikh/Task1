@@ -15,6 +15,11 @@
                             <div class="col-md-8 mt-4">
                                 <h5 class="productTitle">{{$product->pName}}</h5><hr>
                                 <p>{{$product->description}}</p><hr>
+                                {{-- @if ($product->unitsInStock>0)
+                                    <label class="badge bg-success">In stock</label>
+                                @else
+                                    <label  class="badge bg-danger">Out of stock</label>
+                                @endif --}}
                                 <h3 class="cost"> {{$product->productPrice}}</h3>
                                 <div class="card-body">
                                     <div class="row">
@@ -34,9 +39,15 @@
                                         </div>
                                     </div>
                                 </div>
+                                {{-- @if ($product->unitsInStock>0) --}}
+                                    <div class="btn-ground mb-3" >
+                                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span> Add To Cart</button>
+                                    </div>
+                                {{-- @else 
                                 <div class="btn-ground mb-3" >
-                                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span> Add To Cart</button>
+                                    <button type="submit" class="btn btn-primary" disabled><span class="glyphicon glyphicon-shopping-cart"></span> Add To Cart</button>
                                 </div>
+                                @endif --}}
                             </div>
                         </div>
                     </div>

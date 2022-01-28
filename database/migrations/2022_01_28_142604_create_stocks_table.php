@@ -3,9 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Validation\Rules\Enum;
 
-class CreateCartsTable extends Migration
+class CreateStocksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,15 +13,13 @@ class CreateCartsTable extends Migration
      */
     public function up()
     {
-
-        Schema::create('carts', function (Blueprint $table) {
+        Schema::create('stocks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->constrained('products');
-            // $table->enum('S', 'M' ,'L')->default('S');
-            $table->integer('quantity');
+            $table->foreign('product_id', 'stocks_product_id_products_id')->references('id')->on('products')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('size');
+            $table->smallInteger('quantity');
             $table->timestamps();
-            $table->foreign('product_id', 'carts_product_id_products_id')->references('id')->on('products')->onUpdate('cascade')->onDelete('cascade');
-
         });
     }
 
@@ -33,6 +30,6 @@ class CreateCartsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('carts');
+        Schema::dropIfExists('stocks');
     }
 }

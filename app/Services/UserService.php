@@ -11,15 +11,17 @@ class UserService
     function registerUser($request) 
     {
         // return User::create($request->all());
-        return User::create([
-            'fullName' => $request['fullName'],
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
-            'gender' =>$request['gender'],
-            'phone'=> $request['phone'],
-            'address_id'=> $request['address_id'],
-            'media_id'=>$request['media_id']
-        ]);
+        return User::create(
+            [
+                'fullName' => $request['fullName'],
+                'email' => $request['email'],
+                'password' => Hash::make($request['password']),
+                'gender' =>$request['gender'],
+                'phone'=> $request['phone'],
+                'address_id'=> $request['address_id'],
+                'media_id'=>$request['media_id']
+            ]
+        );
     }
     
     function updateUser($req)

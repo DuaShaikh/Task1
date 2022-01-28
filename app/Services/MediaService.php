@@ -17,10 +17,12 @@ class MediaService
         $url  = Storage::putFileAs(
             'public/users/', $request->file('photo'), $imageName
         ); 
-        $request->merge([
-            "imageType" => $type,
-            "url" => $url
-        ]);
+        $request->merge(
+            [
+                "imageType" => $type,
+                "url" => $url
+            ]
+        );
 
         return Media::create($request->all());
     }

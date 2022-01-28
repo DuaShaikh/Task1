@@ -15,11 +15,12 @@ class Order extends Model
 
     protected $guarded = ['token'];
 
-    function OrderProduct()
+    function orderProduct()
     {
         return $this
-                ->belongsToMany(Product::class, 'Order_item', 'order_id', 'product_id');
+                ->belongsToMany(
+                    Product::class, 
+                    'Order_item', 'order_id', 'product_id'
+                );
     }
-
-
 }

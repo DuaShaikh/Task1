@@ -34,5 +34,6 @@
   <x-sub-navbar/>
   <x-navbar />
     @yield('main')
+    <x-footer />
 </body>
 </html>

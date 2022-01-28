@@ -16,7 +16,7 @@ class CreateShippersTable extends Migration
         Schema::create('shippers', function (Blueprint $table) {
             $table->id();
             $table->string('companyName', 100)->nullable(false);
-            $table->string('phone#', 100)->nullable(false);
+            $table->string('phone', 100)->nullable(false);
             $table->string('shipVia', 100)->nullable(false);
             $table->foreignId('address_id')->constrained('addresses');
             $table->timestamps();

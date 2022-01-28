@@ -1,12 +1,20 @@
 @extends('layout.mail')
+<style>
+    table, th, td {
+  border: 1px solid black;
+  width: 60%;
+  text-align: center;
+  border-collapse: collapse;
+}
+</style>
 <div class="container">
     <div class="row">
-        <h6>Hi {{$user}}</h6>
+        <h3>Hi {{$user}}</h3>
         <p>Your order has been successfully placed.</p><br>
          
-        <table class="table table-striped">
+        <table class="table table-striped" style="border:1px solid gray">
             <thead>
-                <tr>
+                <tr style="border:1px solid gray;">
                     <th>Image</th>
                     <th>Name</th>
                     <th>Quantity</th>
@@ -18,7 +26,7 @@
                     $totalPrice = 0;
                 @endphp
                 @foreach ($orders as $order)
-                    <tr>
+                    <tr style="border:1px solid gray;">
                         <td>{{$order->OrderProduct->ProductMedia->url}}</td>
                         <td>{{$order->OrderProduct->pName}}</td>
                         <td>{{$order->quantity}}</td>
@@ -30,6 +38,7 @@
                 @endforeach
             </tbody>
             <tfoot>
+                <tr></tr>
                 <tr>
                     <td>Total Price: <strong>{{$totalPrice}}</strong></td>
                 </tr>

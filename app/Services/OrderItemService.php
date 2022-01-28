@@ -7,20 +7,14 @@ use Illuminate\Http\Request;
 class OrderItemService
 {
 
-    function order_items($request) 
+    function orderItems($request) 
     {
         $data = $request->orders;
         return Order_Item::insert($data);
     }
     
-    function getOrderItems()
+    function getOrderItems($id)
     {
-        // $order = order_item::where('order_id',$order_items->order_id);
-        // ddd($order);
-        // return $order->get();
-        // $order_id = $order_items->order_id;
-        $order = order_Item::all();
-        // ddd($order);
-        return $order;
+        return order_Item::where('order_id', $id)->get();
     }
 }

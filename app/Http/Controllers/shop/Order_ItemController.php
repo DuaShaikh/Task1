@@ -20,13 +20,15 @@ class Order_ItemController extends Controller
         $this->mailService = $mailService;
     }
 
-    function order_item(Request $request)
+    function order_item(Request $request, $id, $size)
     {
-          $order_items = $this->orderItemService->order_items($request);
-          $orders      = $this->orderItemService->getOrderItems();
+          $order_items = $this->orderItemService->orderItems($request);
+          $orders      = $this->orderItemService->getOrderItems($id);
+        //   $stocks      = $this->stockService->stockUpdate($id,$size);
+        //   $updatedStock= $stocks['quantity'] - $orders['quantity'];
           $carts       = $this->cartService->deleteCartUser();
           $mail        = $this->mailService->sendMail($orders);
-          return view('shop.email-verify',compact('order_items'));
+          return view('shop.email-verify', compact('order_items'));
     }
 
 }

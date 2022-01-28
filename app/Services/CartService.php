@@ -4,14 +4,16 @@ namespace App\Services;
 use App\Models\shop\Cart;
 use Illuminate\Http\Request;
 
-class cartService
+class CartService
 {
     function postAddToCart($req) 
     {
-        if(auth()->check()) {
-            $req->merge([
+        if (auth()->check()) {
+            $req->merge(
+                [
                 "user_id" => auth()->user()->id
-            ]);
+                ]
+            );
 
             return Cart::create($req->all());
         } else {
@@ -27,7 +29,7 @@ class cartService
 
     function viewCartItems()
     { 
-        return auth()->user()->cart()?->with(['cartProduct.ProductMedia'])->get();
+        return auth()?->user()?->cart()?->with(['cartProduct.productMedia'])->get();
     }
 
     function deleteCartItems($id)
@@ -45,7 +47,7 @@ class cartService
 
     function getUpdateCarts()
     {
-        return auth()->user()->cart()->with(['cartProduct.ProductMedia'])->get();
+        return auth()->user()->cart()->with(['cartProduct.productMedia'])->get();
     }
 
     function deleteCartUser() 

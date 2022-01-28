@@ -9,7 +9,7 @@ class ProductService
 
     function getProducts() 
     {
-        $products = Product::with(['ProductMedia'])
+        $products = Product::with(['productMedia'])
             ->get();
 
         return $products;
@@ -17,8 +17,8 @@ class ProductService
 
     function getProductsbyId($id)
     {
-        $products = Product::where('id',$id)
-                    ->with(['ProductMedia']);
+        $products = Product::where('id', $id)
+                    ->with(['productMedia']);
         return $products->get();
     }
 

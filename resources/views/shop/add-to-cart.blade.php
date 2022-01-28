@@ -25,7 +25,7 @@
 						<tr>
 							<td data-th="Product">
 								<div class="row">
-									<div class="col-sm-3 hidden-xs"><img src="{{$cart->cartProduct?->ProductMedia->url}}" alt="..." class="img-responsive" style="width: 110px;height:110px"/></div>
+									<div class="col-sm-3 hidden-xs"><img src="{{$cart->cartProduct?->productMedia->url}}" alt="..." class="img-responsive" style="width: 110px;height:110px"/></div>
 									<div class="col-sm-8">
 										<h4 class="nomargin">{{$cart->cartProduct->pName}}</h4>
 										<p>{{$cart->cartProduct->description}}</p>

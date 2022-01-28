@@ -10,9 +10,11 @@ class MailService
     {
         $data = ['user'=>auth()->user()->fullName, 'orders'=>$orders];
         $user['to']= auth()->user()->email;
-        return Mail::send('shop.mail', $data, function ($messages) use ($user) {
+        return Mail::send(
+            'shop.mail', $data, function ($messages) use ($user) {
                 $messages->to($user['to']);
                 $messages->subject('Order Confirmation Email');
-        });    
+            }
+        );    
     }
 }
