@@ -28,11 +28,12 @@
                                 <tr>
                                     <input type="hidden" name="orders[{{$key}}][order_id]"  value="{{$orders->id}}">
                                     <input type="hidden" name="orders[{{$key}}][product_id]" value="{{$cart->cartProduct->id}}">
+                                    <input type="hidden" name="orders[{{$key}}][size]" value="{{$cart->size}}">
                                     <td>{{$cart->cartProduct->pName}}</td>
                                     <input type="hidden" name="orders[{{$key}}][quantity]" value="{{$cart->quantity}}">
                                     <td>{{$cart->quantity}}</td>
-                                    <input type="hidden" name="orders[{{$key}}][productPrice]" value="{{$cart->quantity*$cart->cartProduct->productPrice}}">
-                                    <td >{{$cart->quantity*$cart->cartProduct->productPrice}}</td>
+                                    <input type="hidden" name="orders[{{$key}}][productPrice]" value="{{ ($cart->quantity * $cart->cartProduct->productPrice) }}">
+                                    <td >{{ ($cart->quantity * $cart->cartProduct->productPrice) }}</td>
                                 </tr>
                                 @php 
                                     $totalPrice += $cart->cartProduct->productPrice * $cart->quantity;

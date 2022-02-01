@@ -13,7 +13,7 @@
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                     <h3 class="register-heading">Registration</h3>
-                    <form method="post" action="address">
+                    <form method="post" action="address" autocomplete="off">
                         <div class="container">
                             <div class="row register-form">
                                 <div class="col-md-6">

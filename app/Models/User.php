@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use App\Models\shop\Cart;
+use App\Models\shop\Order;
 use App\Models\user\Address;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -36,6 +37,11 @@ class User extends Authenticatable
         return $this->hasMany(Cart::class);
     }
 
+    public function order(): mixed
+    {
+        return $this->hasMany(Order::class);
+    }
+    
     public function userAddress()
     {
         return $this->hasOne(Address::class, 'id', 'address_id');

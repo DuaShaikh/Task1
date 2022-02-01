@@ -44,6 +44,7 @@ class UserController extends Controller
         return view('shop.media', compact('users'));
     }
 
+    
 
     
 

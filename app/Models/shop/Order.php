@@ -2,8 +2,10 @@
 
 namespace App\Models\shop;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
+use App\Models\shop\OrderItem;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Order extends Model
 {
@@ -15,12 +17,22 @@ class Order extends Model
 
     protected $guarded = ['token'];
 
-    function orderProduct()
+    // function orderProduct()
+    // {
+    //     return $this
+    //             ->belongsToMany(
+    //                 Product::class, 
+    //                 'Order_item', 'order_id', 'product_id'
+    //             );
+    // }
+    
+    function userOrder()
     {
-        return $this
-                ->belongsToMany(
-                    Product::class, 
-                    'Order_item', 'order_id', 'product_id'
-                );
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
+
+    function items()
+    {
+        return $this->hasMany(OrderItem::class);
     }
 }

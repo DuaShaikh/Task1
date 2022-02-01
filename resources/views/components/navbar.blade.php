@@ -32,7 +32,7 @@
     </div>
     <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6 iconLink">
          {{-- <i> {{ Auth::user()->fullName }}</i> --}}
-         <button class="btn btn-primary"><a href="login"><i class="far fa-user"></i></a></button>
+         <button class="btn btn-primary"><a href="admin/dashboard"><i class="far fa-user"></i></a></button>
        <button class="btn btn-primary"><a href = "view-cart"> <i class="fas fa-shopping-cart"><span class="cartCount">{{auth()?->user()?->cart()->count()}}</span></i> </a></button>
     </div>
     

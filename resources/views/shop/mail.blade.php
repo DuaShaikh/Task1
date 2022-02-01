@@ -27,13 +27,13 @@
                 @endphp
                 @foreach ($orders as $order)
                     <tr style="border:1px solid gray;">
-                        <td>{{$order->OrderProduct->ProductMedia->url}}</td>
+                        <td> <img src="{{url($order->orderProduct->productMedia->url)}}" alt="" style="width: 200px;height:200px"></td>
                         <td>{{$order->OrderProduct->pName}}</td>
                         <td>{{$order->quantity}}</td>
-                        <td>{{$order->ProductPrice}}</td>
+                        <td>{{$order->productPrice}}</td>
                     </tr>
                     @php
-                        $totalPrice += $order->quantity*$order->ProductPrice;
+                        $totalPrice += ($order->quantity * $order->productPrice);
                     @endphp
                 @endforeach
             </tbody>

@@ -6,14 +6,16 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\UserService;
 use App\Http\Requests\user\UserRequest;
-
+use App\Services\OrderItemService;
 
 class UserController extends Controller
 {
     protected $userService;
+    protected $oderItemService;
 
-    function __construct(UserService $userService) {
-        $this->userService = $userService;
+    function __construct(UserService $userService, OrderItemService $orderItemService) {
+        $this->userService      = $userService;
+        $this->orderItemService = $orderItemService;
         
 
     }
@@ -40,5 +42,13 @@ class UserController extends Controller
     //     $users = $this->userService->getUserdetails();
     //     return view('shop.checkout', compact('users'));
     // }
+
+
+    function getUserItems()
+    {
+        $users = $this->orderItemService->getUserOrders();
+        return view('user.orders', compact('users'));
+    }
+
 
 }

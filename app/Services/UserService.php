@@ -42,9 +42,9 @@ class UserService
     
     function updateUserdetails($req)
     {
-        $userID = auth()->user()->id;
-        $user   = User::where('id', $userID);
-        $user->update($req);
+        $user = auth()->user();
+        $user->update($req->all());
+
         return $user;
     }
 }

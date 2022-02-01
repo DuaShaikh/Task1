@@ -10,6 +10,7 @@ use App\Http\Controllers\common\MediaController;
 use App\Http\Controllers\shop\ProductController;
 use App\Http\Controllers\user\AddressController;
 use App\Http\Controllers\shop\Order_ItemController;
+use GuzzleHttp\Middleware;
 
 // Route::get('home',[WidgetController::class,'getData']);
 // Route::get("table",[UserController::class,'getData']);
@@ -24,14 +25,19 @@ use App\Http\Controllers\shop\Order_ItemController;
 
 
 
+Route::group(['namespace' => 'admin', 'middleware' => ['auth', 'role'], 'prefix' => 'admin'], function () {
+    Route::get('/dashboard', function(){
+        return view ('dashboard');
+    });
+    });
 
+Route::get('/dashboard', function() {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
 Route::group(['namespace' => 'user'], function () {
 Route::get('/', [ProductController::class,'getProduct']);
 });
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
 
@@ -40,7 +46,10 @@ Route::get('/register', function () {
 });
 
 Route::group(['namespace' => 'user'], function () {
-  
+
+    Route::get('dashboard/orders', [UserController::class, 'getUserItems'])->name('dashboard/orders');;
+    // ->middleware(['auth'])->name('dashboard');
+
     Route::post('register', [UserController::class, 'postUser']);
     Route::post('address', [AddressController::class, 'saveAddress']);
     Route::post('media', [MediaController::class, 'uploadImage']);
@@ -83,4 +92,5 @@ Route::group(['namespace' => 'shop'], function () {
 Route::get('/order-detail', function () {
     return view('shop.order-detail');
 });
+
 

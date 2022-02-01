@@ -44,6 +44,7 @@ class CartController extends Controller
 
     function updateCart(Request $req)
     {
+
         $cart  = $this->cartService->updateCartItems($req);
         $users = $this->userService->getUserdetails();
         return view('shop.checkout', compact('users'));

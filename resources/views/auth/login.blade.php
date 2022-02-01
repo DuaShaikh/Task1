@@ -74,7 +74,7 @@
       
         <div class="white-panel">
             <div class="login-show show-log-panel">
-                <form method="POST" action="{{ route('login') }}">   
+                <form method="POST" action="{{ route('login') }}" autocomplete="off">   
                     <h2>LOGIN</h2>
                     <!-- Session Status -->
                     <x-auth-session-status class="mb-4" :status="session('status')" style="color:red"/>

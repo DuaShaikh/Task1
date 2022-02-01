@@ -3,6 +3,7 @@
 namespace App\Models\shop;
 
 use App\Models\User;
+use App\Models\shop\Stock;
 use App\Models\shop\Product;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -19,6 +20,7 @@ class Cart extends Model
         'product_id',
         'quantity',
         'user_id',
+        'stock_id',
         'size',
     ];
 
@@ -32,6 +34,11 @@ class Cart extends Model
     public function cartUser()
     {
         return $this->belongsTo(User::class, 'id', 'user_id');
+    }
+
+    public function cartStock()
+    {
+        return $this->hasOne(Stock::class, 'id', 'stock_id');
     }
 
     

@@ -2,16 +2,20 @@
 
 namespace App\Services;
 use App\Models\shop\Cart;
+use App\Models\shop\Stock;
 use Illuminate\Http\Request;
 
 class CartService
 {
     function postAddToCart($req) 
-    {
+    {  
+        // $stocks = Stock::where(['product_id' => $req->product_id, 'size' => $req->size]);
+        // ddd($stocks);
         if (auth()->check()) {
             $req->merge(
                 [
-                "user_id" => auth()->user()->id
+                "user_id" => auth()->user()->id,
+                // "stock_id"=> $stocks->id
                 ]
             );
 

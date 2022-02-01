@@ -11,10 +11,10 @@
             <a href="login"> <input type="submit" name="" value="Login"/></a> <br/>
         </div>
         <div class="col-md-9 register-right">
-            <div class="tab-content" id="myTabContent">
+            <div class="tab-content" id="myTabContent"> 
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                           <h3 class="register-heading">Registration</h3>
-                    <form method="post" action="register">
+                    <form method="post" action="register" autocomplete="off">
                         <div class="container">
                             <div class="row register-form">
                                 <div class="col-md-6">

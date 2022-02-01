@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers\shop;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Services\StockService;
 use App\Services\ProductService;
+use App\Http\Controllers\Controller;
 
 
 class ProductController extends Controller
 {
     protected $productService;
+    protected $stockService;
 
-    function __construct(productService $productService) {
+    function __construct(ProductService $productService, StockService $stockService) {
         $this->productService = $productService;
+        $this->stockService = $stockService;
     }
     function getProduct() 
     {
@@ -22,7 +25,8 @@ class ProductController extends Controller
     function getProductByid($id) 
     {
         $products = $this->productService->getProductsbyId($id);
-        return view('shop.view-product', compact('products'));
+        $stocks = $this->stockService->getStockAvailable($products);
+        return view('shop.view-product', compact('products', 'stocks'));
     }
     
 }
