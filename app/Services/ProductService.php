@@ -22,5 +22,39 @@ class ProductService
         return $products->get();
     }
 
+    function addProducts($req)
+    {
+        return Product::create($req->all());
+    }
+
+    function updateProduct($req)
+    {
+        $product = Product::find($req["id"]);
+
+        $product->update($req);
+
+        return $product;
+    }
+
+    function deleteProducts($id)
+    {
+        $product = Product::find($id);
+        $product->delete();
+        return $product;
+    }
+
+    function showProductsbyId($id)
+    {
+        return Product::find($id);
+    }
+
+    function editProductsbyId($req)
+    {
+        $product = Product::find($req->id);
+        $product->update($req->all());
+       
+        return $product;
+    }
+
 }
 

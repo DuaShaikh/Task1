@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use GuzzleHttp\Middleware;
 // use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WidgetController;
 use App\Http\Controllers\shop\CartController;
 use App\Http\Controllers\user\UserController;
@@ -9,8 +10,8 @@ use App\Http\Controllers\shop\OrderController;
 use App\Http\Controllers\common\MediaController;
 use App\Http\Controllers\shop\ProductController;
 use App\Http\Controllers\user\AddressController;
+use App\Http\Controllers\shop\CategoryController;
 use App\Http\Controllers\shop\Order_ItemController;
-use GuzzleHttp\Middleware;
 
 // Route::get('home',[WidgetController::class,'getData']);
 // Route::get("table",[UserController::class,'getData']);
@@ -25,11 +26,11 @@ use GuzzleHttp\Middleware;
 
 
 
-Route::group(['namespace' => 'admin', 'middleware' => ['auth', 'role'], 'prefix' => 'admin'], function () {
+Route::group(['middleware' => ['auth', 'role'], 'prefix' => 'admin'], function () {
     Route::get('/dashboard', function(){
         return view ('dashboard');
     });
-    });
+});
 
 Route::get('/dashboard', function() {
     return view('dashboard');
@@ -47,7 +48,7 @@ Route::get('/register', function () {
 
 Route::group(['namespace' => 'user'], function () {
 
-    Route::get('dashboard/orders', [UserController::class, 'getUserItems'])->name('dashboard/orders');;
+    Route::get('dashboard/orders', [UserController::class, 'getUserItems'])->name('dashboard/orders');
     // ->middleware(['auth'])->name('dashboard');
 
     Route::post('register', [UserController::class, 'postUser']);
@@ -61,6 +62,7 @@ Route::group(['namespace' => 'user'], function () {
 Route::group(['namespace' => 'common'], function () {
     
     Route::post('media', [MediaController::class, 'uploadImage']);
+    Route::post('dashboard/product/add-product-media', [MediaController::class, 'postProductMedia']);
    
 });
 
@@ -83,14 +85,40 @@ Route::group(['namespace' => 'shop'], function () {
     // Route::get('checkout', [UserController::class, 'getUser']);
     Route::post('order-detail', [OrderController::class, 'postOrder']);
     Route::post('order-item/{id}', [Order_ItemController::class, 'order_item']);
+
+    // ------admin_product
+    Route::get('dashboard/product', [ProductController::class, 'getAdminProducts'])->name('dashboard/product');
+    Route::post('dashboard/product/add-product', [ProductController::class, 'addAdminProducts']);
+    Route::get('delete-product/{id}', [ProductController::class, 'deleteAdminProducts']);
+    Route::get('show-product/{id}', [ProductController::class, 'showAdminProducts']);
+    Route::post('show-product/edit-product', [ProductController::class, 'editAdminProducts']);
+    Route::get('view-admin-product/{id}', [ProductController::class, 'viewAdminProducts']);
+
+    // ------admin_category
+    Route::get('dashboard/category', [CategoryController::class, 'getAdmincategories'])->name('dashboard/category');
+    Route::post('dashboard/category/add-category', [CategoryController::class, 'addAdminCategories']);
+    Route::get('delete-category/{id}', [CategoryController::class, 'deleteAdminCategories']);
+    Route::get('show-category/{id}', [CategoryController::class, 'showAdminCategories']);
+    Route::post('show-category/edit-category', [CategoryController::class, 'editAdminCategories']);
+    
  
      
     // Route::get('/', [CartController::class, 'cartItem']);
    
 });
 
+
 Route::get('/order-detail', function () {
     return view('shop.order-detail');
 });
 
+Route::get('dashboard/product/add-product', function() {
+    return view('admin.add-products');
+});
+Route::get('dashboard/category/add-category', function() {
+    return view('admin.add-category');
+});
 
+    // Route::get('dashboard/category', function() {
+    //     return view('admin.category');
+    // })->name('dashboard/category');

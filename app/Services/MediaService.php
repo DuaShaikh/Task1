@@ -27,4 +27,22 @@ class MediaService
         return Media::create($request->all());
     }
 
+    function productMedia($request) 
+    {
+        $imageName = time() . '.' . $request->file('photo')->getClientOriginalName();
+        $type = $request->file('photo')->getClientOriginalExtension();
+        // $url = $request->file('photo')->storeAs('public/users/', $imageName);
+        $url  = Storage::disk('public')->putFileAs(
+            'product/', $request->file('photo'), $imageName
+        ); 
+        $request->merge(
+            [
+                "imageType" => $type,
+                "url" => $url
+            ]
+        );
+
+        return Media::create($request->all());
+    }
+
 }

@@ -2,19 +2,22 @@
 
 namespace App\Models\shop;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\common\Media;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Category extends Model
 {
+    protected $fillable = [
+        'categoryName',
+        'media_id'
+    ];
+
+    protected $guarded = ['token'];
     use HasFactory;
 
-    function categoryProduct()
+    public function categoryMedia()
     {
-        return $this
-            ->belongsToMany(
-                Product::class, 
-                'Product_category', 'category_id', 'product_id'
-            );
+        return $this->hasOne(Media::class, 'id', 'media_id');
     }
 }

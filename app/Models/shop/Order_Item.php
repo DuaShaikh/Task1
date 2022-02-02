@@ -6,7 +6,7 @@ use App\Models\shop\Product;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class OrderItem extends Model
+class Order_Item extends Model
 {
     protected $fillable = [
         'order_id',
@@ -15,7 +15,7 @@ class OrderItem extends Model
         'product_id',
     ];
 
-    protected $table = 'order__items';
+    // protected $table = 'order__items';
 
     protected $guarded = ['token'];
     use HasFactory;

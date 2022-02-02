@@ -1384,8 +1384,8 @@ select {
   color: rgb(6, 83, 155);
 }
 
-.orderCard  th {
-  margin-left: 0 !important;
+.orderCard th {
+  margin-left: 10px !important;
   font-size:25px;
   /* padding-left: 20px; */
   width: 500px;
@@ -1393,8 +1393,8 @@ select {
 
 .orderCard td {
   font-size:20px;
-  justify-content: center;
-  text-align: center;
+  /* justify-content: center;
+  text-align: center; */
 
   
 }
@@ -1403,4 +1403,8 @@ select {
   padding-top: 10px;
   font-family:monospace;
   padding-bottom: 40px;
+}
+
+.productCard th {
+  padding-left: 20px;
 }

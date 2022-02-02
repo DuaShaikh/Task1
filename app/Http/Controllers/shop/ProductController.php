@@ -29,4 +29,39 @@ class ProductController extends Controller
         return view('shop.view-product', compact('products', 'stocks'));
     }
     
+    function getAdminProducts()
+    {
+        $products = $this->productService->getProducts();
+        return view('admin.product', compact('products'));
+    }
+
+    function addAdminProducts(Request $req)
+    {
+        $products = $this->productService->addProducts($req);
+        return view('admin.add-product-media', compact('products'));
+    }
+
+    function deleteAdminProducts($id)
+    {
+        $products = $this->productService->deleteProducts($id);
+        return redirect('dashboard/product');
+    }
+
+    function showAdminProducts($id)
+    {
+        $products = $this->productService->showProductsbyId($id);
+        return view('admin.show-product-detail', compact('products'));
+    }
+
+    function editAdminProducts(Request $req)
+    {
+        $products = $this->productService->editProductsbyId($req);
+        return redirect('dashboard/product');
+    }
+
+    function viewAdminProducts($id)
+    {
+        $products = $this->productService->showProductsbyId($id);
+        return view('admin.view-admin-product', compact('products'));
+    }
 }

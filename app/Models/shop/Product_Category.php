@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Product_Category extends Model
 {
     use HasFactory;
+
+    function categoryProduct()
+    {
+        return $this
+            ->belongsToMany(
+                Product::class, 
+                'Product_category', 'category_id', 'product_id'
+        );
+    }
+
+
+  
 }

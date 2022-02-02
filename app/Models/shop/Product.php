@@ -8,17 +8,25 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
+    protected $fillable = [
+       'pName',
+       'description',
+       'productPrice',
+       'media_id',
+    ];
+
+    protected $guarded = ['token'];
     use HasFactory;
 
-    function productCategory()
-    {
-        return $this->belongsToMany(
-            Category::class, 'Product_category', 'product_id', 'category_id'
-        );
-    }
     public function productMedia()
     {
         return $this->hasOne(Media::class, 'id', 'media_id');
     }
-
+    
+    function productCategory()
+    {
+        return $this->belongsToMany(
+            Category::class, 'Product_Category', 'product_id', 'category_id'
+        );
+    }
 }
