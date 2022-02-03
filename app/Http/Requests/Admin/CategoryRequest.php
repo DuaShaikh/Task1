@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\common;
+namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MediaRequest extends FormRequest
+class CategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,6 +24,7 @@ class MediaRequest extends FormRequest
     public function rules()
     {
         return [
+            'categoryName'        => "required|min:3|max:100",
             'photo'        =>  'required|image|mimes:jpeg,png,jpg|max:2048',
         ];
     }

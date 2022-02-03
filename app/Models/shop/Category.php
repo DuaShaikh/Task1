@@ -20,4 +20,9 @@ class Category extends Model
     {
         return $this->hasOne(Media::class, 'id', 'media_id');
     }
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'product_categories');
+    }
 }

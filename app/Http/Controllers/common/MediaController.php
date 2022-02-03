@@ -29,10 +29,11 @@ class MediaController extends Controller
         return view('user.login', compact('users'));
     }
 
-    function postProductMedia(Request $request)
+    function postProductMedia(MediaRequest $request)
     {
+        ddd($request);
         $media = $this->mediaService->productMedia($request);
         $product = $this->productService->updateProduct(["id" => $request->product_id, "media_id" => $media->id]);
-        return redirect('dashboard/product');
+        return redirect('admin/dashboard/product');
     }
 }

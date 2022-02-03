@@ -5,17 +5,20 @@ namespace App\Http\Controllers\shop;
 use Illuminate\Http\Request;
 use App\Services\StockService;
 use App\Services\ProductService;
+use App\Services\CategoryService;
 use App\Http\Controllers\Controller;
-
+use App\Http\Requests\Admin\ProductRequest;
 
 class ProductController extends Controller
 {
     protected $productService;
     protected $stockService;
+    protected $categoryService;
 
-    function __construct(ProductService $productService, StockService $stockService) {
+    function __construct(ProductService $productService, StockService $stockService, CategoryService $categoryService) {
         $this->productService = $productService;
         $this->stockService = $stockService;
+        $this->categoryService = $categoryService;
     }
     function getProduct() 
     {
@@ -35,28 +38,36 @@ class ProductController extends Controller
         return view('admin.product', compact('products'));
     }
 
-    function addAdminProducts(Request $req)
+    function showAdminCategory()
+    {
+        $category = $this->categoryService->getCategories();
+        return view('admin.add-products', compact('category'));
+    }
+    function addAdminProducts(ProductRequest $req)
     {
         $products = $this->productService->addProducts($req);
-        return view('admin.add-product-media', compact('products'));
+        
+        return redirect('admin/dashboard/product');
     }
 
     function deleteAdminProducts($id)
     {
         $products = $this->productService->deleteProducts($id);
-        return redirect('dashboard/product');
+        return redirect('admin/dashboard/product');
     }
 
     function showAdminProducts($id)
     {
+        $category = $this->categoryService->getCategories();
         $products = $this->productService->showProductsbyId($id);
-        return view('admin.show-product-detail', compact('products'));
+       
+        return view('admin.add-products', compact('products', 'category'));
     }
 
     function editAdminProducts(Request $req)
     {
         $products = $this->productService->editProductsbyId($req);
-        return redirect('dashboard/product');
+        return redirect('admin/dashboard/product');
     }
 
     function viewAdminProducts($id)

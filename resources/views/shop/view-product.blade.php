@@ -15,16 +15,13 @@
                             <div class="col-md-8 mt-4">
                                 <h5 class="productTitle">{{$product->pName}}</h5><hr>
                                 <p>{{$product->description}}</p><hr>
-                                @if ($stocks[0]['quantity']>0)
-                                    <label class="badge bg-success">In stock</label>
-                                @else
-                                    <label  class="badge bg-danger">Out of stock</label>
-                                @endif
                                 <h3 class="cost"> {{$product->productPrice}}</h3>
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6 col-xs-12 quantity">
                                         <input type="number" name="quantity" minlength="1" maxlength="10"  placeholder="Quantity">
+                                        @error('quantity')<span class="invalid-feedback" role="alert" style="color:red"><strong>{{ $message }}</strong></span>@enderror
+
                                         </div><br>
                                         @if ($product->pName == "Mobile")
                                             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -41,26 +38,22 @@
                                         @else
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 <div class="form-floating">
-                                                    <select class="form-select" id="floatingSelectGrid" name="size" aria-label="Floating label select example">
+                                                    <select class="form-control" id="floatingSelectGrid" name="size" aria-label="Floating label select example">
                                                         <option selected>None</option>
                                                         <option value="S">S</option>
                                                         <option value="M">M</option>
                                                         <option value="L">L</option>
                                                     </select>
                                                     <label for="floatingSelectGrid">Size</label>
+                                                    @error('size')<span class="invalid-feedback" role="alert" style="color:red"><strong>{{ $message }}</strong></span>@enderror
+
                                                 </div>
                                             </div>
                                         @endif
                                     </div>
-                                    @if ($stocks[0]['quantity']>0)
                                         <div class="btn-ground mb-3 mt-4" >
                                             <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span> Add To Cart</button>
                                         </div>
-                                    @else 
-                                        <div class="btn-ground mb-3" >
-                                            <button type="submit" class="btn btn-primary" disabled><span class="glyphicon glyphicon-shopping-cart"></span> Add To Cart</button>
-                                        </div>
-                                    @endif
                                 </div>
                             </div>
                         </div>

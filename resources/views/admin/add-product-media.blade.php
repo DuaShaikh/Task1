@@ -21,7 +21,8 @@
                             <div class="row mb-3">
                                 <label for="inputPrice3" class="col-sm-2 col-form-label">Upload Image</label>
                                 <div class="col-sm-10">
-                                  <input type="file" class="form-control" name="photo" >
+                                  <input type="file" class="form-control" name="photo" required>
+                                  <span style="color:red;">@error('photo'){{$message}}@enderror</span>
                                 </div>
                               </div>
                           

@@ -54,7 +54,7 @@ Route::group(['namespace' => 'user'], function () {
     Route::post('register', [UserController::class, 'postUser']);
     Route::post('address', [AddressController::class, 'saveAddress']);
     Route::post('media', [MediaController::class, 'uploadImage']);
-    Route::post('update-detail', [UserController::class, 'updateDetail']);
+    // Route::post('update-detail', [UserController::class, 'updateDetail']);
     // Route::post('order-detail', [AddressController::class, 'updateAddress']);
     // Route::get('order-detail',[AddressController::class,'getDetail']);
    
@@ -62,7 +62,7 @@ Route::group(['namespace' => 'user'], function () {
 Route::group(['namespace' => 'common'], function () {
     
     Route::post('media', [MediaController::class, 'uploadImage']);
-    Route::post('dashboard/product/add-product-media', [MediaController::class, 'postProductMedia']);
+    Route::post('admin/dashboard/product/add-product-media', [MediaController::class, 'postProductMedia']);
    
 });
 
@@ -83,20 +83,21 @@ Route::group(['namespace' => 'shop'], function () {
     Route::post('checkout', [CartController::class, 'updateCart']);
     // Route::get('checkout', [CartController::class, 'getUpdateCart']);
     // Route::get('checkout', [UserController::class, 'getUser']);
-    Route::post('order-detail', [OrderController::class, 'postOrder']);
+    Route::post('update-detail', [OrderController::class, 'postOrder']);
     Route::post('order-item/{id}', [Order_ItemController::class, 'order_item']);
 
     // ------admin_product
-    Route::get('dashboard/product', [ProductController::class, 'getAdminProducts'])->name('dashboard/product');
-    Route::post('dashboard/product/add-product', [ProductController::class, 'addAdminProducts']);
+    Route::get('admin/dashboard/product', [ProductController::class, 'getAdminProducts'])->name('dashboard/product');
+    Route::get('admin/dashboard/product/add-product', [ProductController::class, 'showAdminCategory']);
+    Route::post('admin/dashboard/product/add-product', [ProductController::class, 'addAdminProducts']);
     Route::get('delete-product/{id}', [ProductController::class, 'deleteAdminProducts']);
-    Route::get('show-product/{id}', [ProductController::class, 'showAdminProducts']);
-    Route::post('show-product/edit-product', [ProductController::class, 'editAdminProducts']);
+    Route::get('admin/dashboard/product/show-product/{id}', [ProductController::class, 'showAdminProducts']);
+    Route::post('admin/dashboard/product/show-product/edit-product', [ProductController::class, 'editAdminProducts']);
     Route::get('view-admin-product/{id}', [ProductController::class, 'viewAdminProducts']);
 
     // ------admin_category
-    Route::get('dashboard/category', [CategoryController::class, 'getAdmincategories'])->name('dashboard/category');
-    Route::post('dashboard/category/add-category', [CategoryController::class, 'addAdminCategories']);
+    Route::get('admin/dashboard/category', [CategoryController::class, 'getAdmincategories'])->name('dashboard/category');
+    Route::post('admin/dashboard/category/add-category', [CategoryController::class, 'addAdminCategories']);
     Route::get('delete-category/{id}', [CategoryController::class, 'deleteAdminCategories']);
     Route::get('show-category/{id}', [CategoryController::class, 'showAdminCategories']);
     Route::post('show-category/edit-category', [CategoryController::class, 'editAdminCategories']);
@@ -112,10 +113,8 @@ Route::get('/order-detail', function () {
     return view('shop.order-detail');
 });
 
-Route::get('dashboard/product/add-product', function() {
-    return view('admin.add-products');
-});
-Route::get('dashboard/category/add-category', function() {
+
+Route::get('admin/dashboard/category/add-category', function() {
     return view('admin.add-category');
 });
 

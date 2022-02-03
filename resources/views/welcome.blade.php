@@ -9,7 +9,6 @@
         </div>
     @endif
 @endif    --}}
-
     <x-slider />
     <div class="container-lg" style="margin-top:100px">
         <div class="card">

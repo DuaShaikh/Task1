@@ -2,8 +2,9 @@
 
 namespace App\Services;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
+use App\Models\user\Address;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserService
 {
@@ -43,6 +44,15 @@ class UserService
     function updateUserdetails($req)
     {
         $user = auth()->user();
+        
+        $address = Address::find($req->id);
+
+        $address->update($req->all());
+        
+        $req->merge([
+            'address_id' => $req->id,
+        ]);
+    
         $user->update($req->all());
 
         return $user;

@@ -13,7 +13,7 @@
             </div>
         </div>
     </x-slot>
-    <div class="container mt-5 productCard" >
+    <div class="container mt-3 productCard" >
         <div class="card">
             <div class="card-body">
                 <table class="table table-striped ">
@@ -36,12 +36,13 @@
                                 {{-- <td>{{$product->description}}</td> --}}
                                 <td>{{$product->productPrice}}</td>  
                                 <td><a href="{{ URL::to('view-admin-product/' . $product->id) }}"><i class="fas fa-eye"></i> </a></td>
-                                <td><a href="{{ URL::to('show-product/' . $product->id) }}"> <i class="fas fa-pencil-alt"></i></a></td>
+                                <td><a href="{{ URL::to('admin/dashboard/product/show-product/' . $product->id) }}"> <i class="fas fa-pencil-alt"></i></a></td>
                                 <td><a href="{{ URL::to('delete-product/' . $product->id) }}"> <i class="fas fa-trash"> </i> </a></td>   
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
+                <span>{{$products->links("pagination::bootstrap-4")}}</span>
             </div>
         </div>
     </div>

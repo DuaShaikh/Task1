@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\shop;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Services\CategoryService;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\CategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -21,16 +22,16 @@ class CategoryController extends Controller
         return view('admin.category', compact('categories'));
     }
 
-    function addAdminCategories(Request $req)
+    function addAdminCategories(CategoryRequest $req)
     {
         $categories = $this->categoryService->postCategories($req);
-        return redirect('dashboard/category');
+        return redirect('admin/dashboard/category');
     }
 
     function deleteAdminCategories($id)
     {
         $categories = $this->categoryService->deleteCategories($id);
-        return redirect('dashboard/category');
+        return redirect('admin/dashboard/category');
     }
 
     function showAdminCategories($id)
@@ -42,6 +43,6 @@ class CategoryController extends Controller
     function editAdminCategories(Request $req)
     {
         $category = $this->categoryService->editCategoriesbyId($req);
-        return redirect('dashboard/category');
+        return redirect('admin/dashboard/category');
     }
 }

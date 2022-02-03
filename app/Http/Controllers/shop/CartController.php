@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Services\CartService;
 use App\Services\UserService;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\CartRequest;
+
 
 class CartController extends Controller
 {
@@ -17,7 +19,7 @@ class CartController extends Controller
         $this->userService = $userService;
     }
 
-    function addToCart(Request $req) 
+    function addToCart(CartRequest $req) 
     {
         $carts = $this->cartService->postaddToCart($req);
         $req->session()->flash('status', 'Login Your Account!');

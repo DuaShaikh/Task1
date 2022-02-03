@@ -1,16 +1,19 @@
 <?php
 
 namespace App\Services;
+use App\Models\common\Media;
 use App\Models\shop\Product;
 use Illuminate\Http\Request;
+use App\Models\shop\ProductCategory;
+use Illuminate\Support\Facades\Storage;
 
 class ProductService
 {
 
     function getProducts() 
     {
-        $products = Product::with(['productMedia'])
-            ->get();
+        $products = Product::with(['productMedia']) ->orderByDesc('id')->paginate(3);
+          
 
         return $products;
     }
@@ -24,7 +27,36 @@ class ProductService
 
     function addProducts($req)
     {
-        return Product::create($req->all());
+        $imageName = time() . '.' . $req->file('photo')->getClientOriginalName();
+        $type = $req->file('photo')->getClientOriginalExtension();
+        $url  = Storage::disk('public')->putFileAs(
+            'category/', $req->file('photo'), $imageName
+        ); 
+        $req->merge(
+            [
+                "imageName" => $imageName,
+                "imageType" => $type,
+                "url" => $url
+            ]
+        );
+
+        $media = Media::create($req->all());
+        
+        $req->merge(
+            [
+               'media_id' =>$media->id,
+            ]
+        );  
+        $product = Product::create($req->all());
+    
+        $req->merge([
+            'product_id'  => $product->id,
+            'category_id' => $req->category_id
+        ]);
+
+        $productCategory = ProductCategory::create($req->all());
+       
+        return $product;
     }
 
     function updateProduct($req)
@@ -45,14 +77,25 @@ class ProductService
 
     function showProductsbyId($id)
     {
-        return Product::find($id);
+        $product = Product::find($id);
+        $product->with('category')->get();
+        return $product;
     }
 
     function editProductsbyId($req)
     {
+
         $product = Product::find($req->id);
         $product->update($req->all());
+
+        
+        $req->merge([
+            'category_id' => $req->category_id
+        ]);
        
+        $category = ProductCategory::where('product_id', $req->id);
+        $category->update(['product_id' => $req->id,'category_id' => $req->category_id]);
+
         return $product;
     }
 

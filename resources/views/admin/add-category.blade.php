@@ -14,13 +14,16 @@
                             <div class="row mb-3">
                               <label for="inputName3" class="col-sm-2 col-form-label">Category Name</label>
                               <div class="col-sm-10">
-                                <input type="text" class="form-control" name="categoryName">
+                                <input type="text" class="form-control @error('categoryName') is-invalid @enderror" name="categoryName" value="{{old('categoryName')}}">
+                                @error('categoryName')<span class="invalid-feedback" role="alert" style="color:red"><strong>{{ $message }}</strong></span>@enderror
+
                               </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="inputPrice3" class="col-sm-2 col-form-label">Upload Image</label>
                                 <div class="col-sm-10">
-                                  <input type="file" class="form-control" name="photo" >
+                                    <input type="file" class="form-control @error('photo') is-invalid @enderror" name="photo">
+                                    @error('photo')<span class="invalid-feedback" role="alert" style="color:red"><strong>{{ $message }}</strong></span>@enderror
                                 </div>
                               </div>
                                 <button type="submit" class="btn btn-primary">Save</button>
