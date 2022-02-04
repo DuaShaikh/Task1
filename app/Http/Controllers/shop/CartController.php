@@ -41,7 +41,7 @@ class CartController extends Controller
     function deleteCart($id)
     {
         $carts = $this->cartService->deleteCartItems($id);
-        return $this->viewCart();
+        return redirect('view-cart');
     }
 
     function updateCart(Request $req)

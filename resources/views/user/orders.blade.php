@@ -17,7 +17,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>Image</th>
-                                                    <th>Product Name</th>
+                                                    <th>Name</th>
                                                     <th>Quantity</th>
                                                     <th>Price</th>
                                                 </tr>

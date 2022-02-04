@@ -29,7 +29,7 @@ use App\Http\Controllers\shop\Order_ItemController;
 Route::group(['middleware' => ['auth', 'role'], 'prefix' => 'admin'], function () {
     Route::get('/dashboard', function(){
         return view ('dashboard');
-    });
+    })->name('admin/dashboard');
 });
 
 Route::get('/dashboard', function() {
@@ -37,7 +37,7 @@ Route::get('/dashboard', function() {
 })->middleware(['auth'])->name('dashboard');
 
 Route::group(['namespace' => 'user'], function () {
-Route::get('/', [ProductController::class,'getProduct']);
+Route::get('/', [ProductController::class,'getProduct'])->name('/');
 });
 
 require __DIR__.'/auth.php';
@@ -78,8 +78,8 @@ Route::group(['namespace' => 'shop'], function () {
     
     Route::get('view-product/{id}', [ProductController::class, 'getProductByid']);
     Route::post('view-product/add-to-cart', [CartController::class, 'addToCart']);
-    Route::get('view-cart', [CartController::class, 'viewCart']);
-    Route::get('deleteCart/{id}', [CartController::class, 'deleteCart']);
+    Route::get('view-cart', [CartController::class, 'viewCart'])->name('view-cart');
+    Route::get('deleteCart/{id}', [CartController::class, 'deleteCart'])->name('deleteCart/{id}');
     Route::post('checkout', [CartController::class, 'updateCart']);
     // Route::get('checkout', [CartController::class, 'getUpdateCart']);
     // Route::get('checkout', [UserController::class, 'getUser']);
@@ -88,6 +88,7 @@ Route::group(['namespace' => 'shop'], function () {
 
     // ------admin_product
     Route::get('admin/dashboard/product', [ProductController::class, 'getAdminProducts'])->name('dashboard/product');
+    // Route::get('admin/dashboard/product/', [ProductController::class, 'getAdminProducts'])->name('dashboard/product');
     Route::get('admin/dashboard/product/add-product', [ProductController::class, 'showAdminCategory']);
     Route::post('admin/dashboard/product/add-product', [ProductController::class, 'addAdminProducts']);
     Route::get('delete-product/{id}', [ProductController::class, 'deleteAdminProducts']);
@@ -96,7 +97,9 @@ Route::group(['namespace' => 'shop'], function () {
     Route::get('view-admin-product/{id}', [ProductController::class, 'viewAdminProducts']);
 
     // ------admin_category
+  
     Route::get('admin/dashboard/category', [CategoryController::class, 'getAdmincategories'])->name('dashboard/category');
+    Route::get('admin/dashboard/category/add-category', [CategoryController::class, 'showAdminSubCategory']);
     Route::post('admin/dashboard/category/add-category', [CategoryController::class, 'addAdminCategories']);
     Route::get('delete-category/{id}', [CategoryController::class, 'deleteAdminCategories']);
     Route::get('show-category/{id}', [CategoryController::class, 'showAdminCategories']);
@@ -114,9 +117,9 @@ Route::get('/order-detail', function () {
 });
 
 
-Route::get('admin/dashboard/category/add-category', function() {
-    return view('admin.add-category');
-});
+// Route::get('admin/dashboard/category/add-category', function() {
+//     return view('admin.add-category');
+// });
 
     // Route::get('dashboard/category', function() {
     //     return view('admin.category');

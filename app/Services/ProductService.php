@@ -12,7 +12,7 @@ class ProductService
 
     function getProducts() 
     {
-        $products = Product::with(['productMedia']) ->orderByDesc('id')->paginate(3);
+        $products = Product::with(['productMedia']) ->orderByDesc('id')->paginate(6);
           
 
         return $products;
@@ -84,7 +84,21 @@ class ProductService
 
     function editProductsbyId($req)
     {
-
+        $imageName = time() . '.' . $req->file('photo')->getClientOriginalName();
+        $type = $req->file('photo')->getClientOriginalExtension();
+        $url  = Storage::disk('public')->putFileAs(
+            'category/', $req->file('photo'), $imageName
+        ); 
+        $req->merge(
+            [
+                "imageName" => $imageName,
+                "imageType" => $type,
+                "url" => $url
+            ]
+        );
+        $media = Media::find($req->media_id);
+        $media->update($req->except('_token'));
+       
         $product = Product::find($req->id);
         $product->update($req->all());
 

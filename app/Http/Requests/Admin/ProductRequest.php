@@ -30,7 +30,6 @@ class ProductRequest extends FormRequest
             'photo'        =>  'required|image|mimes:jpeg,png,jpg|max:2048',
             'category_id'  => 'required',
             
-            
         ];
     }
         

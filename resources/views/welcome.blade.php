@@ -18,7 +18,7 @@
             <div class="card-body">       
                 <div class="product_item">
                     @foreach($products as $product)
-                        <div class="col-lg-3 col-md-4 col-sm-6 mix sale" style="display: inline-block; margin-left:70px" data-bound="">
+                        <div class="col-lg-3 col-md-4 col-sm-4 mix sale product" style="display: inline-block; margin-left:70px"  data-bound="">
                             <div class="single_product">
                                 <div class="product_image">
                                     <img src="{{url($product->productMedia->url)}}" alt="" style="width: 200px;height:200px">
@@ -36,6 +36,7 @@
                             </div>
                         </div>
                     @endforeach
+                    <span>{{$products->links("pagination::bootstrap-4")}}</span>
                 </div>
             </div>
         </div>

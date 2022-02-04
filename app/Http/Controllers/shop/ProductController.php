@@ -61,10 +61,10 @@ class ProductController extends Controller
         $category = $this->categoryService->getCategories();
         $products = $this->productService->showProductsbyId($id);
        
-        return view('admin.add-products', compact('products', 'category'));
+        return view('admin.show-product-detail', compact('products', 'category'));
     }
 
-    function editAdminProducts(Request $req)
+    function editAdminProducts(ProductRequest $req)
     {
         $products = $this->productService->editProductsbyId($req);
         return redirect('admin/dashboard/product');

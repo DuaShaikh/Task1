@@ -19,30 +19,43 @@ class CategoryController extends Controller
     function getAdmincategories()
     {
         $categories = $this->categoryService->getCategories();
+        
         return view('admin.category', compact('categories'));
     }
 
+    function showAdminSubCategory()
+    {
+        $cate = $this->categoryService->showNullCategory();
+
+        return view('admin.add-category', compact('cate'));
+    }
     function addAdminCategories(CategoryRequest $req)
     {
+       
         $categories = $this->categoryService->postCategories($req);
+
         return redirect('admin/dashboard/category');
     }
 
     function deleteAdminCategories($id)
     {
         $categories = $this->categoryService->deleteCategories($id);
+
         return redirect('admin/dashboard/category');
     }
 
     function showAdminCategories($id)
     {
+        $cate = $this->categoryService-> showNullCategory();
         $category = $this->categoryService->showCategories($id);
-        return view('admin.show-category-detail', compact('category'));
+
+        return view('admin.show-category-detail', compact('category', 'cate'));
     }
 
-    function editAdminCategories(Request $req)
+    function editAdminCategories(CategoryRequest $req)
     {
         $category = $this->categoryService->editCategoriesbyId($req);
+
         return redirect('admin/dashboard/category');
     }
 }

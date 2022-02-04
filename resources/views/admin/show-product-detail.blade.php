@@ -9,47 +9,10 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="container" >
-                        {{-- <form autocomplete="off" method="post" action="edit-product">
+                        <form autocomplete="off" method="post" action="edit-product" enctype="multipart/form-data">
                             @csrf
-                             <div class="row mb-3">
-                              <input type="hidden" value="{{$products->id}}" name="id" >
-                              <label for="inputName3" class="col-sm-2 col-form-label">Product Name</label>
-                              <div class="col-sm-10">
-                                <input type="text" class="form-control" name="pName" value="{{$products->pName}}">
-                                @error('pName')<span class="invalid-feedback" role="alert" style="color:red"><strong>{{ $message }}</strong></span>@enderror
-
-                              </div>
-                            </div>
-                            <div class="row mb-3">
-                              <label for="inputDescription3" class="col-sm-2 col-form-label">Description</label>
-                              <div class="col-sm-10">
-                                <input type="text" class="form-control" name="description" value="{{$products->description}}">
-                                @error('description')<span class="invalid-feedback" role="alert" style="color:red"><strong>{{ $message }}</strong></span>@enderror
-
-                              </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label for="inputPrice3" class="col-sm-2 col-form-label">Price</label>
-                                <div class="col-sm-10">
-                                  <input type="text" class="form-control" name="productPrice" value="{{$products->productPrice}}">
-                                  @error('productPrice')<span class="invalid-feedback" role="alert" style="color:red"><strong>{{ $message }}</strong></span>@enderror
-
-                                </div>
-                              </div>                    
-                              <div class="row mb-3">
-                                  <label for="inputPrice3" class="col-sm-2 col-form-label">Category Name</label>
-                                  <div class="col-sm-10">
-                                  <select id="inputState" class="form-select" name = "category_id">
-                                    @foreach ($category as $cat )
-                                    <option value={{$cat->id}} >{{$cat->categoryName}}</option>
-                                    {{-- {{$cat->id == {{$cat->id}} ? "selected" : ''}} --}}
-                                    @endforeach
-                                  </select>
-                                </div>
-                              </div> 
-                            
-                                <button type="submit" class="btn btn-primary">Save</button>
-                          </form> --}}
+                            @include('admin.product-form')
+                          </form>
                     </div>
                 </div>
             </div>

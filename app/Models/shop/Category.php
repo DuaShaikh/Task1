@@ -10,7 +10,8 @@ class Category extends Model
 {
     protected $fillable = [
         'categoryName',
-        'media_id'
+        'media_id',
+        'parent_id'
     ];
 
     protected $guarded = ['token'];

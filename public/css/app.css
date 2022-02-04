@@ -1408,3 +1408,7 @@ select {
 .productCard th {
   padding-left: 20px;
 }
+
+.displayProduct {
+  display: inline-block;
+}

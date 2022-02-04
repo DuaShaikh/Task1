@@ -49,7 +49,7 @@
 							<td data-th="Subtotal" class="text-center">{{$cart->cartProduct->productPrice * $cart->quantity}}</td>
 							<td class="actions" data-th="">
 								{{-- <button class="btn btn-info btn-sm"><i class="fas fa-refresh"></i></button> --}}
-								<button class="btn btn-danger btn-sm"> <a href = "deleteCart/{{$cart->id}}"><i class="fas fa-trash"></i></a></button>								
+								<button class="btn btn-danger btn-sm" type="button"> <a href ='deleteCart/{{$cart->id}}'><i class="fas fa-trash"></i></a></button>								
 							</td>
 						</tr>
 				</tbody>

@@ -12,6 +12,7 @@ class CategoryService
     function getCategories() 
     {
         return Category::with('categoryMedia')->get();
+       
     }
     
     function postCategories($req)
@@ -49,8 +50,28 @@ class CategoryService
         return Category::find($id);
     }
 
+    function showNullCategory()
+    {
+        return Category::whereNull('parent_id')->with('categoryMedia')->get();
+    }
+
     function editCategoriesbyId($req)
     {
+        $imageName = time() . '.' . $req->file('photo')->getClientOriginalName();
+        $type = $req->file('photo')->getClientOriginalExtension();
+        $url  = Storage::disk('public')->putFileAs(
+            'category/', $req->file('photo'), $imageName
+        ); 
+        $req->merge(
+            [
+                "imageName" => $imageName,
+                "imageType" => $type,
+                "url" => $url
+            ]
+        );
+        $media = Media::find($req->media_id);
+        $media->update($req->all());
+
         $category = Category::find($req->id);
         $category->update($req->all());
        
