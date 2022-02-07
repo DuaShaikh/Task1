@@ -46,6 +46,7 @@ class ProductController extends Controller
     function addAdminProducts(ProductRequest $req)
     {
         $products = $this->productService->addProducts($req);
+        session()->flash('status', 'Product Added successfully!');
         
         return redirect('admin/dashboard/product');
     }
@@ -53,6 +54,7 @@ class ProductController extends Controller
     function deleteAdminProducts($id)
     {
         $products = $this->productService->deleteProducts($id);
+        session()->flash('status', 'Product Deleted successfully!');
         return redirect('admin/dashboard/product');
     }
 
@@ -60,13 +62,15 @@ class ProductController extends Controller
     {
         $category = $this->categoryService->getCategories();
         $products = $this->productService->showProductsbyId($id);
-       
-        return view('admin.show-product-detail', compact('products', 'category'));
+        $categories =  $products->category()->get()->pluck('id')->toArray();
+        // ddd($categories);
+        return view('admin.show-product-detail', compact('products', 'category', 'categories'));
     }
 
     function editAdminProducts(ProductRequest $req)
     {
         $products = $this->productService->editProductsbyId($req);
+        session()->flash('status', 'Product Updated successfully!');
         return redirect('admin/dashboard/product');
     }
 

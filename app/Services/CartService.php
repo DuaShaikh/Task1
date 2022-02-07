@@ -9,7 +9,11 @@ class CartService
 {
     function postAddToCart($req) 
     {  
-        // $stocks = Stock::where(['product_id' => $req->product_id, 'size' => $req->size]);
+        // $stocks = Stock::where(
+        //         [
+        //         'product_id' => $req->product_id, 'size' => $req->size
+        //         ]
+        //     );
         // ddd($stocks);
         if (auth()->check()) {
             $req->merge(

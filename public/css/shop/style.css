@@ -18,7 +18,7 @@ a{
 }
 .login-reg-panel{
     position: relative;
-    top: 50%;
+    top: 30% !important;
     transform: translateY(-50%);
 	text-align:center;
     width:70%;
@@ -534,6 +534,7 @@ a{
 }
 @media screen and (max-width: 600px) {
     table#cart tbody td .form-control{
+
 		width:20%;
 		display: inline !important;
 	}
@@ -551,7 +552,7 @@ a{
 	
 	table#cart thead { display: none; }
 	table#cart tbody td { display: block; padding: .6rem; min-width:320px;}
-	table#cart tbody tr td:first-child { background: #333; color: #fff; }
+	table#cart tbody tr td:first-child { background: rgb(133, 107, 107); color: #fff; }
 	table#cart tbody td:before {
 		content: attr(data-th); font-weight: bold;
 		display: inline-block; width: 8rem;
@@ -616,4 +617,9 @@ a{
 .home:hover{
     background-color: rgb(41, 83, 173);
     border-radius: 10px;
+}
+
+.page-container{
+    position: relative;
+    min-height: 68.7vh;
 }

@@ -49,9 +49,11 @@ class UserService
 
         $address->update($req->all());
         
-        $req->merge([
-            'address_id' => $req->id,
-        ]);
+        $req->merge(
+            [
+                'address_id' => $req->id,
+            ]
+        );
     
         $user->update($req->all());
 

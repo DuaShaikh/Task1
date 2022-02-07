@@ -11,42 +11,38 @@
                     <div class="p-6 bg-white border-b border-gray-200">
                         <div class="container orderCard" >
                             <div class="row">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <table>
-                                            <thead>
-                                                <tr>
-                                                    <th>Image</th>
-                                                    <th>Name</th>
-                                                    <th>Quantity</th>
-                                                    <th>Price</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @php
-                                                    $totalPrice = 0;
-                                                @endphp
-                                                    
-                                            @foreach ($order->items as $user)
-                                        
-                                            <tr>
-                                                <td> <img src="{{url($user->orderProduct?->productMedia->url)}}" alt="" style="width: 100px;height:100px; "></td>
-                                                <td>{{$user->orderProduct->pName}}</td>
-                                                <td>{{$user->quantity}}</td>
-                                                <td>{{$user->productPrice}}</td>
-                                            </tr>
-                                            @php
-                                                $totalPrice += ($user->quantity * $user->productPrice);
-                                            @endphp
-                                            @endforeach
-                                            </tbody>
+                                <table class="table table-striped ">
+                                    <thead>
+                                        <tr>
+                                            <th>Image</th>
+                                            <th>Name</th>
+                                            <th>Quantity</th>
+                                            <th>Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @php
+                                            $totalPrice = 0;
+                                        @endphp
                                             
-                                            <tfoot>
-                                                <td>Total Price: <strong>{{$totalPrice}}</strong></td>
-                                            </tfoot>
-                                        </table>
-                                    </div>
-                                </div>
+                                    @foreach ($order->items as $user)
+                                
+                                    <tr>
+                                        <td> <img src="{{url($user->orderProduct?->productMedia->url)}}" alt="" style="width: 100px;height:100px; "></td>
+                                        <td>{{$user->orderProduct->pName}}</td>
+                                        <td>{{$user->quantity}}</td>
+                                        <td>{{$user->productPrice}}</td>
+                                    </tr>
+                                    @php
+                                        $totalPrice += ($user->quantity * $user->productPrice);
+                                    @endphp
+                                    @endforeach
+                                    </tbody>
+                                    
+                                    <tfoot>
+                                        <td>Total Price: <strong>{{$totalPrice}}</strong></td>
+                                    </tfoot>
+                                </table>
                             </div>
                         </div>
                     </div>

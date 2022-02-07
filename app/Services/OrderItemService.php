@@ -21,16 +21,19 @@ class OrderItemService
 
     function getUserOrders()
     {
-        return auth()->user()->order()->with('items.orderProduct')->get();
-        $userOrder = Order::where('user_id', $id)->get();
-        foreach ($userOrder as $key => $order) {
-            // ddd($key);
-        $order = Order_Item::where('order_id', $userOrder[$key]['id'])->get();
-        $user = Order_Item::get();
-        // ddd($order);
-        }
+        return auth()->user()->order()
+            ->with('items.orderProduct')
+            ->orderByDesc('id')->get();
+            
+        // $userOrder = Order::where('user_id', $id)->get();
+        // foreach ($userOrder as $key => $order) {
+        //     // ddd($key);
+        // $order = Order_Item::where('order_id', $userOrder[$key]['id'])->orderByDesc('order_id')->get();
+        // $user = Order_Item::get();
+        // // ddd($order);
+        // }
         
-        return $order;
+        // return $order;
     }
 }
 

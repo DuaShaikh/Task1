@@ -49,10 +49,12 @@ class ProductService
         );  
         $product = Product::create($req->all());
     
-        $req->merge([
-            'product_id'  => $product->id,
-            'category_id' => $req->category_id
-        ]);
+        $req->merge(
+            [
+                'product_id'  => $product->id,
+                'category_id' => $req->category_id
+            ]
+        );
 
         $productCategory = ProductCategory::create($req->all());
        
@@ -72,6 +74,7 @@ class ProductService
     {
         $product = Product::find($id);
         $product->delete();
+        // ddd($product);
         return $product;
     }
 
@@ -79,6 +82,7 @@ class ProductService
     {
         $product = Product::find($id);
         $product->with('category')->get();
+
         return $product;
     }
 
@@ -103,12 +107,18 @@ class ProductService
         $product->update($req->all());
 
         
-        $req->merge([
-            'category_id' => $req->category_id
-        ]);
+        $req->merge(
+            [
+                'category_id' => $req->category_id
+            ] 
+        );
        
         $category = ProductCategory::where('product_id', $req->id);
-        $category->update(['product_id' => $req->id,'category_id' => $req->category_id]);
+        $category->update(
+            [
+                'product_id' => $req->id,'category_id' => $req->category_id
+            ]
+        );
 
         return $product;
     }

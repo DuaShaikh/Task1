@@ -10,38 +10,57 @@
             </div>
         </div>
         <div class="row mb-3">
-            <label for="inputDescription" class="col-sm-2 col-form-label">Description</label>
+            <label for="inputDescription" 
+                class="col-sm-2 col-form-label">
+                Description
+            </label>
             <div class="col-sm-10">
-                <input type="text" class="form-control @error('description') is-invalid @enderror" name="description" 
+                <input type="text" 
+                class="form-control @error('description') is-invalid @enderror" 
+                name="description" 
                 value="{{ old('description', isset($products) ? $products->description : '') }}"  />
                 @error('description')<span class="invalid-feedback" role="alert" style="color:red"><strong>{{ $message }}</strong></span>@enderror
             </div>
         </div>
         <div class="row mb-3">
-            <label for="inputPrice" class="col-sm-2 col-form-label">Price</label>
+            <label for="inputPrice"
+                class="col-sm-2 col-form-label">
+                Price
+            </label>
             <div class="col-sm-10">
                     <input type="text" class="form-control @error('productPrice') is-invalid @enderror" name="productPrice" 
                     value="{{ old('productPrice', isset($products) ? $products->productPrice : '') }}" >
                     @error('productPrice')<span class="invalid-feedback" role="alert" style="color:red"><strong>{{ $message }}</strong></span>@enderror
             </div>
         </div>
+        {{-- {{ in_array($cat->id, $products->categories) ? 'selected' : '' }} --}}
         <div class="row mb-3">
-            <label for="inputPrice" class="col-sm-2 col-form-label">Category Name</label>
+            <label for="inputPrice" 
+                class="col-sm-2 col-form-label">
+                Category Name
+            </label>
             <div class="col-sm-10">
-                <select id="inputCategory" class="form-control @error('category_id') is-invalid @enderror"name = "category_id"  required> 
+                <select id="inputCategory" 
+                    multiple="true" 
+                    class="form-control @error('category_id') is-invalid @enderror" 
+                    name = "category_id"  required> 
                 <option selected value="">Choose...</option>
-                @foreach ($category as $cat )
-                <option value="{{$cat->id}}"  >{{$cat->categoryName}}</option>
-                @endforeach
+                @foreach ($category as $key => $cat )
+                    <option value="{{$cat->id}}" 
+                        @if(isset($products)){{ in_array($cat->id, $products->category()->get()->pluck('id')->toArray()) ? 'selected' : '' }} @endif> 
+                        {{$cat->categoryName}}
+                    </option>
+                @endforeach 
                 </select> 
                 @error('category_id')<span class="invalid-feedback" role="alert" style="color:red"><strong>{{ $message }}</strong></span>@enderror
             </div>
         </div>
+     
         <div class="row mb-3">
         <label for="inputPrice3" class="col-sm-2 col-form-label">Upload Image</label>
         <div class="col-sm-10">
             <input type="file" class="form-control @error('photo') is-invalid @enderror" name="photo"
-            value="{{ old('', isset($products) ? $products->productMedia->url : '') }}" />
+            value="{{ old('photo', isset($products) ? $products->productMedia->url : '') }}" />
             @error('photo')<span class="invalid-feedback" role="alert" style="color:red"><strong>{{ $message }}</strong></span>@enderror
         </div>
         </div>

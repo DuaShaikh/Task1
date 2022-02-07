@@ -2,18 +2,22 @@
 
 namespace App\Http\Controllers\user;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\UserService;
-use App\Http\Requests\user\UserRequest;
 use App\Services\OrderItemService;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\user\UserRequest;
+use App\Http\Requests\user\AddressRequest;
 
 class UserController extends Controller
 {
     protected $userService;
     protected $oderItemService;
 
-    function __construct(UserService $userService, OrderItemService $orderItemService) {
+    function __construct(
+        UserService $userService, 
+        OrderItemService $orderItemService
+    ) {
         $this->userService      = $userService;
         $this->orderItemService = $orderItemService;
         
@@ -32,7 +36,7 @@ class UserController extends Controller
        
     // }
 
-    function updateDetail(Request $req) 
+    function updateDetail(AddressRequest $req) 
     {
         $users = $this->userService->updateUserdetails($req);
         return view('shop.checkout', compact('users'));

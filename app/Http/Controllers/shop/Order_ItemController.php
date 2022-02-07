@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\shop;
 
+use App\Services\Service;
 use Illuminate\Http\Request;
 use App\Services\CartService;
 use App\Services\MailService;
@@ -16,8 +17,12 @@ class Order_ItemController extends Controller
     protected $cartService;
     protected $mailService;
 
-    function __construct(OrderItemService $orderItemService, CartService $cartService, MailService $mailService,StockService $stockService ) 
-    {
+    function __construct(
+        OrderItemService $orderItemService, 
+        CartService $cartService, 
+        MailService $mailService,
+        StockService $stockService
+    ) {
         $this->orderItemService = $orderItemService;
         $this->cartService = $cartService;
         $this->mailService = $mailService;

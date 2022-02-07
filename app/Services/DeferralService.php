@@ -15,7 +15,8 @@ class DeferralService
             )
                 ->orderByDesc('id')->paginate(5);
         } else {
-            return Deferral::orderByDesc('id')->paginate(5);
+            return Deferral::orderByDesc('id')
+                ->paginate(5);
         }   
     }
         
@@ -31,7 +32,8 @@ class DeferralService
 
     function replicateDeferrals($id) 
     {
-        return Deferral::find($id)->replicate()->save();
+        return Deferral::find($id)
+            ->replicate()->save();
     }
     function showDeferrals($id) 
     {
@@ -39,6 +41,7 @@ class DeferralService
     }
     function updateDeferrals($id,$request)
     {
-        return Deferral::find($id)->update($request->all())->save();
+        return Deferral::find($id)
+            ->update($request->all())->save();
     }
 }

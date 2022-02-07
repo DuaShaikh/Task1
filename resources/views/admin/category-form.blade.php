@@ -1,3 +1,4 @@
+
 <div class="container categoryCard" >
     <div class="row mb-3">
         <label for="inputName3" class="col-sm-2 col-form-label">Category Name *</label>
@@ -13,12 +14,14 @@
     <div class="row mb-3">
         <label for="inputPrice" class="col-sm-2 col-form-label">Sub Category of</label>
         <div class="col-sm-10">
-            <select id="inputCategory" class="form-control @error('parent_id') is-invalid @enderror" name = "parent_id"> 
-            <option selected value="">Choose...</option>
-            @foreach ($cate as $cat )
-            <option value="{{$cat->id}}"  >{{$cat->categoryName}}</option>
-            @endforeach
-            @error('parent_id')<span class="invalid-feedback" role="alert" style="color:red"><strong>{{ $message }}</strong></span>@enderror
+            <select id="inputCategory" class="form-control" name = "parent_id"> 
+                <option selected value="">Choose...</option>
+                @foreach ($cate as $cat )
+                    <option value="{{$cat->id}}" 
+                        @if(isset($category)){{ in_array($cat->id, $category->product()->get()->pluck('id')->toArray()) ? 'selected' : '' }} @endif >
+                        {{$cat->categoryName}}
+                    </option>
+                @endforeach
             </select> 
         </div>
     </div>

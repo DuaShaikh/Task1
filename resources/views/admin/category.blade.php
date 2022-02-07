@@ -2,12 +2,12 @@
     <x-slot name="header">
         <div class="container">
             <div class="row">
-                <div class="col-md-9">
+                <div class="col-md-9 mt-2">
                     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                         {{ __('All Categories') }}
                     </h2>
                 </div>
-                <div class="col-md-3 my-7">
+                <div class="col-md-3 d-flex flex-row-reverse">
                     <a href = "category/add-category"><input type="submit"  class="btn btn-success" value="Add Categories"></a>
                 </div>
             </div>
@@ -18,7 +18,17 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="container productCard" >
-                        <table class="table table-striped ">
+                        <div class="container">
+                            <div class="row">
+                                  @if (Session::get('status'))
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                      <strong>{{ session::get('status') }}</strong>
+                                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                  @endif
+                              </div>
+                          </div>
+                        <table class="table table-striped">
                             <thead>
                                     <tr>
                                         {{-- <th scope="col">Image</th> --}}

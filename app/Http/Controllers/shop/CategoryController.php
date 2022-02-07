@@ -33,6 +33,7 @@ class CategoryController extends Controller
     {
        
         $categories = $this->categoryService->postCategories($req);
+        session()->flash('status', 'Category Added successfully!');
 
         return redirect('admin/dashboard/category');
     }
@@ -40,6 +41,7 @@ class CategoryController extends Controller
     function deleteAdminCategories($id)
     {
         $categories = $this->categoryService->deleteCategories($id);
+        session()->flash('status', 'Category Deleted successfully!');
 
         return redirect('admin/dashboard/category');
     }
@@ -55,6 +57,7 @@ class CategoryController extends Controller
     function editAdminCategories(CategoryRequest $req)
     {
         $category = $this->categoryService->editCategoriesbyId($req);
+        session()->flash('status', 'Category Updated successfully!');
 
         return redirect('admin/dashboard/category');
     }
