@@ -34,25 +34,26 @@
                                         {{-- <th scope="col">Image</th> --}}
                                         <th scope="col">ID</th>
                                         <th scope="col">Category Name</th>
-                                        <th scope="col">Parent Category Id</th>
+                                        <th scope="col">Parent/Child Category</th>
                                         <th scope="col" colspan="2">Action</th>
                                     </tr>
                             </thead>
                             <tbody>
-                                @foreach ($categories as $category )
+                                @foreach ($categories as $key => $category )
                                     <tr>
-
-                                        {{-- <td><img src="{{url($category->categoryMedia->url)}}" alt="" style="width: 200px;height:200px"></td> --}}
                                         <td>{{$category->id}}</td> 
                                         <td>{{$category->categoryName}}</td>
-                                        @if ($category->parent_id)
-                                        <td>{{$category->parent_id}}</td> 
+                                        @if ($category->childs->count())
+                                            @foreach ($category->childs as $child)
+                                            <td>{{ $child->categoryName }}</td> 
+                                            @endforeach
+                                        @elseif ($category->parent) 
+                                            <td>Parent Category: {{$category->parent->categoryName}}</td>
                                         @else
-                                        <td>No Parent Category</td>
+                                            <td>No Child Category</td>
                                         @endif 
-                                        
-                                        <td><a href="{{ URL::to('show-category/' . $category->id) }}"> <i class="fas fa-pencil-alt"></i></a></td>
-                                        <td><a href="{{ URL::to('delete-category/' . $category->id) }}"> <i class="fas fa-trash"> </i> </a></td>   
+                                        <td><a href="{{ URL::to('admin/dashboard/category/show-category/' . $category->id) }}"> <i class="fas fa-pencil-alt"></i></a></td>
+                                        <td><a href="{{ URL::to('admin/dashboard/delete-category/' . $category->id) }}"> <i class="fas fa-trash"> </i> </a></td>   
                                     </tr>
                                 @endforeach
                             </tbody>

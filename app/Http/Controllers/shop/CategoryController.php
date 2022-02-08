@@ -6,18 +6,22 @@ use Illuminate\Http\Request;
 use App\Services\CategoryService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CategoryRequest;
+use App\Services\MediaService;
 
 class CategoryController extends Controller
 {
     protected $categoryService;
+    protected $mediaService;
 
-    function __construct(CategoryService $categoryService)
+    function __construct(CategoryService $categoryService, MediaService $mediaService)
     {
         return $this->categoryService =$categoryService;
+        return $this->mediaService =$mediaService;
     }
 
     function getAdmincategories()
     {
+        
         $categories = $this->categoryService->getCategories();
         
         return view('admin.category', compact('categories'));
@@ -31,7 +35,6 @@ class CategoryController extends Controller
     }
     function addAdminCategories(CategoryRequest $req)
     {
-       
         $categories = $this->categoryService->postCategories($req);
         session()->flash('status', 'Category Added successfully!');
 
@@ -56,6 +59,7 @@ class CategoryController extends Controller
 
     function editAdminCategories(CategoryRequest $req)
     {
+        // $media = $this->mediaService->editCategoryMedia($req);
         $category = $this->categoryService->editCategoriesbyId($req);
         session()->flash('status', 'Category Updated successfully!');
 

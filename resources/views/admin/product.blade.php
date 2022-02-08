@@ -32,9 +32,7 @@
                             <thead>
                                     <tr>
                                         <th scope="col">Image</th>
-                                        {{-- <th>Id</th> --}}
                                         <th scope="col">Name</th>
-                                        {{-- <th>Description</th> --}}
                                         <th scope="col">Price</th>
                                         <th scope="col" colspan="3">Action</th>
                                     </tr>
@@ -45,9 +43,8 @@
                                         <td><img src="{{url($product->productMedia->url)}}" alt="" style="width: 200px;height:200px"></td>
                                         <td>{{$product->pName}}</td>
                                         <td>Rs.{{$product->productPrice}}</td>
-                                        {{-- <td><a href="{{ URL::to('view-admin-product/' . $product->id) }}"><i class="fas fa-eye"></i> </a></td> --}}
                                         <td><a href="{{ URL::to('admin/dashboard/product/show-product/' . $product->id) }}"> <i class="fas fa-pencil-alt"></i></a></td>
-                                        <td><a href="{{ URL::to('delete-product/' . $product->id) }}"> <i class="fas fa-trash"> </i> </a></td>   
+                                        <td><a href="{{ URL::to('admin/dashboard/delete-product/' . $product->id) }}"> <i class="fas fa-trash"> </i> </a></td>   
                                     </tr>
                                 @endforeach
                             </tbody>

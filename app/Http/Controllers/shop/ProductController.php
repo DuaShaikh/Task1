@@ -8,16 +8,19 @@ use App\Services\ProductService;
 use App\Services\CategoryService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ProductRequest;
+use App\Services\MediaService;
 
 class ProductController extends Controller
 {
     protected $productService;
     protected $stockService;
     protected $categoryService;
+    protected $mediaService;
 
-    function __construct(ProductService $productService, StockService $stockService, CategoryService $categoryService) {
+    function __construct(ProductService $productService, StockService $stockService, CategoryService $categoryService, MediaService $mediaService) {
         $this->productService = $productService;
         $this->stockService = $stockService;
+        $this->mediaService = $mediaService;
         $this->categoryService = $categoryService;
     }
     function getProduct() 
@@ -45,7 +48,9 @@ class ProductController extends Controller
     }
     function addAdminProducts(ProductRequest $req)
     {
-        $products = $this->productService->addProducts($req);
+        $media = $this->mediaService->productMedia($req);
+        $id=$media->id;
+        $products = $this->productService->addProducts($req, $id);
         session()->flash('status', 'Product Added successfully!');
         
         return redirect('admin/dashboard/product');
@@ -69,6 +74,7 @@ class ProductController extends Controller
 
     function editAdminProducts(ProductRequest $req)
     {
+        $media = $this->mediaService->editProductMedia($req);
         $products = $this->productService->editProductsbyId($req);
         session()->flash('status', 'Product Updated successfully!');
         return redirect('admin/dashboard/product');

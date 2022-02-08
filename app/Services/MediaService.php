@@ -37,6 +37,7 @@ class MediaService
         ); 
         $request->merge(
             [
+                "imageName" => $imageName,
                 "imageType" => $type,
                 "url" => $url
             ]
@@ -45,4 +46,57 @@ class MediaService
         return Media::create($request->all());
     }
 
+    function editProductMedia($req)
+    {
+        $imageName = time() . '.' . $req->file('photo')->getClientOriginalName();
+        $type = $req->file('photo')->getClientOriginalExtension();
+        $url  = Storage::disk('public')->putFileAs(
+            'category/', $req->file('photo'), $imageName
+        ); 
+        $req->merge(
+            [
+                "imageName" => $imageName,
+                "imageType" => $type,
+                "url" => $url
+            ]
+        );
+        $media = Media::find($req->media_id);
+        $media->update($req->except('_token'));
+    }
+
+    function categoryMedia($req)
+    {
+        $imageName = time() . '.' . $req->file('photo')->getClientOriginalName();
+        $type = $req->file('photo')->getClientOriginalExtension();
+        $url  = Storage::disk('public')->putFileAs(
+            'category/', $req->file('photo'), $imageName
+        ); 
+        $req->merge(
+            [
+                "imageName" => $imageName,
+                "imageType" => $type,
+                "url" => $url
+            ]
+        );
+
+        return Media::create($req->all());
+    }
+
+    function editCategoryMedia($req)
+    {
+        $imageName = time() . '.' . $req->file('photo')->getClientOriginalName();
+        $type = $req->file('photo')->getClientOriginalExtension();
+        $url  = Storage::disk('public')->putFileAs(
+            'category/', $req->file('photo'), $imageName
+        ); 
+        $req->merge(
+            [
+                "imageName" => $imageName,
+                "imageType" => $type,
+                "url" => $url
+            ]
+        );
+        $media = Media::find($req->media_id);
+        $media->update($req->all());
+    }
 }

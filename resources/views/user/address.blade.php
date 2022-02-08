@@ -6,7 +6,6 @@
         <div class="col-md-3 register-left">
             <img src="{{ URL::to('/images/logoEcommerce.png') }}" class="logoEcom">
             <h2>Step - 2/3</h2>
-            {{-- <p>You are 30 seconds away from earning your own money!</p> --}}
 
         </div>
         <div class="col-md-9 register-right">

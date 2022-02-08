@@ -16,15 +16,30 @@ class CreateOrderItemsTable extends Migration
       
         Schema::create('order__items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('order_id')->constrained('orders');
-            $table->foreignId('product_id')->constrained('products');
-            $table->decimal('productPrice', 10, 4)->nullable(false);
+            $table->unsignedBigInteger('order_id')->nullable();
+            $table->unsignedBigInteger('product_id')->nullable();
+            $table->unsignedBigInteger('discount_id')->nullable();
             $table->smallInteger('quantity');
-            $table->foreignId('discount_id')->constrained('discounts');
+            $table->decimal('productPrice', 10, 4)->nullable(false);
+
             $table->timestamps();
-            $table->foreign('product_id', 'order__items_product_id_products_id')->references('id')->on('products')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('discount_id', 'order__items_discount_id_discounts_id')->references('id')->on('discounts')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('order_id', 'order__items_order_id_orders_id')->references('id')->on('orders')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('product_id', 'order__items_product_id_products_id')
+                ->references('id')
+                ->on('products')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
+            $table->foreign('discount_id', 'order__items_discount_id_discounts_id')
+                ->references('id')
+                ->on('discounts')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
+            $table->foreign('order_id', 'order__items_order_id_orders_id')
+                ->references('id')
+                ->on('orders')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
 
         });
     }

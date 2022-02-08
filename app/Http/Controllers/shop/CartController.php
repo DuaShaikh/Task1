@@ -21,9 +21,13 @@ class CartController extends Controller
 
     function addToCart(CartRequest $req) 
     {
+        if(auth()->check()) {
         $carts = $this->cartService->postaddToCart($req);
-        $req->session()->flash('status', 'Login Your Account!');
         return redirect('/');
+        } else {
+            $req->session()->flash('status', 'Please Login Your Account!');
+            return redirect('/');
+        }
     }
 
     // static function cartItem()

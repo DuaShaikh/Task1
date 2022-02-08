@@ -15,8 +15,15 @@ class AlterCategoriesAddColumnParentId extends Migration
     {
         
         Schema::table('categories', function (Blueprint $table) {
-            $table->bigInteger('parent_id')->unsigned()->nullable();
-            $table->foreign('parent_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
+            $table->bigInteger('parent_id')
+                ->unsigned()
+                ->nullable();
+                
+            $table->foreign('parent_id')
+                ->references('id')
+                ->on('categories')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
 
         });
     }

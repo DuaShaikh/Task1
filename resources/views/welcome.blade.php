@@ -1,14 +1,16 @@
 @extends('layout.ecommerce')
 @section('title','Home')
 @section('main')
-{{-- @if(auth()->check())
-    @if (Session::get('status'))
-        <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
-            <strong>{{ session::get('status') }}</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
-@endif    --}}
+<div class="container-fuild">
+    <div class="row">
+          @if (Session::get('status'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>{{ session::get('status') }}</strong>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          @endif
+      </div>
+  </div>
     <x-slider />
     <div class="container-lg" style="margin-top:100px">
         <div class="card">
@@ -22,11 +24,8 @@
                             <div class="single_product">
                                 <div class="product_image">
                                     <img src="{{url($product->productMedia->url)}}" alt="" style="width: 200px;height:200px">
-                                    {{-- <div class="new_badge">New</div> --}}
                                     <div class="box-content">
-                                        {{-- <a href="#"><i class="fa fa-heart-o"></i></a> --}}
                                         <a href="view-product/{{$product->id}}}"><i class="fas fa-eye"></i></a>
-                                        {{-- <a href="#"><i class="fa fa-search"></i></a> --}}
                                     </div>										
                                 </div>
                                 <div class="product_btm_text">

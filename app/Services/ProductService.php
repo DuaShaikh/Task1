@@ -25,37 +25,29 @@ class ProductService
         return $products->get();
     }
 
-    function addProducts($req)
+    function addProducts($req, $id)
     {
-        $imageName = time() . '.' . $req->file('photo')->getClientOriginalName();
-        $type = $req->file('photo')->getClientOriginalExtension();
-        $url  = Storage::disk('public')->putFileAs(
-            'category/', $req->file('photo'), $imageName
-        ); 
         $req->merge(
             [
-                "imageName" => $imageName,
-                "imageType" => $type,
-                "url" => $url
-            ]
-        );
-
-        $media = Media::create($req->all());
-        
-        $req->merge(
-            [
-               'media_id' =>$media->id,
+               'media_id' =>$id,
             ]
         );  
         $product = Product::create($req->all());
-    
-        $req->merge(
+         
+
+
+        // $product->category()->create([
+        //     'product_id'  => $product['id'],
+        //         'category_id' => $req['category_id']
+        // ]);
+          $req->merge(
             [
+               
                 'product_id'  => $product->id,
                 'category_id' => $req->category_id
             ]
-        );
-
+        );  
+     
         $productCategory = ProductCategory::create($req->all());
        
         return $product;
@@ -74,7 +66,6 @@ class ProductService
     {
         $product = Product::find($id);
         $product->delete();
-        // ddd($product);
         return $product;
     }
 
@@ -88,21 +79,6 @@ class ProductService
 
     function editProductsbyId($req)
     {
-        $imageName = time() . '.' . $req->file('photo')->getClientOriginalName();
-        $type = $req->file('photo')->getClientOriginalExtension();
-        $url  = Storage::disk('public')->putFileAs(
-            'category/', $req->file('photo'), $imageName
-        ); 
-        $req->merge(
-            [
-                "imageName" => $imageName,
-                "imageType" => $type,
-                "url" => $url
-            ]
-        );
-        $media = Media::find($req->media_id);
-        $media->update($req->except('_token'));
-       
         $product = Product::find($req->id);
         $product->update($req->all());
 

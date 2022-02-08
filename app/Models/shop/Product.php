@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
+    use HasFactory;
+    
     protected $fillable = [
        'pName',
        'description',
@@ -17,7 +19,7 @@ class Product extends Model
     ];
 
     protected $guarded = ['token'];
-    use HasFactory;
+   
 
     public function productMedia()
     {

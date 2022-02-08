@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Order_Item extends Model
 {
+    use HasFactory;
+    
     protected $fillable = [
         'order_id',
         'quantity',
@@ -18,7 +20,7 @@ class Order_Item extends Model
     // protected $table = 'order__items';
 
     protected $guarded = ['token'];
-    use HasFactory;
+  
 
     function orderProduct() 
     {

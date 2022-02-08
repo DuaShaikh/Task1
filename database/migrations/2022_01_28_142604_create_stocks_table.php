@@ -15,11 +15,16 @@ class CreateStocksTable extends Migration
     {
         Schema::create('stocks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->constrained('products');
-            $table->foreign('product_id', 'stocks_product_id_products_id')->references('id')->on('products')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('size');
+            $table->unsignedBigInteger('product_id')->nullable();
             $table->smallInteger('quantity');
+            $table->string('size');
             $table->timestamps();
+
+            $table->foreign('product_id', 'stocks_product_id_products_id')
+                ->references('id')
+                ->on('products')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Address extends Model
 {
+    use HasFactory;
 
     protected $fillable = [
         'address',
@@ -19,7 +20,7 @@ class Address extends Model
 
     protected $guarded = ['token'];
     
-    use HasFactory;
+    
 
     /**
      * Get the user associated with the Address

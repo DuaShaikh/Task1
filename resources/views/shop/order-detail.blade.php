@@ -7,7 +7,7 @@
             <div class="col-md-10">
                 <div class="card ">
                     <div class="card-body">
-                        <h6>order Details</h6>
+                        <h6>Order Details</h6>
                         <hr>
                     
                         <form class="row g-3" method="post" action="order-item/{{$orders->id}}">

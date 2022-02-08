@@ -14,9 +14,13 @@ class AddUserIdToCartsTable extends Migration
     public function up()
     {
         Schema::table('carts', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreign('user_id', 'carts_user_id_users_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
-
+            $table->unsignedBigInteger('user_id')->nullable();
+            
+            $table->foreign('user_id', 'carts_user_id_users_id')
+                ->references('id')
+                ->on('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 

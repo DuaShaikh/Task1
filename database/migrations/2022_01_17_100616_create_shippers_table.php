@@ -15,12 +15,12 @@ class CreateShippersTable extends Migration
     {
         Schema::create('shippers', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('address_id')->constrained('addresses');
+            $table->foreign('address_id', 'shippers_address_id_addresses_id')->references('id')->on('addresses')->onUpdate('cascade')->onDelete('cascade');
             $table->string('companyName', 100)->nullable(false);
             $table->string('phone', 100)->nullable(false);
             $table->string('shipVia', 100)->nullable(false);
-            $table->foreignId('address_id')->constrained('addresses');
             $table->timestamps();
-            $table->foreign('address_id', 'shippers_address_id_addresses_id')->references('id')->on('addresses')->onUpdate('cascade')->onDelete('cascade');
 
         });
     }

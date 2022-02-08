@@ -5,7 +5,7 @@
 body{
   font-family: 'Mukta', sans-serif;
 	height:100vh;
-	min-height:550px;
+	/* min-height:550px; */
 	background-repeat: no-repeat;
 	background-size:cover;
 	background-position:center;
@@ -18,7 +18,7 @@ a{
 }
 .login-reg-panel{
     position: relative;
-    top: 30% !important;
+    top: -30% !important;
     transform: translateY(-50%);
 	text-align:center;
     width:70%;

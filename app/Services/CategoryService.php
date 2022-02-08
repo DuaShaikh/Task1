@@ -11,7 +11,8 @@ class CategoryService
 
     function getCategories() 
     {
-        return Category::with(['categoryMedia','product'])->get();
+        return Category::with(['categoryMedia','product', 'parent.childs'])->get();
+        
        
     }
     
@@ -54,7 +55,7 @@ class CategoryService
     function showNullCategory()
     {
         return Category::whereNull('parent_id')
-            ->with(['categoryMedia', 'product'])->get();
+            ->with(['categoryMedia', 'product', 'parent.childs'])->get();
     }
 
     function editCategoriesbyId($req)

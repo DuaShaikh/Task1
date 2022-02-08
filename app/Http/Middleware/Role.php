@@ -16,7 +16,9 @@ class Role
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->role == 'admin') {
+        $config = config('admin');
+         
+        if(auth()->user()->role == $config) {
             return $next($request);
         }
         return redirect('/dashboard')

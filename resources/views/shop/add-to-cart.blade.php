@@ -66,11 +66,6 @@
 										</div>
 									</div>
 								</td>
-								{{-- <td class="actions" data-th="">
-									<div class="row">
-										
-									</div>
-								</td> --}}
 							</tr>
 					</tbody>
 					
@@ -88,7 +83,6 @@
 								<td><a href="/" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
 								<td colspan="2" class="hidden-xs"></td>
 								<td class="hidden-xs text-center">Total Price: <strong>{{$totalPrice}}</strong></td>
-								{{-- <a href="checkout" class="btn btn-success btn-block">Checkout </a> --}}
 								<td><a href="checkout"><input type="submit" class="btn btn-success btn-block" value="Checkout"></a></td>
 							</tr>
 						</tfoot>
