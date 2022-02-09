@@ -35,8 +35,7 @@ class OrderController extends Controller
         $users = $this->userService->updateUserdetails($request);
         $orders = $this->orderService->order($request);
         $carts  = $this->cartService->getUpdateCarts();
-        // ddd($carts);
-        // $stocks = $this->stockService->updateStock($carts->product_id, $carts->size);
+        $stocks = $this->stockService->decreaseStockQuantity($request, $carts);
         // ddd($stocks);
         return view('shop.order-detail', compact('carts', 'orders'));
     }

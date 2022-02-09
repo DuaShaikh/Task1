@@ -27,9 +27,11 @@ class ProductRequest extends FormRequest
             'pName'        => "required|min:4|max:100",
             'description'  => "required|min:10|max:1000",
             'productPrice' => "required|not_regex:/[a-z, A-Z]/|min:3",
-            'photo'        =>  'required|image|mimes:jpeg,png,jpg|max:2048',
-            'category_id'  => 'required',
-            
+            'photo'        => "required|image|mimes:jpeg,png,jpg|max:2048",
+            'category_id'  => "required",
+            // 'quantity'     => "required|not_regex:/[a-z, A-Z]/",
+            // 'size'         => "required"
+             
         ];
     }
         

@@ -18,9 +18,9 @@ class Stock extends Model
 
     protected $guarded = ['token'];
    
-
-    function updateStock()
+    
+    function inStock()
     {
-        return $this->hasOne(Product::class, 'id', 'product_id');
+        return $this->hasMany(Product::class);
     }
 }

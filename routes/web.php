@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\shop\CartController;
 use App\Http\Controllers\user\UserController;
 use App\Http\Controllers\shop\OrderController;
+use App\Http\Controllers\shop\StockController;
 use App\Http\Controllers\common\MediaController;
 use App\Http\Controllers\shop\ProductController;
 use App\Http\Controllers\user\AddressController;
@@ -13,14 +14,11 @@ use App\Http\Controllers\shop\Order_ItemController;
 
 
 
-Route::group(['namespace' => 'shop', 'middleware' => ['auth', 'role'], 'prefix' => 'admin'], function () {
-    Route::get('/dashboard', function(){
+Route::group(['namespace' => 'shop', 'middleware' => ['auth', 'role'], 'prefix' => 'admin/dashboard'], function () {
+    
+    Route::get('/', function(){
         return view ('dashboard');
     })->name('admin/dashboard'); 
-        
-});
-
-Route::group(['namespace' => 'shop', 'prefix' => 'admin/dashboard'], function () {
 
     // ------admin_product
     Route::get('product', [ProductController::class, 'getAdminProducts'])->name('dashboard/product');
@@ -29,15 +27,22 @@ Route::group(['namespace' => 'shop', 'prefix' => 'admin/dashboard'], function ()
     Route::get('delete-product/{id}', [ProductController::class, 'deleteAdminProducts']);
     Route::get('product/show-product/{id}', [ProductController::class, 'showAdminProducts']);
     Route::post('product/show-product/edit-product', [ProductController::class, 'editAdminProducts']);
+    Route::get('/product/add-product/stocks', function(){
+        return view ('admin.product-stock');
+    }); 
+    Route::post('product/stocks', [StockController::class, 'addStocks']);
+      
+   
 
-     // ------admin_category
+        // ------admin_category
     Route::get('category', [CategoryController::class, 'getAdmincategories'])->name('dashboard/category');
     Route::get('category/add-category', [CategoryController::class, 'showAdminSubCategory']);
     Route::post('category/add-category', [CategoryController::class, 'addAdminCategories']);
     Route::get('delete-category/{id}', [CategoryController::class, 'deleteAdminCategories']);
     Route::get('category/show-category/{id}', [CategoryController::class, 'showAdminCategories']);
     Route::post('category/show-category/edit-category', [CategoryController::class, 'editAdminCategories']);
-  
+      
+        
 });
 
 

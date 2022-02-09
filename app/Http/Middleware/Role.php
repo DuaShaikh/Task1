@@ -16,8 +16,7 @@ class Role
      */
     public function handle(Request $request, Closure $next)
     {
-        $config = config('admin');
-         
+        $config = config('auth.admin');
         if(auth()->user()->role == $config) {
             return $next($request);
         }

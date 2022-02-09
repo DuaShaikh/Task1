@@ -9,23 +9,45 @@ class StockService
 
     function getStockAvailable($products)
     {
-        return Stock::where('product_id', $products[0]['id'])->get();
+        for ($i=0; $i < count($products); $i++) {
+        return Stock::where('product_id', $products[$i]['id'])->get();
+        }
     }
 
-    function updateStock($orders) 
+    // function updateStock($req,$carts) 
+    // {       
+        
+      
+    // }
+
+    function addProductStock($req)
     { 
-        for ($i=0; $i<count($orders); $i++) {
+        return Stock::create($req->all());
+    }
+
+    function decreaseStockQuantity($req, $carts)
+    {
+        for ($i=0; $i < count($carts); $i++) {
+            ddd($i);
             $stocks  = Stock::where(
                 [
-                    'product_id'=>$orders[$i]['product_id'], 
-                    'size'=>$orders[$i]['size']
+                    'product_id'=>$carts[$i]['product_id'], 
+                    'size'=>$carts[$i]['size']
                 ]
-            )->get();
-            $update = $stocks[$i]['quantity'] - $orders[$i]['quantity'];
-            ddd($update);
-        
+            )->get()->toArray();
+
+            ddd($stocks);
+            // $quantity = $stocks[$i]['quantity'] - $carts[$i]['quantity'];
+            // ddd($quantity);
+
+
+            // $req->merge([
+            //     'quantity' => $quantity,
+            // ]);
+            // ddd($req->quantity);
+            // // ddd($stocks);
+            // return $stocks->update($req->quantity);
         }
-     
     }
 }
 

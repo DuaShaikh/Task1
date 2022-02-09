@@ -18,6 +18,14 @@ class ProductService
         return $products;
     }
 
+    function getLastProductId()
+    {
+        $products = Product::with(['productMedia'])->max('id');
+          
+
+        return $products;
+    }
+
     function getProductsbyId($id)
     {
         $products = Product::where('id', $id)
@@ -33,22 +41,7 @@ class ProductService
             ]
         );  
         $product = Product::create($req->all());
-         
-
-
-        // $product->category()->create([
-        //     'product_id'  => $product['id'],
-        //         'category_id' => $req['category_id']
-        // ]);
-          $req->merge(
-            [
-               
-                'product_id'  => $product->id,
-                'category_id' => $req->category_id
-            ]
-        );  
-     
-        $productCategory = ProductCategory::create($req->all());
+        $product->category()->sync($req->category_id);
        
         return $product;
     }
@@ -82,19 +75,9 @@ class ProductService
         $product = Product::find($req->id);
         $product->update($req->all());
 
-        
-        $req->merge(
-            [
-                'category_id' => $req->category_id
-            ] 
-        );
+
+        $product->category()->where('product_id', $req->id)->sync($req->category_id);
        
-        $category = ProductCategory::where('product_id', $req->id);
-        $category->update(
-            [
-                'product_id' => $req->id,'category_id' => $req->category_id
-            ]
-        );
 
         return $product;
     }

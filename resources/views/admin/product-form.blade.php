@@ -36,17 +36,18 @@
             @error('productPrice')<span class="invalid-feedback" role="alert" style="color:red"><strong>{{ $message }}</strong></span>@enderror
         </div>
     </div>
-       
+     
     <div class="row mb-3">
         <label for="inputPrice" class="col-sm-2 col-form-label">
             Category Name
         </label>
         <div class="col-sm-10">
             <select 
-                multiple = "multiple" 
-                class    = "form-control @error('category_id') is-invalid @enderror categories"
-                name     = "category_id"  required> 
-                <option selected value="">Choose...</option>
+                id = "categories"
+                multiple
+                class    = "form-select @error('category_id') is-invalid @enderror"
+                name     = "category_id[]"  required> 
+                {{-- <option selected value="">Choose...</option> --}}
 
                 @foreach ($category as $key => $cat )
                 <option value="{{$cat->id}}" 
@@ -70,5 +71,6 @@
         </div>
     </div>
 
-        <button type="submit" class="btn btn-primary">Save</button>
+    <button type="submit" class="btn btn-primary">Next</button>
 </div>
+

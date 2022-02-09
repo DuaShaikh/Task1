@@ -24,9 +24,9 @@ class CartController extends Controller
         if(auth()->check()) {
         $carts = $this->cartService->postaddToCart($req);
         return redirect('/');
-        } else {
+        } elseif (!auth()->check()) {
             $req->session()->flash('status', 'Please Login Your Account!');
-            return redirect('/');
+            return redirect('/login');
         }
     }
 

@@ -50,10 +50,13 @@ class ProductController extends Controller
     {
         $media = $this->mediaService->productMedia($req);
         $id=$media->id;
+
         $products = $this->productService->addProducts($req, $id);
-        session()->flash('status', 'Product Added successfully!');
+       
+        $product = $products->id;
+        // session()->flash('status', 'Product Added successfully!');
+        return view('admin.product-stock', compact('product'));
         
-        return redirect('admin/dashboard/product');
     }
 
     function deleteAdminProducts($id)
