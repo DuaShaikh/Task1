@@ -15,14 +15,15 @@ class MediaController extends Controller
     protected $userService;
     protected $productService;
 
-    function __construct(MediaService $mediaService,UserService $userService, ProductService $productService) {
+    function __construct(MediaService $mediaService, UserService $userService, ProductService $productService)
+    {
         $this->mediaService = $mediaService;
         $this->userService = $userService;
         $this->productService = $productService;
     }
 
     function uploadImage(MediaRequest $request)
-    { 
+    {
         $media = $this->mediaService->userMedia($request);
         $users = $this->userService->updateUser(["id" => $request->user_id, "media_id" => $media->id]);
 

@@ -17,13 +17,13 @@ class Role
     public function handle(Request $request, Closure $next)
     {
         $config = config('auth.admin');
-        if(auth()->user()->role == $config) {
+        if (auth()->user()->role == $config) {
             return $next($request);
         }
         return redirect('/dashboard')
             ->with(
-              'error', 'Permission Denied!!! You do not have administrative access.'
+                'error',
+                'Permission Denied!!! You do not have administrative access.'
             );
     }
-      
 }

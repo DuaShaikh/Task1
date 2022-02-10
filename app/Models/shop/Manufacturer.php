@@ -14,5 +14,4 @@ class Manufacturer extends Model
         return $this
                 ->hasMany(Product::class, 'manufacturer_id', 'App\Models\Products');
     }
-    
 }

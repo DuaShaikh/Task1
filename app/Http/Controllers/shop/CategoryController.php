@@ -15,15 +15,15 @@ class CategoryController extends Controller
 
     function __construct(CategoryService $categoryService, MediaService $mediaService)
     {
-        return $this->categoryService =$categoryService;
-        return $this->mediaService =$mediaService;
+        return $this->categoryService = $categoryService;
+        return $this->mediaService = $mediaService;
     }
 
     function getAdmincategories()
     {
-        
+
         $categories = $this->categoryService->getCategories();
-        
+
         return view('admin.category', compact('categories'));
     }
 

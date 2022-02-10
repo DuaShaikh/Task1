@@ -21,7 +21,7 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('Admin101@'),
             'gender'   => 'M',
             'role'     => 'admin',
-             
+
         ]);
     }
 }

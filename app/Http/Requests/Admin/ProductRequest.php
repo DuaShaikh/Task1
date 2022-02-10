@@ -31,8 +31,7 @@ class ProductRequest extends FormRequest
             'category_id'  => "required",
             // 'quantity'     => "required|not_regex:/[a-z, A-Z]/",
             // 'size'         => "required"
-             
+
         ];
     }
-        
 }

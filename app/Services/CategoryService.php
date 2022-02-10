@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Services;
+
 use App\Models\common\Media;
 use Illuminate\Http\Request;
 use App\Models\shop\Category;
@@ -8,21 +9,20 @@ use Illuminate\Support\Facades\Storage;
 
 class CategoryService
 {
-
-    function getCategories() 
+    function getCategories()
     {
         return Category::with(['categoryMedia','product', 'parent.childs'])->get();
-        
-       
     }
-    
+
     function postCategories($req)
-    { 
+    {
         $imageName = time() . '.' . $req->file('photo')->getClientOriginalName();
         $type = $req->file('photo')->getClientOriginalExtension();
         $url  = Storage::disk('public')->putFileAs(
-            'category/', $req->file('photo'), $imageName
-        ); 
+            'category/',
+            $req->file('photo'),
+            $imageName
+        );
         $req->merge(
             [
                 "imageName" => $imageName,
@@ -32,13 +32,13 @@ class CategoryService
         );
 
         $media = Media::create($req->all());
-        
+
         $req->merge(
             [
-               'media_id' =>$media->id,
+               'media_id' => $media->id,
             ]
-        ); 
-         
+        );
+
         return Category::create($req->all());
     }
 
@@ -63,8 +63,10 @@ class CategoryService
         $imageName = time() . '.' . $req->file('photo')->getClientOriginalName();
         $type = $req->file('photo')->getClientOriginalExtension();
         $url  = Storage::disk('public')->putFileAs(
-            'category/', $req->file('photo'), $imageName
-        ); 
+            'category/',
+            $req->file('photo'),
+            $imageName
+        );
         $req->merge(
             [
                 "imageName" => $imageName,
@@ -77,7 +79,7 @@ class CategoryService
 
         $category = Category::find($req->id);
         $category->update($req->all());
-       
+
         return $category;
     }
 }

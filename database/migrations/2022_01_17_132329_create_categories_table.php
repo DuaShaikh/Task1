@@ -17,8 +17,6 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('media_id')->nullable();
             $table->string('categoryName', 100)->nullable(false);
-            $table->text('description')->nullable(false);
-            $table->enum('product_size', ['S', 'M', 'L'])->nullable(False)->default('S');
             $table->timestamps();
 
             $table->foreign('media_id', 'categories_media_id_media_id')

@@ -3,14 +3,14 @@
 @section('main')
 <div class="container-fuild">
     <div class="row">
-          @if (Session::get('status'))
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @if (Session::get('status'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
               <strong>{{ session::get('status') }}</strong>
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-          @endif
-      </div>
-  </div>
+        @endif
+    </div>
+</div>
     <x-slider />
     <div class="container-lg" style="margin-top:100px">
         <div class="card">

@@ -24,7 +24,7 @@ class DeferralRequest extends FormRequest
 
     public function rules()
     {
-        return [ 
+        return [
             // 'name' => "required|max:15|not_regex:/[0-9]/",
             // 'password' => [
             //     'required',
@@ -40,7 +40,7 @@ class DeferralRequest extends FormRequest
             // 'date'  => 'required'
 
              'name' => "required|max:15|not_regex:/[0-9]/",
-            
+
 
         ];
     }

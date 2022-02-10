@@ -15,15 +15,13 @@ class UserController extends Controller
     protected $oderItemService;
 
     function __construct(
-        UserService $userService, 
+        UserService $userService,
         OrderItemService $orderItemService
     ) {
         $this->userService      = $userService;
         $this->orderItemService = $orderItemService;
-        
-
     }
-  
+
     function postUser(UserRequest $request)
     {
         $users = $this->userService->registerUser($request);
@@ -33,10 +31,10 @@ class UserController extends Controller
     // function loginUser(Request $request){
     //     $users = $this->userService->loginUsers($request);
     //     return view('shop.product', compact('users'));
-       
+
     // }
 
-    function updateDetail(AddressRequest $req) 
+    function updateDetail(AddressRequest $req)
     {
         $users = $this->userService->updateUserdetails($req);
         return view('shop.checkout', compact('users'));
@@ -53,6 +51,4 @@ class UserController extends Controller
         $users = $this->orderItemService->getUserOrders();
         return view('user.orders', compact('users'));
     }
-
-
 }

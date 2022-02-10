@@ -2,7 +2,16 @@
 @section('title','View Product')
 @section('main')
 <div class="page-container">
+  
     <div class="container">
+        <div class="row mt-3">
+            @if (Session::get('cart'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  <strong>{{ session::get('cart') }}</strong>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+        </div>
         @foreach($products as $product)
             <form action="add-to-cart" method="post">
                 @csrf
@@ -39,13 +48,19 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="btn-ground mb-3 mt-4" >
-                                                @if(auth()->user()?->role== 'admin')
-                                                <button type="submit" disabled class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span> Add To Cart</button>
-                                                @else
-                                                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span> Add To Cart</button>
-                                                @endif
+                                            <div class="row mt-3">
+                                                <div class="col-md-6">
+                                                    @if(auth()->user()?->role== 'admin')
+                                                    <button type="submit" disabled class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span> Add To Cart</button>
+                                                    @else
+                                                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span> Add To Cart</button>
+                                                    @endif
+                                                </div>
+                                                <div class="col-md-6 d-flex flex-row-reverse">
+                                                    <a href="/"><button type="button" class="btn btn-secondary"><span class="glyphicon glyphicon-shopping-cart"></span> Back</button></a>
+                                                </div>
                                             </div>
+                                            
                                     </div>
                                 </div>
                             </div>

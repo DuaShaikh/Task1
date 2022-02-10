@@ -15,19 +15,19 @@ class AddressController extends Controller
 {
     protected $addressService;
     protected $userService;
-   
 
-    function __construct(AddressService $addressService,UserService $userService ) {
+
+    function __construct(AddressService $addressService, UserService $userService)
+    {
         $this->addressService = $addressService;
         $this->userService = $userService;
-       
     }
 
-    function saveAddress(AddressRequest $request) 
-    {   
+    function saveAddress(AddressRequest $request)
+    {
         $address = $this->addressService->userAddress($request);
         $users = $this->userService->updateUser(["id" => $request->user_id, "address_id" => $address->id]);
-       
+
         return view('common.media', compact('users'));
     }
 
@@ -35,8 +35,7 @@ class AddressController extends Controller
     // {
     //     $address = $this->addressService->updateUserAddress($request);
     //     return view('shop.checkout', compact('address'));
-        
-       
-    // }
 
+
+    // }
 }

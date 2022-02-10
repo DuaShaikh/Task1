@@ -1,19 +1,17 @@
 <?php
 
 namespace App\Services;
-use App\Models\common\Media;
+
+
 use App\Models\shop\Product;
 use Illuminate\Http\Request;
-use App\Models\shop\ProductCategory;
-use Illuminate\Support\Facades\Storage;
 
 class ProductService
 {
-
-    function getProducts() 
+    function getProducts()
     {
         $products = Product::with(['productMedia']) ->orderByDesc('id')->paginate(6);
-          
+
 
         return $products;
     }
@@ -21,7 +19,7 @@ class ProductService
     function getLastProductId()
     {
         $products = Product::with(['productMedia'])->max('id');
-          
+
 
         return $products;
     }
@@ -37,12 +35,12 @@ class ProductService
     {
         $req->merge(
             [
-               'media_id' =>$id,
+               'media_id' => $id,
             ]
-        );  
+        );
         $product = Product::create($req->all());
         $product->category()->sync($req->category_id);
-       
+
         return $product;
     }
 
@@ -77,10 +75,8 @@ class ProductService
 
 
         $product->category()->where('product_id', $req->id)->sync($req->category_id);
-       
+
 
         return $product;
     }
-
 }
-

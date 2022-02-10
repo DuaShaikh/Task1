@@ -10,16 +10,16 @@ use App\Services\StockService;
 use App\Services\OrderItemService;
 use App\Http\Controllers\Controller;
 
-class Order_ItemController extends Controller
+class OrderItemController extends Controller
 {
     protected $orderItemService;
-    protected $sockService;
+    protected $stockService;
     protected $cartService;
     protected $mailService;
 
     function __construct(
-        OrderItemService $orderItemService, 
-        CartService $cartService, 
+        OrderItemService $orderItemService,
+        CartService $cartService,
         MailService $mailService,
         StockService $stockService
     ) {
@@ -28,15 +28,15 @@ class Order_ItemController extends Controller
         $this->mailService = $mailService;
         $this->stockService = $stockService;
     }
-    
-    function order_item(Request $request, $id)
-    {
-          $order_items = $this->orderItemService->orderItems($request);
-          $orders      = $this->orderItemService->getOrderItems($id);
-          // $stocks      = $this->stockService->updateStock($orders);
-          $carts       = $this->cartService->deleteCartUser();
-          $mail        = $this->mailService->sendMail($orders);
-          return view('shop.email-verify', compact('order_items'));
-    }
 
+    function orderItem(Request $request, $id)
+    {
+        $order_items = $this->orderItemService->orderItems($request);
+        $orders      = $this->orderItemService->getOrderItems($id);
+        $stocks      = $this->stockService->decreaseStockQuantity($request, $orders);
+        $carts       = $this->cartService->deleteCartUser();
+        $mail        = $this->mailService->sendMail($orders);
+
+        return view('shop.email-verify', compact('order_items'));
+    }
 }

@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('media_id')->nullable();
 
             $table->string('pName')->nullable(false);
+            $table->text('description')->nullable();
 
             $table->decimal('productPrice', 10, 4)->nullable(false);
 

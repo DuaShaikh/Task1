@@ -6,10 +6,10 @@ use App\Models\shop\Product;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Order_Item extends Model
+class OrderItem extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = [
         'order_id',
         'quantity',
@@ -20,9 +20,9 @@ class Order_Item extends Model
     // protected $table = 'order__items';
 
     protected $guarded = ['token'];
-  
 
-    function orderProduct() 
+
+    function orderProduct()
     {
         return $this->hasOne(Product::class, 'id', 'product_id');
     }

@@ -5,7 +5,6 @@ namespace App\Http\Requests\user;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;
 
-
 class UserRequest extends FormRequest
 {
     /**
@@ -27,11 +26,14 @@ class UserRequest extends FormRequest
     {
         return [
             'fullName' => "required|max:15|not_regex:/[0-9]/",
-            'password' => ['required', 'string','confirmed', Password::min(8)->mixedCase()->letters()->numbers()->symbols()],
+            'password' => [
+                            'required', 'string','confirmed',
+                            Password::min(8)->mixedCase()
+                            ->letters()->numbers()->symbols()
+                          ],
             'email' => 'required|email|unique:users',
             'phone' => 'required|regex:/(03)[0-9]{9}/|not_regex:/[a-z]/|min:11',
-            
+
         ];
     }
-
 }

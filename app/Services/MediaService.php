@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Services;
+
 use Illuminate\Http\File;
 use Illuminate\Http\Request;
 use App\Models\common\Media;
@@ -8,15 +9,16 @@ use Illuminate\Support\Facades\Storage;
 
 class MediaService
 {
-
-    function userMedia($request) 
+    function userMedia($request)
     {
         $imageName = time() . '.' . $request->file('photo')->getClientOriginalName();
         $type = $request->file('photo')->getClientOriginalExtension();
         // $url = $request->file('photo')->storeAs('public/users/', $imageName);
         $url  = Storage::putFileAs(
-            'public/users/', $request->file('photo'), $imageName
-        ); 
+            'public/users/',
+            $request->file('photo'),
+            $imageName
+        );
         $request->merge(
             [
                 "imageType" => $type,
@@ -27,14 +29,16 @@ class MediaService
         return Media::create($request->all());
     }
 
-    function productMedia($request) 
+    function productMedia($request)
     {
         $imageName = time() . '.' . $request->file('photo')->getClientOriginalName();
         $type = $request->file('photo')->getClientOriginalExtension();
         // $url = $request->file('photo')->storeAs('public/users/', $imageName);
         $url  = Storage::disk('public')->putFileAs(
-            'product/', $request->file('photo'), $imageName
-        ); 
+            'product/',
+            $request->file('photo'),
+            $imageName
+        );
         $request->merge(
             [
                 "imageName" => $imageName,
@@ -51,8 +55,10 @@ class MediaService
         $imageName = time() . '.' . $req->file('photo')->getClientOriginalName();
         $type = $req->file('photo')->getClientOriginalExtension();
         $url  = Storage::disk('public')->putFileAs(
-            'category/', $req->file('photo'), $imageName
-        ); 
+            'category/',
+            $req->file('photo'),
+            $imageName
+        );
         $req->merge(
             [
                 "imageName" => $imageName,
@@ -69,8 +75,10 @@ class MediaService
         $imageName = time() . '.' . $req->file('photo')->getClientOriginalName();
         $type = $req->file('photo')->getClientOriginalExtension();
         $url  = Storage::disk('public')->putFileAs(
-            'category/', $req->file('photo'), $imageName
-        ); 
+            'category/',
+            $req->file('photo'),
+            $imageName
+        );
         $req->merge(
             [
                 "imageName" => $imageName,
@@ -87,8 +95,10 @@ class MediaService
         $imageName = time() . '.' . $req->file('photo')->getClientOriginalName();
         $type = $req->file('photo')->getClientOriginalExtension();
         $url  = Storage::disk('public')->putFileAs(
-            'category/', $req->file('photo'), $imageName
-        ); 
+            'category/',
+            $req->file('photo'),
+            $imageName
+        );
         $req->merge(
             [
                 "imageName" => $imageName,

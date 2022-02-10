@@ -20,7 +20,7 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('shipper_id')->nullable();
             $table->unsignedBigInteger('media_id')->nullable();
             $table->unsignedBigInteger('address_id')->nullable();
-            $table->decimal('productPrice', 10, 4)->nullable(false);
+            $table->decimal('productPrice', 10, 2)->nullable(false);
             $table->timestamps();
             
             $table->foreign('shipper_id', 'orders_shipper_id_shippers_id')

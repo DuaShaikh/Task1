@@ -17,24 +17,29 @@ class ProductController extends Controller
     protected $categoryService;
     protected $mediaService;
 
-    function __construct(ProductService $productService, StockService $stockService, CategoryService $categoryService, MediaService $mediaService) {
+    function __construct(
+        ProductService $productService,
+        StockService $stockService,
+        CategoryService $categoryService,
+        MediaService $mediaService
+    ) {
         $this->productService = $productService;
         $this->stockService = $stockService;
         $this->mediaService = $mediaService;
         $this->categoryService = $categoryService;
     }
-    function getProduct() 
+    function getProduct()
     {
         $products = $this->productService->getProducts();
         return view('welcome', compact('products'));
     }
-    function getProductByid($id) 
+    function getProductByid($id)
     {
         $products = $this->productService->getProductsbyId($id);
         $stocks = $this->stockService->getStockAvailable($products);
         return view('shop.view-product', compact('products', 'stocks'));
     }
-    
+
     function getAdminProducts()
     {
         $products = $this->productService->getProducts();
@@ -49,14 +54,13 @@ class ProductController extends Controller
     function addAdminProducts(ProductRequest $req)
     {
         $media = $this->mediaService->productMedia($req);
-        $id=$media->id;
+        $id = $media->id;
 
         $products = $this->productService->addProducts($req, $id);
-       
+
         $product = $products->id;
         // session()->flash('status', 'Product Added successfully!');
         return view('admin.product-stock', compact('product'));
-        
     }
 
     function deleteAdminProducts($id)

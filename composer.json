@@ -21,7 +21,11 @@
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^5.10",
-        "phpunit/phpunit": "^9.5.10"
+        "phpstan/phpstan": "^1.4",
+        "phpunit/phpunit": "^9.5.10",
+        "sebastian/phpcpd": "^6.0",
+        "squizlabs/php_codesniffer": "^3.6",
+        "vimeo/psalm": "^4.20"
     },
     "autoload": {
         "psr-4": {
@@ -48,7 +52,23 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
-        ]
+        ],
+        "analyze": "vendor/bin/psalm --no-cache",
+        "static-analysis": "vendor/bin/phpstan analyze app config database/factories database/seeders routes",
+        "check": "vendor/bin/phpcs --standard=PSR12 app config database/factories database/seeders routes",
+        "fix": "vendor/bin/phpcbf --standard=PSR12 app config database/factories database/seeders routes",
+        "cpd-check": "vendor/bin/phpcpd app config database/factories database/seeders routes",
+        "test": "php artisan test",
+        "test-coverage": "export XDEBUG_MODE=coverage && vendor/bin/phpunit"
+    },
+    "scripts-descriptions": {
+        "analyze": "Run Code Analysis for the Source Files",
+        "static-analysis": "Run PHPStan Static Analysis Tool",
+        "check": "Run PHP CodeSniffer to check for PSR12 coding standard issues",
+        "fix": "Run PHP CodeSniffer Fixer to fix PSR12 coding standard issues",
+        "cpd-check": "Run PHP Copy/Paste Detector to detect duplicated code",
+        "test": "Run Test Suite for the project",
+        "test-coverage": "Run Test Suite for the project and generate code coverage"
     },
     "extra": {
         "laravel": {
@@ -58,7 +78,10 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true

@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Stock extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = [
         'product_id',
         'quantity',
@@ -17,8 +17,8 @@ class Stock extends Model
     ];
 
     protected $guarded = ['token'];
-   
-    
+
+
     function inStock()
     {
         return $this->hasMany(Product::class);

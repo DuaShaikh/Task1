@@ -9,7 +9,8 @@ class WidgetController extends Controller
 {
     protected $widgetService;
 
-    function __construct(WidgetService $widgetService) {
+    function __construct(WidgetService $widgetService)
+    {
         $this->widgetService = $widgetService;
     }
 

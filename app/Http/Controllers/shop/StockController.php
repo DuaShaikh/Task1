@@ -13,10 +13,10 @@ class StockController extends Controller
     protected $stockService;
     protected $productService;
 
-    function __construct(StockService $stockService, ProductService $productService) {
+    function __construct(StockService $stockService, ProductService $productService)
+    {
         $this->stockService = $stockService;
         $this->productService = $productService;
-    
     }
     function addStocks(Request $req)
     {
@@ -24,6 +24,6 @@ class StockController extends Controller
         // $insertedId = $product->id;
         $stock = $this->stockService->addProductStock($req);
         session()->flash('product', 'Product Stock Added successfully!');
-        return view('admin.product-stock' ,compact('product'));
+        return view('admin.product-stock', compact('product'));
     }
 }

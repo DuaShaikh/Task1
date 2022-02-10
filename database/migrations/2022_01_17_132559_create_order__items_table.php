@@ -14,13 +14,14 @@ class CreateOrderItemsTable extends Migration
     public function up()
     {
       
-        Schema::create('order__items', function (Blueprint $table) {
+        Schema::create('order_items', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('order_id')->nullable();
             $table->unsignedBigInteger('product_id')->nullable();
             $table->unsignedBigInteger('discount_id')->nullable();
             $table->smallInteger('quantity');
             $table->decimal('productPrice', 10, 4)->nullable(false);
+            $table->enum('size', ['S','M','L'])->default('S');
 
             $table->timestamps();
             $table->foreign('product_id', 'order__items_product_id_products_id')

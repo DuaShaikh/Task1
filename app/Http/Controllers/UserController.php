@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use App\Services\UserService;
 use App\Http\Requests\user\UserRequest;
 
-
 class UserController extends Controller
 {
     // protected $deferralService;
@@ -17,7 +16,8 @@ class UserController extends Controller
     // }
 
     protected $userService;
-    function __construct(UserService $userService) {
+    function __construct(UserService $userService)
+    {
         $this->userService = $userService;
     }
 
@@ -28,7 +28,7 @@ class UserController extends Controller
         return view('shop.address', compact('users'));
     }
 
-    function userAddress(Request $req) 
+    function userAddress(Request $req)
     {
         $address = $this->userService->saveAddress($req);
 
@@ -44,15 +44,15 @@ class UserController extends Controller
         return view('shop.media', compact('users'));
     }
 
-    
-
-    
 
 
 
 
 
-    
+
+
+
+
 
     // function getData(Request $req)
     // {
@@ -92,6 +92,4 @@ class UserController extends Controller
     //     $users = $this->deferralService->updateDeferrals($id, $request);
     //     return $this->getData();
     // }
-
-   
 }

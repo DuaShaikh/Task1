@@ -18,7 +18,7 @@ class CreateCartsTable extends Migration
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('product_id')->nullable();
-            // $table->enum('S', 'M' ,'L')->default('S');
+            $table->enum('size', ['S','M','L'])->default('S');
             $table->integer('quantity');
             $table->timestamps();
             $table->foreign('product_id', 'carts_product_id_products_id')

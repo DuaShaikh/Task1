@@ -1,22 +1,22 @@
 <?php
 
 namespace App\Services;
+
 use App\Models\shop\Order;
 use Illuminate\Http\Request;
-use App\Models\shop\Order_Item;
+use App\Models\shop\OrderItem;
 
 class OrderItemService
 {
-
-    function orderItems($request) 
+    function orderItems($request)
     {
         $data = $request->orders;
-        return Order_Item::insert($data);
+        return OrderItem::insert($data);
     }
-    
+
     function getOrderItems($id)
     {
-        return Order_Item::where('order_id', $id)->get();
+        return OrderItem::where('order_id', $id)->get();
     }
 
     function getUserOrders()
@@ -24,7 +24,7 @@ class OrderItemService
         return auth()->user()->order()
             ->with('items.orderProduct')
             ->orderByDesc('id')->get();
-            
+
         // $userOrder = Order::where('user_id', $id)->get();
         // foreach ($userOrder as $key => $order) {
         //     // ddd($key);
@@ -32,8 +32,7 @@ class OrderItemService
         // $user = Order_Item::get();
         // // ddd($order);
         // }
-        
+
         // return $order;
     }
 }
-

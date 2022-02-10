@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Cart extends Model
 {
     use HasFactory;
+
     /**
      * Get the cartProduct associated with the Cart
      *
@@ -40,6 +41,4 @@ class Cart extends Model
     {
         return $this->hasOne(Stock::class, 'id', 'stock_id');
     }
-
-    
 }

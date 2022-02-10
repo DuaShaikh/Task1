@@ -21,11 +21,11 @@ class Order extends Model
     // {
     //     return $this
     //             ->belongsToMany(
-    //                 Product::class, 
+    //                 Product::class,
     //                 'Order_item', 'order_id', 'product_id'
     //             );
     // }
-    
+
     function userOrder()
     {
         return $this->hasOne(User::class, 'id', 'user_id');
@@ -33,6 +33,6 @@ class Order extends Model
 
     function items()
     {
-        return $this->hasMany(Order_Item::class);
+        return $this->hasMany(OrderItem::class);
     }
 }

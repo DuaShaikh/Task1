@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Category extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = [
         'categoryName',
         'media_id',
@@ -17,7 +17,7 @@ class Category extends Model
     ];
 
     protected $guarded = ['token'];
-   
+
 
     public function categoryMedia()
     {
@@ -29,11 +29,13 @@ class Category extends Model
         return $this->belongsToMany(Product::class, 'product_categories');
     }
 
-    public function parent() {
-        return $this->belongsTo(self::class,'parent_id','id');
+    public function parent()
+    {
+        return $this->belongsTo(self::class, 'parent_id', 'id');
     }
 
-    public function childs() {
-        return $this->hasMany(self::class,'parent_id','id');
+    public function childs()
+    {
+        return $this->hasMany(self::class, 'parent_id', 'id');
     }
 }

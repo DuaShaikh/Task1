@@ -32,16 +32,16 @@ class User extends Authenticatable
         return $this->hasMany(Order::class, 'id', 'App\Models\shop\Order');
     }
 
-    public function cart(): mixed
+    public function cart()
     {
         return $this->hasMany(Cart::class);
     }
 
-    public function order(): mixed
+    public function order()
     {
         return $this->hasMany(Order::class);
     }
-    
+
     public function userAddress()
     {
         return $this->hasOne(Address::class, 'id', 'address_id');

@@ -7,8 +7,8 @@ use App\Services\CartService;
 use App\Services\UserService;
 use App\Services\OrderService;
 use App\Services\StockService;
+use App\Services\ProductService;
 use App\Http\Controllers\Controller;
-
 
 class OrderController extends Controller
 {
@@ -16,18 +16,19 @@ class OrderController extends Controller
     protected $cartService;
     protected $stockService;
     protected $userService;
-    
+
     function __construct(
-        OrderService $orderService, 
-        CartService $cartService, 
-        StockService $stockService, 
-        UserService $userService
+        OrderService $orderService,
+        CartService $cartService,
+        StockService $stockService,
+        UserService $userService,
+        ProductService $productService
     ) {
         $this->orderService = $orderService;
         $this->cartService  = $cartService;
         $this->stockService = $stockService;
         $this->userService = $userService;
-
+        $this->productService = $productService;
     }
 
     function postOrder(Request $request)
@@ -35,7 +36,8 @@ class OrderController extends Controller
         $users = $this->userService->updateUserdetails($request);
         $orders = $this->orderService->order($request);
         $carts  = $this->cartService->getUpdateCarts();
-        $stocks = $this->stockService->decreaseStockQuantity($request, $carts);
+        // $products = $this->productService->decreaseStockQuantity();
+
         // ddd($stocks);
         return view('shop.order-detail', compact('carts', 'orders'));
     }
