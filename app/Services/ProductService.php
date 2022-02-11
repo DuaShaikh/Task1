@@ -1,13 +1,38 @@
 <?php
 
-namespace App\Services;
+/**
+ * Product service Doc Comment
+ * 
+ * PHP version 8.1
+ *
+ * @category PHP
+ * @package  Laravel
+ * @author   Dua <dua@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     http://laravel.me/
+ */
 
+namespace App\Services;
 
 use App\Models\shop\Product;
 use Illuminate\Http\Request;
 
+    /**
+     * This is a Product service class
+     * 
+     * @category PHP
+     * @package  Laravel
+     * @author   Dua <dua@example.com>
+     * @license  http://www.php.net/license/3_01.txt  PHP License 3.01
+     * @link     http://laravel.me/
+     */
 class ProductService
 {
+    /**
+     * Get all products
+     * 
+     * @return product
+     */
     function getProducts()
     {
         $products = Product::with(['productMedia']) ->orderByDesc('id')->paginate(6);
@@ -16,6 +41,11 @@ class ProductService
         return $products;
     }
 
+    /**
+     * Get product data of last inserted id
+     * 
+     * @return product
+     */
     function getLastProductId()
     {
         $products = Product::with(['productMedia'])->max('id');
@@ -24,6 +54,13 @@ class ProductService
         return $products;
     }
 
+    /**
+     * Get products by product id
+     * 
+     * @param $id passing product id
+     * 
+     * @return product
+     */
     function getProductsbyId($id)
     {
         $products = Product::where('id', $id)
@@ -31,6 +68,14 @@ class ProductService
         return $products->get();
     }
 
+    /**
+     * Add products into product table
+     * 
+     * @param $req passing req data
+     * @param $id  passing product id
+     * 
+     * @return product
+     */
     function addProducts($req, $id)
     {
         $req->merge(
@@ -44,6 +89,13 @@ class ProductService
         return $product;
     }
 
+    /**
+     * Update product by product id
+     * 
+     * @param $req passing req data
+     * 
+     * @return product
+     */
     function updateProduct($req)
     {
         $product = Product::find($req["id"]);
@@ -53,6 +105,13 @@ class ProductService
         return $product;
     }
 
+    /**
+     * Delete PRoduct by id
+     * 
+     * @param $id passing product id
+     * 
+     * @return product
+     */
     function deleteProducts($id)
     {
         $product = Product::find($id);
@@ -60,6 +119,13 @@ class ProductService
         return $product;
     }
 
+    /**
+     * Show product detail by product id
+     * 
+     * @param $id passing product id
+     * 
+     * @return product
+     */
     function showProductsbyId($id)
     {
         $product = Product::find($id);
@@ -68,6 +134,13 @@ class ProductService
         return $product;
     }
 
+    /**
+     * Edit Products by id
+     * 
+     * @param $req passing req data
+     * 
+     * @return product
+     */
     function editProductsbyId($req)
     {
         $product = Product::find($req->id);

@@ -1,26 +1,52 @@
 <?php
 
+/**
+ * User Controller Doc Comment
+ * 
+ * PHP version 8.1
+ *
+ * @category PHP
+ * @package  Laravel
+ * @author   Dua <dua@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     http://localhost/
+ */
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-// use App\Services\DeferralService;
-// use App\Http\Requests\DeferralRequest;
 use App\Services\UserService;
 use App\Http\Requests\user\UserRequest;
 
+    /**
+     * This is UserController extends controller
+     * 
+     * @category PHP
+     * @package  Laravel
+     * @author   Dua <dua@example.com>
+     * @license  http://www.php.net/license/3_01.txt  PHP License 3.01
+     * @link     http://laravel.me/
+     */
 class UserController extends Controller
 {
-    // protected $deferralService;
-    // function __construct(DeferralService $deferralService) {
-    //     $this->deferralService = $deferralService;
-    // }
-
     protected $userService;
+    /**
+     * Define construct function.
+     * 
+     * @param object $userService connecting to user service
+     */
     function __construct(UserService $userService)
     {
         $this->userService = $userService;
     }
 
+    /**
+     * This is an postUser function
+     * 
+     * @param \App\Http\Requests\user\UserRequest $request passing user validation
+     * 
+     * @return \Illuminate\View\View
+     */
     function postUser(UserRequest $request)
     {
         $users = $this->userService->registerUser($request);
@@ -28,6 +54,13 @@ class UserController extends Controller
         return view('shop.address', compact('users'));
     }
 
+    /**
+     * This is an userAddress function which save user address
+     * 
+     * @param \Illuminate\Http\Request $req get post req data
+     * 
+     * @return \Illuminate\View\View
+     */
     function userAddress(Request $req)
     {
         $address = $this->userService->saveAddress($req);

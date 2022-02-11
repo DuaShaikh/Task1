@@ -1,5 +1,17 @@
 <?php
 
+/**
+ * Media service Doc Comment
+ * 
+ * PHP version 8.1
+ *
+ * @category PHP
+ * @package  Laravel
+ * @author   Dua <dua@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     http://laravel.me/
+ */
+
 namespace App\Services;
 
 use Illuminate\Http\File;
@@ -7,8 +19,24 @@ use Illuminate\Http\Request;
 use App\Models\common\Media;
 use Illuminate\Support\Facades\Storage;
 
+    /**
+     * This is a Media service class
+     * 
+     * @category PHP
+     * @package  Laravel
+     * @author   Dua <dua@example.com>
+     * @license  http://www.php.net/license/3_01.txt  PHP License 3.01
+     * @link     http://laravel.me/
+     */
 class MediaService
 {
+    /**
+     * Create user media
+     * 
+     * @param Illuminate\Http\Request $request 
+     * 
+     * @return Media
+     */
     function userMedia($request)
     {
         $imageName = time() . '.' . $request->file('photo')->getClientOriginalName();
@@ -29,6 +57,13 @@ class MediaService
         return Media::create($request->all());
     }
 
+    /**
+     * Create  product media
+     * 
+     * @param Illuminate\Http\Request $request 
+     * 
+     * @return Media
+     */
     function productMedia($request)
     {
         $imageName = time() . '.' . $request->file('photo')->getClientOriginalName();
@@ -50,6 +85,13 @@ class MediaService
         return Media::create($request->all());
     }
 
+    /**
+     * Edit product media
+     * 
+     * @param Illuminate\Http\Request $req 
+     * 
+     * @return Media
+     */
     function editProductMedia($req)
     {
         $imageName = time() . '.' . $req->file('photo')->getClientOriginalName();
@@ -70,6 +112,13 @@ class MediaService
         $media->update($req->except('_token'));
     }
 
+    /**
+     * Create category media
+     * 
+     * @param Illuminate\Http\Request $req 
+     * 
+     * @return Media
+     */
     function categoryMedia($req)
     {
         $imageName = time() . '.' . $req->file('photo')->getClientOriginalName();
@@ -89,7 +138,13 @@ class MediaService
 
         return Media::create($req->all());
     }
-
+    /**
+     * Edit category media
+     * 
+     * @param Illuminate\Http\Request $req 
+     * 
+     * @return Media
+     */
     function editCategoryMedia($req)
     {
         $imageName = time() . '.' . $req->file('photo')->getClientOriginalName();

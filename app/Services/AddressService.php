@@ -1,12 +1,40 @@
 <?php
 
+/**
+ * Address service Doc Comment
+ * 
+ * PHP version 8.1
+ *
+ * @category PHP
+ * @package  Laravel
+ * @author   Dua <dua@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     http://laravel.me/
+ */
+
 namespace App\Services;
 
 use App\Models\user\Address;
 use Illuminate\Http\Request;
 
+    /**
+     * This is a Address service class
+     * 
+     * @category PHP
+     * @package  Laravel
+     * @author   Dua <dua@example.com>
+     * @license  http://www.php.net/license/3_01.txt  PHP License 3.01
+     * @link     http://laravel.me/
+     */
 class AddressService
 {
+    /**
+     * Create user address into address table
+     * 
+     * @param Illuminate\Http\Request $request passing requested data
+     * 
+     * @return Address
+     */
     function userAddress($request)
     {
         return Address::create($request->all());
