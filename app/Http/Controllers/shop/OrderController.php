@@ -2,7 +2,7 @@
 
 /**
  * Order Controller Doc Comment
- * 
+ *
  * PHP version 8.1
  *
  * @category PHP
@@ -23,7 +23,7 @@ use App\Http\Controllers\Controller;
 
     /**
      * This is OrderController extends controller
-     * 
+     *
      * @category PHP
      * @package  Laravel
      * @author   Dua <dua@example.com>
@@ -39,13 +39,13 @@ class OrderController extends Controller
 
     /**
      * Define construct function.
-     * 
+     *
      * @param object $orderService connecting to order service
      * @param object $cartService  connecting to cart service
      * @param object $stockService connecting to stock service
      * @param object $userService  connecting to user service
      */
-    function __construct(
+    public function __construct(
         OrderService $orderService,
         CartService $cartService,
         StockService $stockService,
@@ -60,12 +60,12 @@ class OrderController extends Controller
     /**
      * This is a postOrder function which update user details,
      * post orders and get updated cart items
-     * 
+     *
      * @param \Illuminate\Http\Request $request get post req data
-     * 
+     *
      * @return \Illuminate\View\View
      */
-    function postOrder(Request $request)
+    public function postOrder(Request $request)
     {
         $users = $this->userService->updateUserdetails($request);
         $orders = $this->orderService->order($request);

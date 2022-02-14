@@ -2,7 +2,7 @@
 
 /**
  * Category Controller Doc Comment
- * 
+ *
  * PHP version 8.1
  *
  * @category PHP
@@ -22,7 +22,7 @@ use App\Services\MediaService;
 
     /**
      * This is CategoryController extends controller
-     * 
+     *
      * @category PHP
      * @package  Laravel
      * @author   Dua <dua@example.com>
@@ -36,11 +36,11 @@ class CategoryController extends Controller
 
     /**
      * Define construct function.
-     * 
+     *
      * @param object $categoryService connecting to category service
      * @param object $mediaService    connecting to media service
      */
-    function __construct(
+    public function __construct(
         CategoryService $categoryService,
         MediaService $mediaService
     ) {
@@ -49,12 +49,12 @@ class CategoryController extends Controller
     }
 
     /**
-     * This is a getAdmincategories function which get 
-     * categories from category table 
-     * 
+     * This is a getAdmincategories function which get
+     * categories from category table
+     *
      * @return \Illuminate\View\View
      */
-    function getAdmincategories()
+    public function getAdmincategories()
     {
         $categories = $this->categoryService->getCategories();
 
@@ -62,12 +62,12 @@ class CategoryController extends Controller
     }
 
     /**
-     * This is a showAdminSubCategory function which show 
-     * sub categories from category table 
-     * 
+     * This is a showAdminSubCategory function which show
+     * sub categories from category table
+     *
      * @return \Illuminate\View\View
      */
-    function showAdminSubCategory()
+    public function showAdminSubCategory()
     {
         $cate = $this->categoryService->showNullCategory();
 
@@ -76,12 +76,12 @@ class CategoryController extends Controller
 
     /**
      * This is a addAdminCategories function which add categories into category table
-     * 
+     *
      * @param CategoryRequest $req passing category validation to category form
-     * 
+     *
      * @return \Illuminate\View\View
      */
-    function addAdminCategories(CategoryRequest $req)
+    public function addAdminCategories(CategoryRequest $req)
     {
         $categories = $this->categoryService->postCategories($req);
         session()->flash('status', 'Category Added successfully!');
@@ -90,14 +90,14 @@ class CategoryController extends Controller
     }
 
     /**
-     * This is a deleteAdminCategories function 
+     * This is a deleteAdminCategories function
      * which delete categories by id from category table
-     * 
+     *
      * @param $id passing category_id
-     * 
+     *
      * @return \Illuminate\View\View
      */
-    function deleteAdminCategories($id)
+    public function deleteAdminCategories($id)
     {
         $categories = $this->categoryService->deleteCategories($id);
         session()->flash('status', 'Category Deleted successfully!');
@@ -106,14 +106,14 @@ class CategoryController extends Controller
     }
 
     /**
-     * This is a showAdminCategories function 
+     * This is a showAdminCategories function
      * which show categories by id from category table
-     * 
+     *
      * @param $id passing category_id
-     * 
-     * @return \Illuminate\View\View 
-     */    
-    function showAdminCategories($id)
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showAdminCategories($id)
     {
         $cate = $this->categoryService-> showNullCategory();
         $category = $this->categoryService->showCategories($id);
@@ -122,14 +122,14 @@ class CategoryController extends Controller
     }
 
     /**
-     * This is a editAdminCategories function 
+     * This is a editAdminCategories function
      * which edit required categories from category table
-     * 
-     * @param \App\Http\Requests\Admin\CategoryRequest $req passing validation 
-     * 
+     *
+     * @param \App\Http\Requests\Admin\CategoryRequest $req passing validation
+     *
      * @return \Illuminate\View\View
-     */ 
-    function editAdminCategories(CategoryRequest $req)
+     */
+    public function editAdminCategories(CategoryRequest $req)
     {
         // $media = $this->mediaService->editCategoryMedia($req);
         $category = $this->categoryService->editCategoriesbyId($req);

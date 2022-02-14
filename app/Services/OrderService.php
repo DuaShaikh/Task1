@@ -2,7 +2,7 @@
 
 /**
  * Order service Doc Comment
- * 
+ *
  * PHP version 8.1
  *
  * @category PHP
@@ -20,7 +20,7 @@ use Illuminate\Http\Request;
 
     /**
      * This is a Order service class
-     * 
+     *
      * @category PHP
      * @package  Laravel
      * @author   Dua <dua@example.com>
@@ -31,12 +31,12 @@ class OrderService
 {
     /**
      * Create orders of user
-     * 
-     * @param Illuminate\Http\Request $request 
-     * 
+     *
+     * @param $request passing data
+     *
      * @return Order
      */
-    function order($request)
+    public function order($request)
     {
         $userId = auth()->user()->id;
 

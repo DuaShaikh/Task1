@@ -2,7 +2,7 @@
 
 /**
  * Mail service Doc Comment
- * 
+ *
  * PHP version 8.1
  *
  * @category PHP
@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Mail;
 
     /**
      * This is a Mail service class
-     * 
+     *
      * @category PHP
      * @package  Laravel
      * @author   Dua <dua@example.com>
@@ -30,9 +30,9 @@ class MailService
 {
     /**
      * Send mail to user on every order purchased
-     * 
+     *
      * @param $orders passing user ordered data
-     * 
+     *
      * @return void
      */
     public function sendMail($orders)

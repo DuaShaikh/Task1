@@ -2,7 +2,7 @@
 
 /**
  * Media Controller Doc Comment
- * 
+ *
  * PHP version 8.1
  *
  * @category PHP
@@ -23,7 +23,7 @@ use App\Services\UserService;
 
     /**
      * This is an MediaController extends controller
-     * 
+     *
      * @category PHP
      * @package  Laravel
      * @author   Dua <dua@example.com>
@@ -38,12 +38,12 @@ class MediaController extends Controller
 
     /**
      * Define construct function.
-     * 
+     *
      * @param object $mediaService   connecting to media service
      * @param object $userService    connecting to user service
      * @param object $productService connecting to product service
      */
-    function __construct(
+    public function __construct(
         MediaService $mediaService,
         UserService $userService,
         ProductService $productService
@@ -53,14 +53,14 @@ class MediaController extends Controller
         $this->productService = $productService;
     }
     /**
-     * This is a uploadImage function which upload 
+     * This is a uploadImage function which upload
      * user image into media table and pass user media id into user table
-     * 
+     *
      * @param \App\Http\Requests\common\MediaRequest $request passing validation
-     * 
+     *
      * @return \Illuminate\View\View
      */
-    function uploadImage(MediaRequest $request)
+    public function uploadImage(MediaRequest $request)
     {
         $media = $this->mediaService->userMedia($request);
         $users = $this->userService
@@ -70,14 +70,14 @@ class MediaController extends Controller
     }
 
     /**
-     * This is a postProductMedia function which create 
+     * This is a postProductMedia function which create
      * product media and update product table
-     * 
+     *
      * @param \App\Http\Requests\common\MediaRequest $request passing validation
-     * 
+     *
      * @return \Illuminate\View\View
      */
-    function postProductMedia(MediaRequest $request)
+    public function postProductMedia(MediaRequest $request)
     {
         $media = $this->mediaService->productMedia($request);
         $product = $this->productService

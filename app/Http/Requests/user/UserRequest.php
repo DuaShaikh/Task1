@@ -1,10 +1,33 @@
 <?php
 
+/**
+ * Form Request Doc Comment
+ *
+ * PHP version 8.1
+ *
+ * @category PHP
+ * @package  Laravel
+ * @author   Dua <dua@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     http://laravel.me/
+ */
+
 namespace App\Http\Requests\user;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;
 
+/**
+ * UserRequest extends FormRequest  Doc Comment
+ *
+ * PHP version 8.1
+ *
+ * @category PHP
+ * @package  Laravel
+ * @author   Dua <dua@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     http://localhost/
+ */
 class UserRequest extends FormRequest
 {
     /**
@@ -29,7 +52,7 @@ class UserRequest extends FormRequest
             'password' => [
                             'required', 'string','confirmed',
                             Password::min(8)->mixedCase()
-                            ->letters()->numbers()->symbols()
+                                ->letters()->numbers()->symbols()
                           ],
             'email' => 'required|email|unique:users',
             'phone' => 'required|regex:/(03)[0-9]{9}/|not_regex:/[a-z]/|min:11',

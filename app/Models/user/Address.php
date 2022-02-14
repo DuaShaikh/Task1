@@ -1,5 +1,17 @@
 <?php
 
+/**
+ * Address Model Comment
+ *
+ * PHP version 8.1
+ *
+ * @category PHP
+ * @package  Laravel
+ * @author   Dua <dua@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     http://laravel.me/
+ */
+
 namespace App\Models\user;
 
 use App\Models\User;
@@ -9,6 +21,17 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
+/**
+ * This is Address Class extends Model
+ *
+ * PHP version 8.1
+ *
+ * @category PHP
+ * @package  Laravel
+ * @author   Dua <dua@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     http://localhost/
+ */
 class Address extends Model
 {
     use HasFactory;

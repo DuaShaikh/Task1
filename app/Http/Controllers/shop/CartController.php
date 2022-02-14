@@ -2,7 +2,7 @@
 
 /**
  * Cart Controller Doc Comment
- * 
+ *
  * PHP version 8.1
  *
  * @category PHP
@@ -21,15 +21,15 @@ use App\Services\ProductService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CartRequest;
 
-    /**
-     * This is CartController extends controller
-     * 
-     * @category PHP
-     * @package  Laravel
-     * @author   Dua <dua@example.com>
-     * @license  http://www.php.net/license/3_01.txt  PHP License 3.01
-     * @link     http://laravel.me/
-     */
+/**
+ * This is CartController extends controller
+ *
+ * @category PHP
+ * @package  Laravel
+ * @author   Dua <dua@example.com>
+ * @license  http://www.php.net/license/3_01.txt  PHP License 3.01
+ * @link     http://laravel.me/
+ */
 class CartController extends Controller
 {
     protected $cartService;
@@ -38,12 +38,12 @@ class CartController extends Controller
 
     /**
      * Define construct function.
-     * 
+     *
      * @param object $cartService    connecting to cart service
      * @param object $userService    connecting to user service
      * @param object $productService connecting to product service
      */
-    function __construct(
+    public function __construct(
         CartService $cartService,
         UserService $userService,
         ProductService $productService
@@ -54,15 +54,15 @@ class CartController extends Controller
     }
 
     /**
-     * This is a addToCart function which check 
-     * authorized user is logged in and then add 
+     * This is a addToCart function which check
+     * authorized user is logged in and then add
      * products into cart table
-     * 
+     *
      * @param \App\Http\Requests\Admin\CartRequest $req passing cart validation
-     * 
+     *
      * @return \Illuminate\View\View
      */
-    function addToCart(CartRequest $req)
+    public function addToCart(CartRequest $req)
     {
         if (auth()->check()) {
             $carts = $this->cartService->postaddToCart($req);
@@ -77,10 +77,10 @@ class CartController extends Controller
 
     /**
      * This is a viewCart function which get cart items in add to cart view
-     * 
+     *
      * @return \Illuminate\View\View
-     */  
-    function viewCart()
+     */
+    public function viewCart()
     {
         $carts = $this->cartService->viewCartItems();
         return view('shop.add-to-cart', compact('carts'));
@@ -88,12 +88,12 @@ class CartController extends Controller
 
     /**
      * This is a deleteCart function which delete cart items
-     * 
-     * @param $id 
-     * 
-     * @return  \Illuminate\View\View
-     */ 
-    function deleteCart($id)
+     *
+     * @param $id passing id to delete cart item
+     *
+     * @return \Illuminate\View\View
+     */
+    public function deleteCart($id)
     {
         $carts = $this->cartService->deleteCartItems($id);
         return redirect('view-cart');
@@ -101,12 +101,12 @@ class CartController extends Controller
 
     /**
      * This is a updateCart function which update cart items and get user details
-     * 
+     *
      * @param \Illuminate\Http\Request $req get post req data
-     * 
+     *
      * @return \Illuminate\View\View
-     */ 
-    function updateCart(Request $req)
+     */
+    public function updateCart(Request $req)
     {
 
         $cart  = $this->cartService->updateCartItems($req);

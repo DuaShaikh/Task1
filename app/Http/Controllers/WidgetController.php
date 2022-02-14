@@ -2,7 +2,7 @@
 
 /**
  * Widget Controller Doc Comment
- * 
+ *
  * PHP version 8.1
  *
  * @category PHP
@@ -12,7 +12,6 @@
  * @link     http://laravel.me/
  */
 
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -20,7 +19,7 @@ use App\Services\WidgetService;
 
     /**
      * This is WidgetController extends controller
-     * 
+     *
      * @category PHP
      * @package  Laravel
      * @author   Dua <dua@example.com>
@@ -33,20 +32,20 @@ class WidgetController extends Controller
 
     /**
      * Define construct function.
-     * 
+     *
      * @param object $widgetService connecting to widget service
      */
-    function __construct(WidgetService $widgetService)
+    public function __construct(WidgetService $widgetService)
     {
         $this->widgetService = $widgetService;
     }
 
     /**
      * This is a getData function which get widget data from widget table
-     * 
+     *
      * @return \Illuminate\View\View
      */
-    function getData()
+    public function getData()
     {
         $widgets = $this->widgetService->getWidgets();
 

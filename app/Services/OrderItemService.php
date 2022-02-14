@@ -2,7 +2,7 @@
 
 /**
  * Order Item service Doc Comment
- * 
+ *
  * PHP version 8.1
  *
  * @category PHP
@@ -20,7 +20,7 @@ use App\Models\shop\OrderItem;
 
     /**
      * This is a Order item service class
-     * 
+     *
      * @category PHP
      * @package  Laravel
      * @author   Dua <dua@example.com>
@@ -31,12 +31,12 @@ class OrderItemService
 {
     /**
      * User purchased order items
-     * 
-     * @param Illuminate\Http\Request $request 
-     * 
+     *
+     * @param $request passing data
+     *
      * @return orderItem
      */
-    function orderItems($request)
+    public function orderItems($request)
     {
         $data = $request->orders;
         return OrderItem::insert($data);
@@ -44,22 +44,22 @@ class OrderItemService
 
     /**
      * Get all ordered items by order id
-     * 
-     * @param $id passing order id 
-     * 
+     *
+     * @param $id passing order id
+     *
      * @return orderItem
      */
-    function getOrderItems($id)
+    public function getOrderItems($id)
     {
         return OrderItem::where('order_id', $id)->get();
     }
 
     /**
      * Get user's ordered items by id
-     * 
+     *
      * @return OrderItem
      */
-    function getUserOrders()
+    public function getUserOrders()
     {
         return auth()->user()->order()
             ->with('items.orderProduct')

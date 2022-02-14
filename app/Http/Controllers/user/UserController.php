@@ -2,7 +2,7 @@
 
 /**
  * User Controller Doc Comment
- * 
+ *
  * PHP version 8.1
  *
  * @category PHP
@@ -23,7 +23,7 @@ use App\Http\Requests\user\AddressRequest;
 
     /**
      * This is UserController extends controller
-     * 
+     *
      * @category PHP
      * @package  Laravel
      * @author   Dua <dua@example.com>
@@ -38,11 +38,11 @@ class UserController extends Controller
 
     /**
      * Define construct function.
-     * 
+     *
      * @param object $userService      connecting to user service
      * @param object $orderItemService connecting to order item service
      */
-    function __construct(
+    public function __construct(
         UserService $userService,
         OrderItemService $orderItemService
     ) {
@@ -52,12 +52,12 @@ class UserController extends Controller
 
     /**
      * This is a postUser function which register users into user table
-     * 
+     *
      * @param \App\Http\Requests\user\UserRequest $request passing user validation
-     * 
+     *
      * @return \Illuminate\View\View
      */
-    function postUser(UserRequest $request)
+    public function postUser(UserRequest $request)
     {
         $users = $this->userService->registerUser($request);
         return view('user.address', compact('users'));
@@ -65,12 +65,12 @@ class UserController extends Controller
 
     /**
      * This is a updateDetail function which add address id to users into user table
-     * 
+     *
      * @param \App\Http\Requests\user\AddressRequest $req passing address validation
-     * 
+     *
      * @return \Illuminate\View\View
      */
-    function updateDetail(AddressRequest $req)
+    public function updateDetail(AddressRequest $req)
     {
         $users = $this->userService->updateUserdetails($req);
         return view('shop.checkout', compact('users'));
@@ -78,10 +78,10 @@ class UserController extends Controller
 
     /**
      * This is a getUserItems function which get order items that user has ordered
-     * 
+     *
      * @return \Illuminate\View\View
      */
-    function getUserItems()
+    public function getUserItems()
     {
         $users = $this->orderItemService->getUserOrders();
         return view('user.orders', compact('users'));

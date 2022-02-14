@@ -2,7 +2,7 @@
 
 /**
  * Order Item Controller Doc Comment
- * 
+ *
  * PHP version 8.1
  *
  * @category PHP
@@ -24,7 +24,7 @@ use App\Http\Controllers\Controller;
 
     /**
      * This is OrderItemController extends controller
-     * 
+     *
      * @category PHP
      * @package  Laravel
      * @author   Dua <dua@example.com>
@@ -41,13 +41,13 @@ class OrderItemController extends Controller
 
     /**
      * Define construct function.
-     * 
+     *
      * @param object $orderItemService connecting to orderItem service
      * @param object $cartService      connecting to cart service
      * @param object $mailService      connecting to mail service
      * @param object $stockService     connecting to stock service
      */
-    function __construct(
+    public function __construct(
         OrderItemService $orderItemService,
         CartService $cartService,
         MailService $mailService,
@@ -61,22 +61,22 @@ class OrderItemController extends Controller
 
 
     /**
-     * This is a orderItem function 
-     * which create orderitems, 
-     * get order items from order item table, 
-     * decrease ordered product's stock quantity from stock table, 
+     * This is a orderItem function
+     * which create orderitems,
+     * get order items from order item table,
+     * decrease ordered product's stock quantity from stock table,
      * after ordered delete cart items from cart table, and send mail to user
-     * 
+     *
      * @param \Illuminate\Http\Request $request get post req data
-     * @param $id      passing id to get order items  
-     * 
+     * @param $id      passing id to get order items
+     *
      * @return \Illuminate\View\View
-     */ 
-    function orderItem(Request $request, $id)
+     */
+    public function orderItem(Request $request, $id)
     {
         $order_items = $this->orderItemService->orderItems($request);
         $orders      = $this->orderItemService->getOrderItems($id);
-        $stocks      = $this->stockService->decreaseStockQuantity($request, $orders);
+        $stocks      = $this->stockService->decreaseStockQuantity($orders);
         $carts       = $this->cartService->deleteCartUser();
         $mail        = $this->mailService->sendMail($orders);
 

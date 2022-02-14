@@ -2,7 +2,7 @@
 
 /**
  * Product service Doc Comment
- * 
+ *
  * PHP version 8.1
  *
  * @category PHP
@@ -19,7 +19,7 @@ use Illuminate\Http\Request;
 
     /**
      * This is a Product service class
-     * 
+     *
      * @category PHP
      * @package  Laravel
      * @author   Dua <dua@example.com>
@@ -30,10 +30,10 @@ class ProductService
 {
     /**
      * Get all products
-     * 
+     *
      * @return product
      */
-    function getProducts()
+    public function getProducts()
     {
         $products = Product::with(['productMedia']) ->orderByDesc('id')->paginate(6);
 
@@ -43,10 +43,10 @@ class ProductService
 
     /**
      * Get product data of last inserted id
-     * 
+     *
      * @return product
      */
-    function getLastProductId()
+    public function getLastProductId()
     {
         $products = Product::with(['productMedia'])->max('id');
 
@@ -56,12 +56,12 @@ class ProductService
 
     /**
      * Get products by product id
-     * 
+     *
      * @param $id passing product id
-     * 
+     *
      * @return product
      */
-    function getProductsbyId($id)
+    public function getProductsbyId($id)
     {
         $products = Product::where('id', $id)
                     ->with(['productMedia']);
@@ -70,13 +70,13 @@ class ProductService
 
     /**
      * Add products into product table
-     * 
+     *
      * @param $req passing req data
      * @param $id  passing product id
-     * 
+     *
      * @return product
      */
-    function addProducts($req, $id)
+    public function addProducts($req, $id)
     {
         $req->merge(
             [
@@ -91,12 +91,12 @@ class ProductService
 
     /**
      * Update product by product id
-     * 
+     *
      * @param $req passing req data
-     * 
+     *
      * @return product
      */
-    function updateProduct($req)
+    public function updateProduct($req)
     {
         $product = Product::find($req["id"]);
 
@@ -107,12 +107,12 @@ class ProductService
 
     /**
      * Delete PRoduct by id
-     * 
+     *
      * @param $id passing product id
-     * 
+     *
      * @return product
      */
-    function deleteProducts($id)
+    public function deleteProducts($id)
     {
         $product = Product::find($id);
         $product->delete();
@@ -121,12 +121,12 @@ class ProductService
 
     /**
      * Show product detail by product id
-     * 
+     *
      * @param $id passing product id
-     * 
+     *
      * @return product
      */
-    function showProductsbyId($id)
+    public function showProductsbyId($id)
     {
         $product = Product::find($id);
         $product->with('category')->get();
@@ -136,12 +136,12 @@ class ProductService
 
     /**
      * Edit Products by id
-     * 
+     *
      * @param $req passing req data
-     * 
+     *
      * @return product
      */
-    function editProductsbyId($req)
+    public function editProductsbyId($req)
     {
         $product = Product::find($req->id);
         $product->update($req->all());

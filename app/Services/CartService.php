@@ -2,7 +2,7 @@
 
 /**
  * Cart service Doc Comment
- * 
+ *
  * PHP version 8.1
  *
  * @category PHP
@@ -20,7 +20,7 @@ use Illuminate\Http\Request;
 
     /**
      * This is a Cart service class
-     * 
+     *
      * @category PHP
      * @package  Laravel
      * @author   Dua <dua@example.com>
@@ -33,11 +33,11 @@ class CartService
      * Product added to cart if it is not already exist into cart
      * and if and only if product stock is available
      *
-     * @param Illuminate\Http\Request $req 
-     * 
+     * @param $req passing data
+     *
      * @return Cart
      */
-    function postAddToCart($req)
+    public function postAddToCart($req)
     {
         $data = Cart::where(
             [
@@ -74,18 +74,18 @@ class CartService
      *
      * @return Cart
      */
-    function viewCartItems()
+    public function viewCartItems()
     {
-        return auth()?->user()?->cart()?->with(['cartProduct.productMedia'])->get();
+        return auth()->user()->cart()->with(['cartProduct.productMedia'])->get() ?? [];
     }
     /**
      * Authorized user can delete their cart items
      *
      * @param $id passing cart id
-     * 
+     *
      * @return Cart
      */
-    function deleteCartItems($id)
+    public function deleteCartItems($id)
     {
         return Cart::where('id', $id)->delete();
     }
@@ -93,11 +93,11 @@ class CartService
     /**
      * Authorized user can update their cart items
      *
-     * @param Illuminate\Http\Request $req 
-     * 
+     * @param $req passing data
+     *
      * @return Cart
      */
-    function updateCartItems($req)
+    public function updateCartItems($req)
     {
         $data = $req->cart;
         data_set($data, "*.user_id", auth()->user()->id);
@@ -109,7 +109,7 @@ class CartService
      *
      * @return Cart
      */
-    function getUpdateCarts()
+    public function getUpdateCarts()
     {
         return auth()->user()->cart()->with(['cartProduct.productMedia'])->get();
     }
@@ -119,7 +119,7 @@ class CartService
      *
      * @return Cart
      */
-    function deleteCartUser()
+    public function deleteCartUser()
     {
         return auth()->user()->cart()->delete();
     }

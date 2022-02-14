@@ -2,7 +2,7 @@
 
 /**
  * Widget service Doc Comment
- * 
+ *
  * PHP version 8.1
  *
  * @category PHP
@@ -19,7 +19,7 @@ use Illuminate\Http\Request;
 
     /**
      * This is a Widget service class
-     * 
+     *
      * @category PHP
      * @package  Laravel
      * @author   Dua <dua@example.com>
@@ -30,10 +30,10 @@ class WidgetService
 {
     /**
      * Get widget data from widget table
-     * 
+     *
      * @return Widget
      */
-    function getWidgets()
+    public function getWidgets()
     {
         return Widget::get();
     }

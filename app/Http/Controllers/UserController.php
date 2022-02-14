@@ -2,7 +2,7 @@
 
 /**
  * User Controller Doc Comment
- * 
+ *
  * PHP version 8.1
  *
  * @category PHP
@@ -20,7 +20,7 @@ use App\Http\Requests\user\UserRequest;
 
     /**
      * This is UserController extends controller
-     * 
+     *
      * @category PHP
      * @package  Laravel
      * @author   Dua <dua@example.com>
@@ -32,22 +32,22 @@ class UserController extends Controller
     protected $userService;
     /**
      * Define construct function.
-     * 
+     *
      * @param object $userService connecting to user service
      */
-    function __construct(UserService $userService)
+    public function __construct(UserService $userService)
     {
         $this->userService = $userService;
     }
 
     /**
      * This is an postUser function
-     * 
+     *
      * @param \App\Http\Requests\user\UserRequest $request passing user validation
-     * 
+     *
      * @return \Illuminate\View\View
      */
-    function postUser(UserRequest $request)
+    public function postUser(UserRequest $request)
     {
         $users = $this->userService->registerUser($request);
 
@@ -56,12 +56,12 @@ class UserController extends Controller
 
     /**
      * This is an userAddress function which save user address
-     * 
+     *
      * @param \Illuminate\Http\Request $req get post req data
-     * 
+     *
      * @return \Illuminate\View\View
      */
-    function userAddress(Request $req)
+    public function userAddress(Request $req)
     {
         $address = $this->userService->saveAddress($req);
 

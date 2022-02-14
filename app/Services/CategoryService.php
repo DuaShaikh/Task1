@@ -2,7 +2,7 @@
 
 /**
  * Category service Doc Comment
- * 
+ *
  * PHP version 8.1
  *
  * @category PHP
@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Storage;
 
     /**
      * This is a Category service class
-     * 
+     *
      * @category PHP
      * @package  Laravel
      * @author   Dua <dua@example.com>
@@ -32,21 +32,21 @@ class CategoryService
 {
     /**
      * Get all Categories from category table
-     * 
+     *
      * @return Category
      */
-    function getCategories()
+    public function getCategories()
     {
         return Category::with(['categoryMedia','product', 'parent.childs'])->get();
     }
     /**
-     * Create categories and category media 
-     * 
-     * @param Illuminate\Http\Request $req 
-     * 
+     * Create categories and category media
+     *
+     * @param $req passing data
+     *
      * @return Category
      */
-    function postCategories($req)
+    public function postCategories($req)
     {
         $imageName = time() . '.' . $req->file('photo')->getClientOriginalName();
         $type = $req->file('photo')->getClientOriginalExtension();
@@ -75,44 +75,44 @@ class CategoryService
     }
     /**
      * Delete categories by id
-     * 
+     *
      * @param $id passing category id
-     * 
+     *
      * @return Category
      */
-    function deleteCategories($id)
+    public function deleteCategories($id)
     {
         return Category::find($id)->delete();
     }
     /**
      * Show category media detail and categories detail by id
-     * 
+     *
      * @param $id passing category id
-     * 
+     *
      * @return Category
      */
-    function showCategories($id)
+    public function showCategories($id)
     {
         return Category::find($id);
     }
     /**
      * Get categories where parent id is null
-     * 
+     *
      * @return Category
      */
-    function showNullCategory()
+    public function showNullCategory()
     {
         return Category::whereNull('parent_id')
             ->with(['categoryMedia', 'product', 'parent.childs'])->get();
     }
     /**
      * Edit category media and categories by id
-     * 
-     * @param Illuminate\Http\Request $req 
-     * 
+     *
+     * @param $req passing data
+     *
      * @return Category
      */
-    function editCategoriesbyId($req)
+    public function editCategoriesbyId($req)
     {
         $imageName = time() . '.' . $req->file('photo')->getClientOriginalName();
         $type = $req->file('photo')->getClientOriginalExtension();

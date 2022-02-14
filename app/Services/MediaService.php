@@ -2,7 +2,7 @@
 
 /**
  * Media service Doc Comment
- * 
+ *
  * PHP version 8.1
  *
  * @category PHP
@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Storage;
 
     /**
      * This is a Media service class
-     * 
+     *
      * @category PHP
      * @package  Laravel
      * @author   Dua <dua@example.com>
@@ -32,12 +32,12 @@ class MediaService
 {
     /**
      * Create user media
-     * 
-     * @param Illuminate\Http\Request $request 
-     * 
+     *
+     * @param $request passing data
+     *
      * @return Media
      */
-    function userMedia($request)
+    public function userMedia($request)
     {
         $imageName = time() . '.' . $request->file('photo')->getClientOriginalName();
         $type = $request->file('photo')->getClientOriginalExtension();
@@ -59,12 +59,12 @@ class MediaService
 
     /**
      * Create  product media
-     * 
-     * @param Illuminate\Http\Request $request 
-     * 
+     *
+     * @param $request passing data
+     *
      * @return Media
      */
-    function productMedia($request)
+    public function productMedia($request)
     {
         $imageName = time() . '.' . $request->file('photo')->getClientOriginalName();
         $type = $request->file('photo')->getClientOriginalExtension();
@@ -87,12 +87,12 @@ class MediaService
 
     /**
      * Edit product media
-     * 
-     * @param Illuminate\Http\Request $req 
-     * 
+     *
+     * @param $req passing data
+     *
      * @return Media
      */
-    function editProductMedia($req)
+    public function editProductMedia($req)
     {
         $imageName = time() . '.' . $req->file('photo')->getClientOriginalName();
         $type = $req->file('photo')->getClientOriginalExtension();
@@ -114,12 +114,12 @@ class MediaService
 
     /**
      * Create category media
-     * 
-     * @param Illuminate\Http\Request $req 
-     * 
+     *
+     * @param $req passing data
+     *
      * @return Media
      */
-    function categoryMedia($req)
+    public function categoryMedia($req)
     {
         $imageName = time() . '.' . $req->file('photo')->getClientOriginalName();
         $type = $req->file('photo')->getClientOriginalExtension();
@@ -140,12 +140,12 @@ class MediaService
     }
     /**
      * Edit category media
-     * 
-     * @param Illuminate\Http\Request $req 
-     * 
+     *
+     * @param $req passing data
+     *
      * @return Media
      */
-    function editCategoryMedia($req)
+    public function editCategoryMedia($req)
     {
         $imageName = time() . '.' . $req->file('photo')->getClientOriginalName();
         $type = $req->file('photo')->getClientOriginalExtension();

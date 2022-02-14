@@ -2,7 +2,7 @@
 
 /**
  * Stock service Doc Comment
- * 
+ *
  * PHP version 8.1
  *
  * @category PHP
@@ -19,7 +19,7 @@ use Illuminate\Http\Request;
 
     /**
      * This is a Stock service class
-     * 
+     *
      * @category PHP
      * @package  Laravel
      * @author   Dua <dua@example.com>
@@ -30,12 +30,12 @@ class StockService
 {
     /**
      * Get stock available by product id and size
-     * 
+     *
      * @param $products passing product data
-     * 
+     *
      * @return stock
      */
-    function getStockAvailable($products)
+    public function getStockAvailable($products)
     {
         for ($i = 0; $i < count($products); $i++) {
             return Stock::where('product_id', $products[$i]['id'])->get();
@@ -44,22 +44,22 @@ class StockService
 
     /**
      * Add product stock by product id and size
-     * 
-     * @param Illuminate\Http\Request $req passing requested data
-     * 
-     * @return stock
+     *
+     * @param $req passing data
+     *
+     * @return Stock
      */
-    function addProductStock($req)
+    public function addProductStock($req)
     {
         return Stock::create($req->all());
     }
-    
+
     /**
      * Decrease stock quantity on each item purchased
-     * 
+     *
      * @param $orders passing orders data
-     * 
-     * @return stock
+     *
+     * @return Stock
      */
     public function decreaseStockQuantity($orders)
     {

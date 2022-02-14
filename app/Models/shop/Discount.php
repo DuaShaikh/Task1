@@ -1,5 +1,17 @@
 <?php
 
+/**
+ * Discount Model Comment
+ *
+ * PHP version 8.1
+ *
+ * @category PHP
+ * @package  Laravel
+ * @author   Dua <dua@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     http://laravel.me/
+ */
+
 namespace App\Models\shop;
 
 use App\Models\shop\Product;
@@ -8,18 +20,18 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
+/**
+ * This is Discount Class extends Model
+ *
+ * PHP version 8.1
+ *
+ * @category PHP
+ * @package  Laravel
+ * @author   Dua <dua@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     http://localhost/
+ */
 class Discount extends Model
 {
     use HasFactory;
-
-    public function productDiscount(): HasOne
-    {
-        return $this->hasOne(Product::class, 'discount_id', 'App\Models\Product');
-    }
-
-    public function orderDiscount(): HasOne
-    {
-        return $this
-                ->hasOne(OrderItem::class, 'discount_id', 'App\Models\Order_item');
-    }
 }

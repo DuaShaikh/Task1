@@ -2,7 +2,7 @@
 
 /**
  * Address service Doc Comment
- * 
+ *
  * PHP version 8.1
  *
  * @category PHP
@@ -19,7 +19,7 @@ use Illuminate\Http\Request;
 
     /**
      * This is a Address service class
-     * 
+     *
      * @category PHP
      * @package  Laravel
      * @author   Dua <dua@example.com>
@@ -30,12 +30,12 @@ class AddressService
 {
     /**
      * Create user address into address table
-     * 
-     * @param Illuminate\Http\Request $request passing requested data
-     * 
+     *
+     * @param $request passing data
+     *
      * @return Address
      */
-    function userAddress($request)
+    public function userAddress($request)
     {
         return Address::create($request->all());
     }

@@ -2,7 +2,7 @@
 
 /**
  * Controller Doc Comment
- * 
+ *
  * PHP version 8.1
  *
  * @category PHP
@@ -20,14 +20,14 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 
   /**
-     * This is Controller extends Basecontroller
-     * 
-     * @category PHP
-     * @package  Laravel
-     * @author   Dua <dua@example.com>
-     * @license  http://www.php.net/license/3_01.txt  PHP License 3.01
-     * @link     http://laravel.me/
-     */
+   * This is Controller extends Basecontroller
+   *
+   * @category PHP
+   * @package  Laravel
+   * @author   Dua <dua@example.com>
+   * @license  http://www.php.net/license/3_01.txt  PHP License 3.01
+   * @link     http://laravel.me/
+   */
 class Controller extends BaseController
 {
     use AuthorizesRequests;

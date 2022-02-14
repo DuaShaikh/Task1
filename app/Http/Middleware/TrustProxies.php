@@ -1,10 +1,33 @@
 <?php
 
+/**
+ * TrustProxies Middleware Doc Comment
+ *
+ * PHP version 8.1
+ *
+ * @category PHP
+ * @package  Laravel
+ * @author   Dua <dua@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     http://laravel.me/
+ */
+
 namespace App\Http\Middleware;
 
 use Illuminate\Http\Middleware\TrustProxies as Middleware;
 use Illuminate\Http\Request;
 
+/**
+ * TrustProxies class extends Middleware Doc Comment
+ *
+ * PHP version 8.1
+ *
+ * @category PHP
+ * @package  Laravel
+ * @author   Dua <dua@example.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     http://laravel.me/
+ */
 class TrustProxies extends Middleware
 {
     /**
@@ -19,7 +42,7 @@ class TrustProxies extends Middleware
      *
      * @var int
      */
-    protected $headers =
+    protected $headers  =
         Request::HEADER_X_FORWARDED_FOR |
         Request::HEADER_X_FORWARDED_HOST |
         Request::HEADER_X_FORWARDED_PORT |

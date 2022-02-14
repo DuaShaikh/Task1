@@ -2,7 +2,7 @@
 
 /**
  * User service Doc Comment
- * 
+ *
  * PHP version 8.1
  *
  * @category PHP
@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Hash;
 
     /**
      * This is a User service class
-     * 
+     *
      * @category PHP
      * @package  Laravel
      * @author   Dua <dua@example.com>
@@ -31,13 +31,13 @@ use Illuminate\Support\Facades\Hash;
 class UserService
 {
     /**
-     * Register authorized user 
-     * 
-     * @param Illuminate\Http\Request $request 
-     * 
+     * Register authorized user
+     *
+     * @param $request passing data
+     *
      * @return user
      */
-    function registerUser($request)
+    public function registerUser($request)
     {
         // return User::create($request->all());
         return User::create(
@@ -55,12 +55,12 @@ class UserService
 
     /**
      * Adding media id and address id
-     * 
-     * @param Illuminate\Http\Request $req passing requested data
-     * 
+     *
+     * @param $req passing data
+     *
      * @return User
      */
-    function updateUser($req)
+    public function updateUser($req)
     {
         $user = User::find($req["id"]);
 
@@ -71,23 +71,23 @@ class UserService
 
     /**
      * Get user details of logged in user
-     * 
+     *
      * @return User
      */
-    function getUserdetails()
+    public function getUserdetails()
     {
         $userID = auth()->user()->id;
 
         return User::where('id', $userID)->with('userAddress')->get();
     }
     /**
-     * Update all logged in user detail 
-     * 
-     * @param Illuminate\Http\Request $req passing requested data
-     * 
+     * Update all logged in user detail
+     *
+     * @param $req passing data
+     *
      * @return User
      */
-    function updateUserdetails($req)
+    public function updateUserdetails($req)
     {
         $user = auth()->user();
 
