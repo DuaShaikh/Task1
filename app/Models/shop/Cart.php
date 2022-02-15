@@ -17,6 +17,7 @@ namespace App\Models\shop;
 use App\Models\User;
 use App\Models\shop\Stock;
 use App\Models\shop\Product;
+use Database\Factories\CartFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -44,6 +45,16 @@ class Cart extends Model
     ];
 
     protected $guarded = ['token'];
+
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    protected static function newFactory()
+    {
+        return CartFactory::new();
+    }
 
     /**
      * Get the cartProduct associated with the Product

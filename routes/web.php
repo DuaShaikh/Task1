@@ -11,6 +11,7 @@ use App\Http\Controllers\shop\ProductController;
 use App\Http\Controllers\user\AddressController;
 use App\Http\Controllers\shop\CategoryController;
 use App\Http\Controllers\shop\OrderItemController;
+use App\Models\common\Media;
 
 Route::group(['namespace' => 'shop', 'middleware' => ['auth', 'role'], 'prefix' => 'admin/dashboard'], function () {
 

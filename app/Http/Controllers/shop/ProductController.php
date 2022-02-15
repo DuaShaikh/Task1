@@ -159,7 +159,7 @@ class ProductController extends Controller
      * @return \Illuminate\View\View
      */
     public function showAdminProducts($id)
-    {
+    { 
         $category = $this->categoryService->getCategories();
         $products = $this->productService->showProductsbyId($id);
 

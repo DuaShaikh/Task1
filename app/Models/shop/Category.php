@@ -15,6 +15,7 @@
 namespace App\Models\shop;
 
 use App\Models\common\Media;
+use Database\Factories\CategoryFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -41,6 +42,16 @@ class Category extends Model
 
     protected $guarded = ['token'];
 
+
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    protected static function newFactory()
+    {
+        return CategoryFactory::new();
+    }
 
     /**
      * Get the categoryMedia associated with the Media

@@ -14,6 +14,7 @@
 
 namespace App\Models\common;
 
+use Database\Factories\MediaFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -39,4 +40,15 @@ class Media extends Model
     ];
 
     protected $guarded = ['token'];
+
+       /**
+     * Create a new factory instance for the model.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    protected static function newFactory()
+    {
+        return MediaFactory::new();
+    }
+
 }

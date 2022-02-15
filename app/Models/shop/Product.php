@@ -17,6 +17,7 @@ namespace App\Models\shop;
 use App\Models\common\Media;
 use App\Models\shop\Category;
 use Illuminate\Database\Eloquent\Model;
+use Database\Factories\ProductFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
@@ -33,7 +34,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Product extends Model
 {
     use HasFactory;
-
+ 
     protected $fillable = [
        'pName',
        'description',
@@ -43,6 +44,15 @@ class Product extends Model
 
     protected $guarded = ['token'];
 
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    protected static function newFactory()
+    {
+        return ProductFactory::new();
+    }
 
     /**
      * Get the productMedia associated with the Meida

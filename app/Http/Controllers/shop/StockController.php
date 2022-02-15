@@ -65,4 +65,6 @@ class StockController extends Controller
 
         return view('admin.product-stock', compact('product'));
     }
+
+    
 }

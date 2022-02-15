@@ -20,10 +20,10 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('manufacturer_id')->nullable();
             $table->unsignedBigInteger('media_id')->nullable();
 
-            $table->string('pName')->nullable(false);
+            $table->string('pName')->nullable();
             $table->text('description')->nullable();
 
-            $table->decimal('productPrice', 10, 4)->nullable(false);
+            $table->decimal('productPrice', 10, 4)->nullable();
 
             $table->smallInteger('unitsInStock')->nullable();
             $table->smallInteger('unitsOnOrder')->nullable();

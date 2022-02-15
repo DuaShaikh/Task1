@@ -29,4 +29,15 @@ class AdminTest extends TestCase
           ->get('/admin/dashboard')
           ->assertOk();
     }
+
+    public function test_an_admin_can_access_home_page()
+    {
+        $admin = User::factory()->create([
+            'role' => 'admin'
+        ]);
+
+        $this->actingAs($admin)
+          ->get('/')
+          ->assertOk();
+    }
 }
