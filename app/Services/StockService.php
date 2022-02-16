@@ -64,14 +64,17 @@ class StockService
     public function decreaseStockQuantity($orders)
     {
         foreach ($orders as $order) {
+           
+            // dd($order['quantity']);
             $stock  = Stock::where(
                 [
-                            'product_id' => $order['product_id'],
-                            'size'       => $order['size']
-                        ]
+                    'product_id' => $order['product_id'],
+                    'size'       => $order['size']
+                ]
             )->first();
 
             $quantity = $stock['quantity'] - $order['quantity'];
+
             return $stock->update(['quantity' => $quantity]);
         }
     }

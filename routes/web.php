@@ -11,7 +11,7 @@ use App\Http\Controllers\shop\ProductController;
 use App\Http\Controllers\user\AddressController;
 use App\Http\Controllers\shop\CategoryController;
 use App\Http\Controllers\shop\OrderItemController;
-use App\Models\common\Media;
+
 
 Route::group(['namespace' => 'shop', 'middleware' => ['auth', 'role'], 'prefix' => 'admin/dashboard'], function () {
 
@@ -64,18 +64,17 @@ Route::group(['namespace' => 'user'], function () {
     Route::post('address', [AddressController::class, 'saveAddress']);
     Route::post('media', [MediaController::class, 'uploadImage']);
 });
+
 Route::group(['namespace' => 'common'], function () {
-
     Route::post('media', [MediaController::class, 'uploadImage']);
-    Route::post('admin/dashboard/product/add-product-media', [MediaController::class, 'postProductMedia']);
 });
 
-Route::get('/address', function () {
-    return view('user.address');
-});
-Route::get('/media', function () {
-    return view('common.media');
-});
+// Route::get('/address', function () {
+//     return view('user.address');
+// });
+// Route::get('/media', function () {
+//     return view('common.media');
+// });
 
 
 Route::group(['namespace' => 'shop'], function () {
@@ -90,6 +89,6 @@ Route::group(['namespace' => 'shop'], function () {
 });
 
 
-Route::get('/order-detail', function () {
-    return view('shop.order-detail');
-});
+// Route::get('/order-detail', function () {
+//     return view('shop.order-detail');
+// });

@@ -17,6 +17,7 @@ namespace App\Models\user;
 use App\Models\User;
 use App\Models\shop\Order;
 use App\Models\shop\Shipper;
+use Database\Factories\AddressFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -46,7 +47,15 @@ class Address extends Model
 
     protected $guarded = ['token'];
 
-
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    protected static function newFactory()
+    {
+        return AddressFactory::new();
+    }
 
     /**
      * Get the user associated with the Address

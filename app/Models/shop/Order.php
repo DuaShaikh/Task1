@@ -16,6 +16,7 @@ namespace App\Models\shop;
 
 use App\Models\User;
 use App\Models\shop\OrderItem;
+use Database\Factories\OrderFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -40,6 +41,15 @@ class Order extends Model
 
     protected $guarded = ['token'];
 
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    protected static function newFactory()
+    {
+        return OrderFactory::new();
+    }
 
     /**
      * Get the user order associated with the user

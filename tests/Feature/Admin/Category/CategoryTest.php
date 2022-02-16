@@ -38,26 +38,38 @@ class CategoryTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_admin_can_add_categories()
+    public function test_admin_can_add_categories_and_update()
     { 
         $admin = User::factory()->create([
             'role' => 'admin'
         ]);
-
-        $category = Category::factory()->create();
     
         $image = Str::random(length: 8) . '.jpg';
 
         $response = $this
             ->actingAs($admin)
             ->post('/admin/dashboard/category/add-category', [
-                'categoryName' => $category->categoryName,
+                'categoryName' => 'Men',
                 'photo'        => UploadedFile::fake()->image($image),
             ]
         );
        
         $response->assertStatus(302);
-        //  Storage::disk('public')->assertExists('product/' . $image);
+        
+        $category = Category::first();
+
+        $response = $this
+            ->actingAs($admin)
+            ->post('/admin/dashboard/category/add-category', [
+                'id'           => $category->id,
+                'media_id'     => $category->media_id,
+                'categoryName' => 'Women',
+                'photo'        => UploadedFile::fake()->image($image),
+            ]
+        );
+    
+        $response->assertStatus(302);
+    
     }
 
     public function test_admin_can_delete_category()

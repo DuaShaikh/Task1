@@ -15,6 +15,7 @@
 namespace App\Models\shop;
 
 use App\Models\shop\Product;
+use Database\Factories\StockFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -41,6 +42,15 @@ class Stock extends Model
 
     protected $guarded = ['token'];
 
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    protected static function newFactory()
+    {
+        return StockFactory::new();
+    }
 
     /**
      * Get the inStock availability associated with the Product

@@ -67,6 +67,7 @@ class OrderController extends Controller
      */
     public function postOrder(Request $request)
     {
+        // dd($request->all());
         $users = $this->userService->updateUserdetails($request);
         $orders = $this->orderService->order($request);
         $carts  = $this->cartService->getUpdateCarts();

@@ -16,6 +16,7 @@ namespace App\Models\shop;
 
 use App\Models\shop\Product;
 use Illuminate\Database\Eloquent\Model;
+use Database\Factories\OrderItemFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
@@ -44,6 +45,15 @@ class OrderItem extends Model
 
     protected $guarded = ['token'];
 
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    protected static function newFactory()
+    {
+        return OrderItemFactory::new();
+    }
 
     /**
      * Get the orderProduct associated with the product

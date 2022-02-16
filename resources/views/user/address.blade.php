@@ -18,7 +18,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         @csrf
-                                        <input type="hidden" value="{{$users->id}}" name="user_id">
+                                        <input type="hidden" value = "{{$users->id}}" name = "user_id">
                                         <input type="text" class="form-control @error('address') is-invalid @enderror"  placeholder="Address" name="address" value="{{old('address')}}" />
                                         @error('address')<span class="invalid-feedback" role="alert" style="color:red"><strong>{{ $message }}</strong></span>@enderror
                                     </div>

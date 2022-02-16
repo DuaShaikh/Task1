@@ -27,7 +27,7 @@
 					@if(auth()->check())
 					@foreach ($carts as $key => $cart)
 					<tbody>
-						<input type="hidden" value="{{$cart->user_id}}">
+						<input type="hidden" name = "user_id" value="{{$cart->user_id}}" >
 							<tr>
 								<td data-th="Product">
 									<div class="container">
@@ -42,7 +42,8 @@
 								</td>
 								<td data-th="Price">{{$cart->cartProduct->productPrice}}</td>
 								<td data-th="Quantity">
-									<input type="number" class="form-control text-center" name="cart[{{$key}}][quantity]" value="{{$cart->quantity}}">
+									<input type="number" class="form-control text-center" name="cart[{{$key}}][quantity]" 
+									    value="{{$cart->quantity}}"  minlength="1" maxlength="10" min='1'>
 									<input type="hidden" class="form-control text-center" name="cart[{{$key}}][product_id]" value="{{$cart->product_id}}">
 								</td>
 								<td>

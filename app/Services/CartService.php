@@ -49,8 +49,7 @@ class CartService
         } elseif (auth()->check()) {
             $req->merge(
                 [
-                "user_id" => auth()->user()->id,
-                // "stock_id"=> $stocks->id
+                    "user_id" => auth()->user()->id,
                 ]
             );
             $stocks = Stock::where(

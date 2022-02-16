@@ -46,13 +46,11 @@ class ProductTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_admin_can_add_products()
+    public function test_admin_can_add_products_and_update()
     { 
         $admin = User::factory()->create([
             'role' => 'admin'
         ]);
-
-        $product = Product::factory()->create();
 
         for($i = 0; $i < 5; $i++) {
             Category::factory()->create();
@@ -66,15 +64,32 @@ class ProductTest extends TestCase
         $response = $this
             ->actingAs($admin)
             ->post('/admin/dashboard/product/add-product', [
-                'pName'        => $product->pName,
-                'description'  => $product->description,
-                'productPrice' => $product->productPrice,
+                'pName'        => 'Shirt',
+                'description'  => 'Shirt Descriotion',
+                'productPrice' => '700',
                 'photo'        => UploadedFile::fake()->image($image),
                 'category_id'  => $categoryIds,
             ]
-        );
-       
-        $response->assertStatus(200);
+        )->assertStatus(200);
+
+        $product = Product::first();
+
+        /*------ UPDATE ADMIN PRODUCTS------*/
+        
+        $response = $this
+            ->actingAs($admin)
+            ->post('/admin/dashboard/product/show-product/edit-product', [
+                'id'           => $product->id, 
+                'pName'        => 'Shirt',
+                'description'  => 'Shirt Descriotion updated',
+                'productPrice' => '700',
+                'media_id'     => $product->media_id,
+                'photo'        => UploadedFile::fake()->image($image),
+                'category_id'  => $categoryIds,
+            ])
+            ->assertStatus(302);
+
+
         //  Storage::disk('public')->assertExists('product/' . $image);
     }
 
@@ -103,19 +118,6 @@ class ProductTest extends TestCase
         $this->actingAs($admin)
             ->get("admin/dashboard/product/show-product/" . $product->id)
             ->assertOk();
+
     }
-
-    // public function test_an_admin_can_edit_product()
-    // { 
-    //     $admin = User::factory()->create([
-    //         'role' => 'admin'
-    //     ]);
-
-    //     $product = Product::factory()->create();
-
-    //     $response = $this
-    //         ->actingAs($admin)
-    //         ->post('/admin/dashboard/product/show-product/edit-product', $product)
-    //         ->assertStatus(200);
-    // }
 }

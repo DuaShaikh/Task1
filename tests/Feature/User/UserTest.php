@@ -5,8 +5,11 @@ namespace Tests\Feature\User;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\shop\Cart;
+use App\Models\shop\Order;
+use App\Models\shop\Stock;
 use App\Models\common\Media;
 use App\Models\shop\Product;
+use App\Models\user\Address;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -51,37 +54,23 @@ class UserTest extends TestCase
           ->assertOk();
     }
 
-    public function test_view_product_page_can_be_rendered()
-    {
-        $product = Product::factory()->create();
+    // public function test_user_can_edit_their_basic_details_and_shipping_address()
+    // {
+    //     $user  = User::factory()->create();
+    //     $user->first();
+        
+    //     $address = Address::factory()->create();
+    //     $address->first();
+        
+    //     $order = Order::factory()->create();
 
-        $this->get('view-product/' . $product->id)
-            ->assertOk();
-    }
+    //     // $cart  = Cart::factory()->create();
 
-    public function test_product_cannot_be_add_to_cart_if_user_is_not_logged_in()
-    {
-       $cart = Cart::factory()->create();
-
-        $this->post('view-product/add-to-cart', [
-            'quantity' => $cart->quantity,
-            'size'     => $cart->size,
-        ])
-            ->assertOk();
-    }
-
-    public function test_product_can_be_add_to_cart_if_user_is_logged_in()
-    {
-        $user = User::factory()->create();
-
-        $cart = Cart::factory()->create();
-       
-        $this ->actingAs($user)
-            ->post('view-product/add-to-cart', [
-            'user_id'  => $user->id,
-            'quantity' => $cart->quantity,
-            'size'     => $cart->size,
-        ])
-            ->assertOk();
-    }
+    //     $this->actingAs($user)
+    //         ->post('update-detail', [
+    //             'user_id'    => $user->id,
+    //             'address_id' => $address->id,
+    //         ])
+    //         ->assertStatus(200);
+    // }
 }

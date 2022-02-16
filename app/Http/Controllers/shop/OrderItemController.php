@@ -74,6 +74,7 @@ class OrderItemController extends Controller
      */
     public function orderItem(Request $request, $id)
     {
+        // ddd($request->all());
         $order_items = $this->orderItemService->orderItems($request);
         $orders      = $this->orderItemService->getOrderItems($id);
         $stocks      = $this->stockService->decreaseStockQuantity($orders);

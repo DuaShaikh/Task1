@@ -40,7 +40,7 @@ class Cart extends Model
         'product_id',
         'quantity',
         'user_id',
-        'stock_id',
+        // 'stock_id',
         'size',
     ];
 

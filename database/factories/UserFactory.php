@@ -2,8 +2,9 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use App\Models\user\Address;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class UserFactory extends Factory
 {
@@ -14,10 +15,15 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $address = Address::factory()->create();
+
         return [
-            'fullName' => $this->faker->name(),
-            'email' => $this->faker->unique()->safeEmail(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'fullName'   => $this->faker->name(),
+            'email'      => $this->faker->unique()->safeEmail(),
+            'password'   => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'phone'      => $this->faker->phoneNumber(),
+            'gender'     => 'M',
+            'address_id' => $address->id,
         ];
     }
 
