@@ -14,9 +14,9 @@
 
 namespace App\Services;
 
-use App\Models\common\Media;
+use App\Models\Common\Media;
 use Illuminate\Http\Request;
-use App\Models\shop\Category;
+use App\Models\Shop\Category;
 use Illuminate\Support\Facades\Storage;
 
     /**
@@ -70,7 +70,6 @@ class CategoryService
                'media_id' => $media->id,
             ]
         );
-
         return Category::create($req->all());
     }
     /**

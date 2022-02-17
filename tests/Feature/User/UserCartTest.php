@@ -4,7 +4,6 @@ namespace Tests\Feature\User;
 
 use Tests\TestCase;
 use App\Models\User;
-use App\Models\shop\Cart;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -29,7 +28,6 @@ class UserCartTest extends TestCase
                 'product_id'    => '1',
                 'quantity'      => '2',
                 'size'          => 'M',
-            ])
-            ->assertStatus(200);
+            ])->assertStatus(200);
     }
 }

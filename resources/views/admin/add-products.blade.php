@@ -20,15 +20,14 @@
     </div>
     @push('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
         {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script> --}}
-        <script>
-            $(document).ready(function() {
-                $('#categories').select2({
-                    placeholder: 'Select an option '
-                });
+    <script>
+        $(document).ready(function() {
+            $('#categories').select2({
+                placeholder: 'Select an option '
             });
-        </script>
+        });
+    </script>
     @endpush
-
 </x-app-layout>

@@ -14,8 +14,8 @@
 
 namespace App\Services;
 
-use App\Models\shop\Cart;
-use App\Models\shop\Stock;
+use App\Models\Shop\Cart;
+use App\Models\Shop\Stock;
 use Illuminate\Http\Request;
 
     /**
@@ -75,7 +75,7 @@ class CartService
      */
     public function viewCartItems()
     {
-        return auth()->user()->cart()->with(['cartProduct.productMedia'])->get() ?? [];
+        return auth()?->user()?->cart()?->with(['cartProduct.productMedia'])->get();
     }
     /**
      * Authorized user can delete their cart items
@@ -101,6 +101,7 @@ class CartService
         $data = $req->cart;
         data_set($data, "*.user_id", auth()->user()->id);
         auth()->user()->cart()->delete();
+
         return Cart::insert($data);
     }
     /**

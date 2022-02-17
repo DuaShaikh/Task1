@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Stock Model Comment
+ * Product Model Comment
  *
  * PHP version 8.1
  *
@@ -12,15 +12,16 @@
  * @link     http://laravel.me/
  */
 
-namespace App\Models\shop;
+namespace App\Models\Shop;
 
-use App\Models\shop\Product;
-use Database\Factories\StockFactory;
+use App\Models\Common\Media;
+use App\Models\Shop\Category;
 use Illuminate\Database\Eloquent\Model;
+use Database\Factories\ProductFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
- * This is Stock Class extends Model
+ * This is Product Class extends Model
  *
  * PHP version 8.1
  *
@@ -30,14 +31,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @license  https://opensource.org/licenses/MIT MIT License
  * @link     http://localhost/
  */
-class Stock extends Model
+class Product extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'product_id',
-        'quantity',
-        'size',
+       'pName',
+       'description',
+       'productPrice',
+       'media_id',
     ];
 
     protected $guarded = ['token'];
@@ -49,16 +51,26 @@ class Stock extends Model
      */
     protected static function newFactory()
     {
-        return StockFactory::new();
+        return ProductFactory::new();
     }
 
     /**
-     * Get the inStock availability associated with the Product
+     * Get the productMedia associated with the Meida
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function inStock()
+    public function productMedia()
     {
-        return $this->hasMany(Product::class);
+        return $this->hasOne(Media::class, 'id', 'media_id');
+    }
+
+    /**
+     * Get the product category associated with the Category
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function category()
+    {
+        return $this->belongsToMany(Category::class, 'product_categories');
     }
 }

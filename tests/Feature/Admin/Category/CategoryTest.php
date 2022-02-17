@@ -5,7 +5,7 @@ namespace Tests\Feature\Admin\Category;
 use Tests\TestCase;
 use App\Models\User;
 use Illuminate\Support\Str;
-use App\Models\shop\Category;
+use App\Models\Shop\Category;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -56,6 +56,8 @@ class CategoryTest extends TestCase
        
         $response->assertStatus(302);
         
+        /*------ UPDATE ADMIN CATEGORIES------*/
+
         $category = Category::first();
 
         $response = $this
@@ -69,7 +71,6 @@ class CategoryTest extends TestCase
         );
     
         $response->assertStatus(302);
-    
     }
 
     public function test_admin_can_delete_category()

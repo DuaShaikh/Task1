@@ -12,7 +12,7 @@
  * @link     http://laravel.me/
  */
 
-namespace App\Models\common;
+namespace App\Models\Common;
 
 use Database\Factories\MediaFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -41,7 +41,7 @@ class Media extends Model
 
     protected $guarded = ['token'];
 
-       /**
+    /**
      * Create a new factory instance for the model.
      *
      * @return \Illuminate\Database\Eloquent\Factories\Factory
@@ -50,5 +50,4 @@ class Media extends Model
     {
         return MediaFactory::new();
     }
-
 }

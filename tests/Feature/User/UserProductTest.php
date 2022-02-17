@@ -4,9 +4,9 @@ namespace Tests\Feature\User\Product;
 
 use Tests\TestCase;
 use App\Models\User;
-use App\Models\shop\Cart;
-use App\Models\shop\Stock;
-use App\Models\shop\Product;
+use App\Models\Shop\Cart;
+use App\Models\Shop\Stock;
+use App\Models\Shop\Product;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -25,8 +25,8 @@ class UserProductTest extends TestCase
         $this->post('view-product/add-to-cart', [
             'quantity' => '2',
             'size'     => 'S',
-        ])
-            ->assertStatus(302);
+        ])->assertStatus(302);
+            
     }
 
     public function test_product_can_be_add_to_cart_if_user_is_logged_in()
@@ -40,9 +40,8 @@ class UserProductTest extends TestCase
                 'user_id'       => $user->id,
                 'quantity'      => '2',
                 'size'          => 'S',
-                'stockQuantity' => $stock->quantity
-            ])
-            ->assertOk();
+            ])->assertOk();
+            
     }
 
     public function test_product_can_be_delete_from_cart_if_user_is_logged_in()

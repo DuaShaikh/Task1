@@ -20,7 +20,6 @@
                                             name="fullName" value="{{$user->fullName}}" 
                                             required><br>
                                             @error('fullName')<span class="invalid-feedback" role="alert" style="color:red"><strong>{{ $message }}</strong></span>@enderror
-
                                         </div>
                                         <div class="col-md-12">
                                             <label for="inputCity" class="form-label">Phone Number</label>
@@ -48,35 +47,30 @@
                                     <hr>
                                         <div class="col-md-12">
                                             <label for="inputAddress" class="form-label">Address</label>
-                                            <input type="hidden" value={{$user->userAddress->id}} name = "id" >
+                                            <input type="hidden" value={{$user->userAddress->id}} name = "id">
                                             <input type="text" class="form-control"  name="address" value="{{$user->userAddress->address}}" required><br>
                                             @error('address')<span class="invalid-feedback" role="alert" style="color:red"><strong>{{ $message }}</strong></span>@enderror
-
                                         </div>
                                         <div class="col-md-12">
                                             <label for="inputCountry" class="form-label">Country</label>
                                             <input type="text" class="form-control" name="country" value="{{$user->userAddress->country}}" required><br>
                                             @error('country')<span class="invalid-feedback" role="alert" style="color:red"><strong>{{ $message }}</strong></span>@enderror
-
                                         </div>
                                         <div class="col-md-12">
                                             <label for="inputCity" class="form-label">City</label>
                                             <input type="text" class="form-control" name="city" value="{{$user->userAddress->city}}" required><br>
                                             @error('city')<span class="invalid-feedback" role="alert" style="color:red"><strong>{{ $message }}</strong></span>@enderror
-
                                         </div>
                                         <div class="col-md-12">
                                             <label for="inputCity" class="form-label">Region</label>
                                             <input type="text" class="form-control"  name="region" value="{{$user->userAddress->region}}" required><br>
                                             @error('region')<span class="invalid-feedback" role="alert" style="color:red"><strong>{{ $message }}</strong></span>@enderror
-
                                         </div>
                                             
                                         <div class="col-md-12">
                                             <label for="inputZip" class="form-label">Postal Code</label>
                                             <input type="text" class="form-control"  name="postalCode" value="{{$user->userAddress->postalCode}}" required><br>
                                             @error('postalCode')<span class="invalid-feedback" role="alert" style="color:red"><strong>{{ $message }}</strong></span>@enderror
-
                                         </div> 
                                         <div class="col-md-4 mt-5">
                                             <input type="submit" class="btn btn-primary btn-block " value="Next">

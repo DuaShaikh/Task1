@@ -5,7 +5,7 @@
 body{
   font-family: 'Mukta', sans-serif;
 	height:100vh;
-	/* min-height:550px; */
+	min-height:550px;
 	background-repeat: no-repeat;
 	background-size:cover;
 	background-position:center;
@@ -17,8 +17,8 @@ a{
   color:#444444;
 }
 .login-reg-panel{
-    position: relative;
-    top: -30% !important;
+    position: absolute;
+    top: 60% !important;
     transform: translateY(-50%);
 	text-align:center;
     width:70%;
@@ -71,16 +71,16 @@ a{
 
 .login-info-box{
     width:30%;
-    padding:0 50px;
-    top:20%;
+    /* padding:0 50px;
+    top:20%; */
     left:0;
     position:absolute;
     text-align:left;
 }
 .register-info-box{
     width:30%;
-    padding:0 50px;
-    top:12%;
+    /* padding:0 50px;
+    top:12%; */
     right:0;
     position:absolute;
     text-align:left;
@@ -597,14 +597,15 @@ a{
     width: 700px !important;
     border-radius: 50px !important;
 }
-.page-footer{
+
+.page-footer {
     background-color: rgb(196, 196, 196) !important; 
-    display:flex; 
-    float:left; 
+    /* display:flex; 
+    float:left;  */
     width: 100%; 
     justify-content: space-between; 
-    height: auto; 
-    padding-top: 10px;
+    height: 10% !important; 
+    padding-top: 12px;
     margin-top:30px;
 }
 
@@ -614,12 +615,12 @@ a{
     }
 } */
 
-.home:hover{
+.home:hover {
     background-color: rgb(41, 83, 173);
     border-radius: 10px;
 }
 
-.page-container{
+.page-container {
     position: relative;
-    min-height: 68.7vh;
+    min-height: 75% !important;
 }

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Shipper Model Comment
+ * Discount Model Comment
  *
  * PHP version 8.1
  *
@@ -12,13 +12,16 @@
  * @link     http://laravel.me/
  */
 
-namespace App\Models\shop;
+namespace App\Models\Shop;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\shop\Product;
+use App\Models\shop\OrderItem;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
- * This is Shipper Class extends Model
+ * This is Discount Class extends Model
  *
  * PHP version 8.1
  *
@@ -28,17 +31,7 @@ use Illuminate\Database\Eloquent\Model;
  * @license  https://opensource.org/licenses/MIT MIT License
  * @link     http://localhost/
  */
-class Shipper extends Model
+class Discount extends Model
 {
     use HasFactory;
-
-    /**
-     * Get the OrderShipper associated with the Shipper
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function orderShipper()
-    {
-        return $this->hasOne(Order::class, 'shipper_id', 'App\Models\Shipper');
-    }
 }

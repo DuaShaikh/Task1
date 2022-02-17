@@ -12,16 +12,13 @@
  * @link     http://laravel.me/
  */
 
-namespace App\Http\Controllers\user;
+namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
-use App\Services\CartService;
 use App\Services\UserService;
-use App\Services\OrderService;
 use App\Services\AddressService;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\user\UserRequest;
-use App\Http\Requests\user\AddressRequest;
+use App\Http\Requests\User\AddressRequest;
 
 /**
  * Address Controller extends controller  Doc Comment

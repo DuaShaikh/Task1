@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Order Model Comment
+ * Cart Model Comment
  *
  * PHP version 8.1
  *
@@ -12,16 +12,17 @@
  * @link     http://laravel.me/
  */
 
-namespace App\Models\shop;
+namespace App\Models\Shop;
 
 use App\Models\User;
-use App\Models\shop\OrderItem;
-use Database\Factories\OrderFactory;
+use App\Models\Shop\Stock;
+use App\Models\Shop\Product;
+use Database\Factories\CartFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
- * This is Order Class extends Model
+ * This is Cart Class extends Model
  *
  * PHP version 8.1
  *
@@ -31,12 +32,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @license  https://opensource.org/licenses/MIT MIT License
  * @link     http://localhost/
  */
-class Order extends Model
+class Cart extends Model
 {
     use HasFactory;
 
     protected $fillable = [
+        'product_id',
+        'quantity',
         'user_id',
+        // 'stock_id',
+        'size',
     ];
 
     protected $guarded = ['token'];
@@ -48,26 +53,36 @@ class Order extends Model
      */
     protected static function newFactory()
     {
-        return OrderFactory::new();
+        return CartFactory::new();
     }
 
     /**
-     * Get the user order associated with the user
+     * Get the cartProduct associated with the Product
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function userOrder()
+    public function cartProduct()
     {
-        return $this->hasOne(User::class, 'id', 'user_id');
+        return $this->hasOne(Product::class, 'id', 'product_id');
     }
 
     /**
-     * Get the items associated with the order item
+     * Get the cartUser associated with the User
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function items()
+    public function cartUser()
     {
-        return $this->hasMany(OrderItem::class);
+        return $this->belongsTo(User::class, 'id', 'user_id');
+    }
+
+    /**
+     * Get the cartStock associated with the Stock
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function cartStock()
+    {
+        return $this->hasOne(Stock::class, 'id', 'stock_id');
     }
 }

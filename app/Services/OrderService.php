@@ -15,7 +15,7 @@
 namespace App\Services;
 
 use App\Models\User;
-use App\Models\shop\Order;
+use App\Models\Shop\Order;
 use Illuminate\Http\Request;
 
     /**

@@ -12,7 +12,7 @@
  * @link     http://laravel.me/
  */
 
-namespace App\Http\Controllers\shop;
+namespace App\Http\Controllers\Shop;
 
 use App\Services\Service;
 use Illuminate\Http\Request;
@@ -74,7 +74,6 @@ class OrderItemController extends Controller
      */
     public function orderItem(Request $request, $id)
     {
-        // ddd($request->all());
         $order_items = $this->orderItemService->orderItems($request);
         $orders      = $this->orderItemService->getOrderItems($id);
         $stocks      = $this->stockService->decreaseStockQuantity($orders);

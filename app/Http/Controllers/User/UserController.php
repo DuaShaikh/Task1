@@ -12,14 +12,14 @@
  * @link     http://laravel.me/
  */
 
-namespace App\Http\Controllers\user;
+namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Services\UserService;
 use App\Services\OrderItemService;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\user\UserRequest;
-use App\Http\Requests\user\AddressRequest;
+use App\Http\Requests\User\UserRequest;
+use App\Http\Requests\User\AddressRequest;
 
     /**
      * This is UserController extends controller

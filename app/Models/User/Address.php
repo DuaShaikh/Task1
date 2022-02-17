@@ -12,11 +12,9 @@
  * @link     http://laravel.me/
  */
 
-namespace App\Models\user;
+namespace App\Models\User;
 
 use App\Models\User;
-use App\Models\shop\Order;
-use App\Models\shop\Shipper;
 use Database\Factories\AddressFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;

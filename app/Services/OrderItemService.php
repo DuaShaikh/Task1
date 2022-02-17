@@ -14,9 +14,8 @@
 
 namespace App\Services;
 
-use App\Models\shop\Order;
 use Illuminate\Http\Request;
-use App\Models\shop\OrderItem;
+use App\Models\Shop\OrderItem;
 
     /**
      * This is a Order item service class

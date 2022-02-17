@@ -12,7 +12,7 @@
  * @link     http://laravel.me/
  */
 
-namespace App\Http\Controllers\shop;
+namespace App\Http\Controllers\Shop;
 
 use Illuminate\Http\Request;
 use App\Services\StockService;
@@ -83,6 +83,7 @@ class ProductController extends Controller
     {
         $products = $this->productService->getProductsbyId($id);
         $stocks = $this->stockService->getStockAvailable($products);
+
         return view('shop.view-product', compact('products', 'stocks'));
     }
 
@@ -95,6 +96,7 @@ class ProductController extends Controller
     public function getAdminProducts()
     {
         $products = $this->productService->getProducts();
+
         return view('admin.product', compact('products'));
     }
 
@@ -108,6 +110,7 @@ class ProductController extends Controller
     public function showAdminCategory()
     {
         $category = $this->categoryService->getCategories();
+
         return view('admin.add-products', compact('category'));
     }
 
@@ -129,7 +132,7 @@ class ProductController extends Controller
 
         $product = $products->id;
 
-        return view('admin.product-stock', compact('product'));
+        return view('admin.product-stock-register', compact('product'));
     }
 
     /**
@@ -144,6 +147,7 @@ class ProductController extends Controller
     {
         $products = $this->productService->deleteProducts($id);
         session()->flash('status', 'Product Deleted successfully!');
+
         return redirect('admin/dashboard/product');
     }
 
@@ -159,7 +163,7 @@ class ProductController extends Controller
      * @return \Illuminate\View\View
      */
     public function showAdminProducts($id)
-    { 
+    {
         $category = $this->categoryService->getCategories();
         $products = $this->productService->showProductsbyId($id);
 
@@ -178,7 +182,10 @@ class ProductController extends Controller
     {
         $media = $this->mediaService->editProductMedia($req);
         $products = $this->productService->editProductsbyId($req);
+        $product = $products->id;
+        $stock = $this->stockService->showProductStockById($product);
         session()->flash('status', 'Product Updated successfully!');
-        return redirect('admin/dashboard/product');
+
+        return view('admin.product-stock-update', compact('product', 'stock'));
     }
 }

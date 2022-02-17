@@ -1,10 +1,11 @@
-
 <div class="container categoryCard" >
     <div class="row mb-3">
         <label for="inputName3" class="col-sm-2 col-form-label">Category Name *</label>
         <div class="col-sm-10">
             <input type="hidden" value="{{old('',isset($category) ? $category->categoryMedia->id : '') }}" name="media_id" />
+
             <input type="hidden" value="{{old('',isset($category) ? $category->id : '') }}" name="id" />
+
             <input type="text" class="form-control @error('categoryName') is-invalid @enderror" name="categoryName" 
             value="{{ old('categoryName', isset($category) ? $category->categoryName : '') }}" />
             @error('categoryName')<span class="invalid-feedback" role="alert" style="color:red"><strong>{{ $message }}</strong></span>@enderror
@@ -29,7 +30,8 @@
     <div class="row mb-3">
         <label for="inputPrice3" class="col-sm-2 col-form-label">Upload Image</label>
         <div class="col-sm-10">
-            <input type="file" class="form-control @error('photo') is-invalid @enderror" name="photo">
+            <input type="file" class="form-control @error('photo') is-invalid @enderror" name="photo" 
+            value="{{old('',isset($category) ? $category->categoryMedia->imageName : '') }}">
             @error('photo')<span class="invalid-feedback" role="alert" style="color:red"><strong>{{ $message }}</strong></span>@enderror
         </div>
     </div>

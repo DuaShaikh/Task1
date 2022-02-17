@@ -14,7 +14,7 @@
 
 namespace App\Services;
 
-use App\Models\user\Address;
+use App\Models\User\Address;
 use Illuminate\Http\Request;
 
     /**

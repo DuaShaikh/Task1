@@ -16,7 +16,7 @@ namespace App\Services;
 
 use Illuminate\Http\File;
 use Illuminate\Http\Request;
-use App\Models\common\Media;
+use App\Models\Common\Media;
 use Illuminate\Support\Facades\Storage;
 
     /**
@@ -109,7 +109,8 @@ class MediaService
             ]
         );
         $media = Media::find($req->media_id);
-        $media->update($req->except('_token'));
+
+        return $media->update($req->except('_token'));
     }
 
     /**
@@ -162,6 +163,7 @@ class MediaService
             ]
         );
         $media = Media::find($req->media_id);
-        $media->update($req->all());
+
+        return $media->update($req->all());
     }
 }

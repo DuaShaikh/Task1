@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Models\shop\Cart;
+use App\Models\Shop\Cart;
 use Illuminate\Support\Str;
-use App\Models\shop\Product;
+use App\Models\Shop\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CartFactory extends Factory
@@ -22,7 +22,7 @@ class CartFactory extends Factory
         return [
             'product_id' => $product->id,
             'quantity'   => $this->faker->randomDigit(),
-            'size'       => $this->faker->numerify('S',' M', 'L'),
+            'size'       => $this->faker->numerify('S', 'M', 'L'),
         ];
     }
 }

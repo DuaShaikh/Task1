@@ -24,6 +24,7 @@
             @error('description')<span class="invalid-feedback" role="alert" style="color:red"><strong>{{ $message }}</strong></span>@enderror
         </div>
     </div>
+
     <div class="row mb-3">
         <label for="inputPrice" class="col-sm-2 col-form-label">
             Price
@@ -38,7 +39,7 @@
     </div>
      
     <div class="row mb-3">
-        <label for="inputPrice" class="col-sm-2 col-form-label">
+        <label for="inputCategory" class="col-sm-2 col-form-label">
             Category Name
         </label>
         <div class="col-sm-10">
@@ -61,12 +62,12 @@
     </div>
      
     <div class="row mb-3">
-        <label for="inputPrice3" class="col-sm-2 col-form-label">
+        <label for="inputPhoto" class="col-sm-2 col-form-label">
             Upload Image
         </label>
         <div class="col-sm-10">
-            <input type="file" class="form-control @error('photo') is-invalid @enderror" name="photo"
-            value="{{ old('photo', isset($products) ? $products->productMedia->url : '') }}" />
+            <input type="file" class="form-control @error('photo') is-invalid @enderror" name = "photo" 
+            value="{{ old('photo', isset($products) ? $products->productMedia->imageName : '') }}" />            
             @error('photo')<span class="invalid-feedback" role="alert" style="color:red"><strong>{{ $message }}</strong></span>@enderror
         </div>
     </div>

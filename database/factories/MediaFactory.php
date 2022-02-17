@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Support\Str;
-use App\Models\common\Media;
+use App\Models\Common\Media;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -23,13 +23,12 @@ class MediaFactory extends Factory
         $url  = Storage::disk('public')->put(
             'product',
             $file
-        );      
+        );
 
         return [
             'url'       => $url,
             'imageName' => $name,
             'imageType' => 'jpg',
-
         ];
     }
 }

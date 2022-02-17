@@ -5,11 +5,9 @@ namespace Tests\Feature\Admin\Product;
 use Tests\TestCase;
 use App\Models\User;
 use Illuminate\Support\Str;
-use App\Models\common\Media;
-use App\Models\shop\Category;
-use App\Models\shop\Product;
+use App\Models\Shop\Product;
+use App\Models\Shop\Category;
 use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\WithFaker;
 
 class ProductTest extends TestCase
@@ -46,18 +44,16 @@ class ProductTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_admin_can_add_products_and_update()
+    public function test_admin_can_add_products_and_product_stock_and_update()
     { 
         $admin = User::factory()->create([
             'role' => 'admin'
         ]);
-
+    
         for($i = 0; $i < 5; $i++) {
             Category::factory()->create();
         }
         $categoryIds = Category::all()->pluck('id')->values();
-    
-        // Storage::fake('public');
 
         $image = Str::random(length: 8) . '.jpg';
 
@@ -74,11 +70,20 @@ class ProductTest extends TestCase
 
         $product = Product::first();
 
-        /*------ UPDATE ADMIN PRODUCTS------*/
-        
         $response = $this
             ->actingAs($admin)
-            ->post('/admin/dashboard/product/show-product/edit-product', [
+            ->post('/admin/dashboard/product/stocks', [
+                'id'       => $product->id, 
+                'quantity' => '20',
+                'size'     => 'S' 
+            ]
+        )->assertStatus(200);
+
+        /*------ UPDATE ADMIN PRODUCTS------*/
+
+        $response = $this
+            ->actingAs($admin)
+            ->post('/admin/dashboard/product/show-product/' . $product->id . '/edit-product', [
                 'id'           => $product->id, 
                 'pName'        => 'Shirt',
                 'description'  => 'Shirt Descriotion updated',
@@ -87,10 +92,16 @@ class ProductTest extends TestCase
                 'photo'        => UploadedFile::fake()->image($image),
                 'category_id'  => $categoryIds,
             ])
-            ->assertStatus(302);
+            ->assertStatus(200);
 
-
-        //  Storage::disk('public')->assertExists('product/' . $image);
+            $response = $this
+            ->actingAs($admin)
+            ->post('/admin/dashboard/product/show-product/' . $product->id . '/stock-update', [
+                'id'       => $product->id, 
+                'quantity' => '25',
+                'size'     => 'S' 
+            ])
+            ->assertStatus(200);
     }
 
     public function test_admin_can_delete_product()

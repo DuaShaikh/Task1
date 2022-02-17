@@ -14,7 +14,7 @@
 
 namespace App\Services;
 
-use App\Models\shop\Stock;
+use App\Models\Shop\Stock;
 use Illuminate\Http\Request;
 
     /**
@@ -51,7 +51,53 @@ class StockService
      */
     public function addProductStock($req)
     {
-        return Stock::create($req->all());
+        $data = Stock::where(
+            [
+                'product_id' => $req->product_id, 'size' => $req->size
+            ]
+        )->count();
+
+        if (auth()->check() && $data > 0) {
+            return redirect()
+                ->back()
+                ->with('product', 'Product Stock Already Exist');
+        } elseif (auth()->check() && $data == 0) {
+            return Stock::create($req->all())
+                ->with('product', 'Product Stock Added Successfully');
+        }
+    }
+
+    /**
+     * Edit product stock by product id and size
+     *
+     * @param $req passing data
+     *
+     * @return Stock
+     */
+    public function editProductStock($req)
+    {
+        $data = $req->inStock;
+        dd($data);
+        // data_set($data, "*.user_id", auth()->user()->id);
+        $stock = Stock::where(
+                'product_id', $data->product_id,
+                // 'size'       => $data->size
+
+        );
+
+        return $stock->update($data);
+    }
+
+    /**
+     * Show product stock by product id
+     *
+     * @param int $id passing data
+     *
+     * @return Stock
+     */
+    public function showProductStockById($id)
+    {
+        return Stock::where('product_id', $id)->get();
     }
 
     /**
@@ -64,15 +110,12 @@ class StockService
     public function decreaseStockQuantity($orders)
     {
         foreach ($orders as $order) {
-           
-            // dd($order['quantity']);
             $stock  = Stock::where(
                 [
                     'product_id' => $order['product_id'],
                     'size'       => $order['size']
                 ]
             )->first();
-
             $quantity = $stock['quantity'] - $order['quantity'];
 
             return $stock->update(['quantity' => $quantity]);

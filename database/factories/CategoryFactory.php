@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\common\Media;
-use App\Models\shop\Category;
+use App\Models\Shop\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CategoryFactory extends Factory
@@ -21,7 +21,7 @@ class CategoryFactory extends Factory
         return [
             'categoryName' => $this->faker->name(),
             'media_id'     => $media->id,
-            // 'parent_id'    => 
+            // 'parent_id'    =>
         ];
     }
 }

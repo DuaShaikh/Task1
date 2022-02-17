@@ -12,9 +12,9 @@
  * @link     http://laravel.me/
  */
 
-namespace App\Models\shop;
+namespace App\Models\Shop;
 
-use App\Models\common\Media;
+use App\Models\Common\Media;
 use Database\Factories\CategoryFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

@@ -12,9 +12,9 @@
  * @link     http://laravel.me/
  */
 
-namespace App\Models\shop;
+namespace App\Models\Shop;
 
-use App\Models\shop\Product;
+use App\Models\Shop\Product;
 use Illuminate\Database\Eloquent\Model;
 use Database\Factories\OrderItemFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

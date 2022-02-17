@@ -7,7 +7,6 @@
             <img src="{{ URL::to('/images/logoEcommerce.png') }}" class="logoEcom">
             <h2>Step - 3/3</h2>
             {{-- <p>You are 30 seconds away from earning your own money!</p> --}}
-         
         </div>
         <div class="col-md-9 register-right">
             <div class="tab-content" id="myTabContent">
@@ -51,9 +50,9 @@
                                     <input type="submit" class="btnRegister"  value="Register"/>
                                 </div>
                             </div>
-                    </div>
-                </form>
-            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

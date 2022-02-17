@@ -5,14 +5,13 @@ namespace Tests\Feature\User;
 use Tests\TestCase;
 use App\Models\User;
 use Illuminate\Support\Str;
-use App\Models\user\Address;
+use App\Models\User\Address;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UserRegistrationTest extends TestCase
 {
-  
     public function test_user_can_register_and_update_details()
     {
         $response = $this->post('/register', [
@@ -60,7 +59,6 @@ class UserRegistrationTest extends TestCase
                 'country'    => 'pakistan',
                 'postalCode' => '77150'
             ])->assertStatus(200);
-
     }
 
 }

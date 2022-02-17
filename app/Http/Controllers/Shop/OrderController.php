@@ -12,7 +12,7 @@
  * @link     http://laravel.me/
  */
 
-namespace App\Http\Controllers\shop;
+namespace App\Http\Controllers\Shop;
 
 use Illuminate\Http\Request;
 use App\Services\CartService;
@@ -67,13 +67,10 @@ class OrderController extends Controller
      */
     public function postOrder(Request $request)
     {
-        // dd($request->all());
         $users = $this->userService->updateUserdetails($request);
         $orders = $this->orderService->order($request);
         $carts  = $this->cartService->getUpdateCarts();
-        // $products = $this->productService->decreaseStockQuantity();
 
-        // ddd($stocks);
         return view('shop.order-detail', compact('carts', 'orders'));
     }
 }

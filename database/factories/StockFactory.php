@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Models\shop\Stock;
-use App\Models\shop\Product;
+use App\Models\Shop\Stock;
+use App\Models\Shop\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class StockFactory extends Factory
@@ -20,7 +20,7 @@ class StockFactory extends Factory
         return [
             // 'product_id' => $product->id,
             'quantity'   => $this->faker->randomDigit(),
-            'size'       => $this->faker->numerify('S',' M', 'L'),
+            'size'       => $this->faker->numerify('S', 'M', 'L'),
         ];
     }
 }

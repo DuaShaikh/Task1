@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Discount Model Comment
+ * Manufacrurer Model Comment
  *
  * PHP version 8.1
  *
@@ -12,16 +12,13 @@
  * @link     http://laravel.me/
  */
 
-namespace App\Models\shop;
+namespace App\Models\Shop;
 
-use App\Models\shop\Product;
-use App\Models\shop\OrderItem;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 /**
- * This is Discount Class extends Model
+ * This is Manufacturer Class extends Model
  *
  * PHP version 8.1
  *
@@ -31,7 +28,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @license  https://opensource.org/licenses/MIT MIT License
  * @link     http://localhost/
  */
-class Discount extends Model
+class Manufacturer extends Model
 {
     use HasFactory;
 }

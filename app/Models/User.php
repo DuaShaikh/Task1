@@ -14,9 +14,9 @@
 
 namespace App\Models;
 
-use App\Models\shop\Cart;
-use App\Models\shop\Order;
-use App\Models\user\Address;
+use App\Models\Shop\Cart;
+use App\Models\Shop\Order;
+use App\Models\User\Address;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

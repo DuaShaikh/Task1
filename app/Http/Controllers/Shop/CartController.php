@@ -12,7 +12,7 @@
  * @link     http://laravel.me/
  */
 
-namespace App\Http\Controllers\shop;
+namespace App\Http\Controllers\Shop;
 
 use Illuminate\Http\Request;
 use App\Services\CartService;
@@ -83,6 +83,7 @@ class CartController extends Controller
     public function viewCart()
     {
         $carts = $this->cartService->viewCartItems();
+
         return view('shop.add-to-cart', compact('carts'));
     }
 
@@ -96,6 +97,7 @@ class CartController extends Controller
     public function deleteCart($id)
     {
         $carts = $this->cartService->deleteCartItems($id);
+
         return redirect('view-cart');
     }
 
@@ -110,7 +112,7 @@ class CartController extends Controller
     {
         $cart  = $this->cartService->updateCartItems($req);
         $users = $this->userService->getUserdetails();
+
         return view('shop.checkout', compact('users'));
-        // return $this->getUpdateCart();
     }
 }

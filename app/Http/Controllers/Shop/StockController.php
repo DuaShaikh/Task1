@@ -12,7 +12,7 @@
  * @link     http://laravel.me/
  */
 
-namespace App\Http\Controllers\shop;
+namespace App\Http\Controllers\Shop;
 
 use Illuminate\Http\Request;
 use App\Services\StockService;
@@ -33,7 +33,6 @@ class StockController extends Controller
 {
     protected $stockService;
     protected $productService;
-
 
     /**
      * Define construct function.
@@ -63,8 +62,23 @@ class StockController extends Controller
         $stock = $this->stockService->addProductStock($req);
         session()->flash('product', 'Product Stock Added successfully!');
 
-        return view('admin.product-stock', compact('product'));
+        return view('admin.product-stock-register', compact('product'));
     }
 
-    
+    /**
+     * This is a editStocks function which
+     * get update product stock data
+     *
+     * @param \Illuminate\Http\Request $req get post req data
+     *
+     * @return \Illuminate\View\View
+     */
+    public function editStocks(Request $req)
+    {
+        $product = $this->productService->getLastProductId();
+        $stock = $this->stockService->editProductStock($req);
+        session()->flash('product', 'Product Stock Updated successfully!');
+
+        return view('admin.product-stock-update', compact('product', 'stock'));
+    }
 }

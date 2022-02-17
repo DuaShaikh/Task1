@@ -14,7 +14,7 @@
 
 namespace App\Services;
 
-use App\Models\shop\Product;
+use App\Models\Shop\Product;
 use Illuminate\Http\Request;
 
     /**
@@ -37,7 +37,6 @@ class ProductService
     {
         $products = Product::with(['productMedia']) ->orderByDesc('id')->paginate(6);
 
-
         return $products;
     }
 
@@ -49,7 +48,6 @@ class ProductService
     public function getLastProductId()
     {
         $products = Product::with(['productMedia'])->max('id');
-
 
         return $products;
     }
@@ -116,6 +114,7 @@ class ProductService
     {
         $product = Product::find($id);
         $product->delete();
+
         return $product;
     }
 
@@ -145,10 +144,7 @@ class ProductService
     {
         $product = Product::find($req->id);
         $product->update($req->all());
-
-
         $product->category()->where('product_id', $req->id)->sync($req->category_id);
-
 
         return $product;
     }

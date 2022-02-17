@@ -11,7 +11,6 @@
     <div class="row">
         <h3>Hi {{$user}}</h3>
         <p>Your order has been successfully placed.</p><br>
-         
         <table class="table table-striped" style="border:1px solid gray">
             <thead>
                 <tr style="border:1px solid gray;">
@@ -44,7 +43,5 @@
                 </tr>
             </tfoot>
         </table>
-        
-
     </div>
 </div>

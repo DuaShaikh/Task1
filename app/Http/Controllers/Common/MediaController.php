@@ -12,11 +12,11 @@
  * @link     http://laravel.me/
  */
 
-namespace App\Http\Controllers\common;
+namespace App\Http\Controllers\Common;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\common\MediaRequest;
+use App\Http\Requests\Common\MediaRequest;
 use App\Services\MediaService;
 use App\Services\ProductService;
 use App\Services\UserService;
