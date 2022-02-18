@@ -60,7 +60,7 @@ class StockController extends Controller
     {
         $product = $this->productService->getLastProductId();
         $stock = $this->stockService->addProductStock($req);
-        session()->flash('product', 'Product Stock Added successfully!');
+        // session()->flash('product', 'Product Stock Added successfully!');
 
         return view('admin.product-stock-register', compact('product'));
     }
@@ -75,10 +75,9 @@ class StockController extends Controller
      */
     public function editStocks(Request $req)
     {
-        $product = $this->productService->getLastProductId();
         $stock = $this->stockService->editProductStock($req);
-        session()->flash('product', 'Product Stock Updated successfully!');
+        session()->flash('status', 'Product Updated successfully!');
 
-        return view('admin.product-stock-update', compact('product', 'stock'));
+        return redirect('admin/dashboard/product');
     }
 }

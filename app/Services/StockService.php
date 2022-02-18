@@ -61,9 +61,11 @@ class StockService
             return redirect()
                 ->back()
                 ->with('product', 'Product Stock Already Exist');
+
         } elseif (auth()->check() && $data == 0) {
-            return Stock::create($req->all())
-                ->with('product', 'Product Stock Added Successfully');
+            $stock = Stock::create($req->all());
+
+            return $stock->with('product', 'Product Stock Added Successfully');
         }
     }
 
@@ -77,15 +79,10 @@ class StockService
     public function editProductStock($req)
     {
         $data = $req->inStock;
-        dd($data);
-        // data_set($data, "*.user_id", auth()->user()->id);
-        $stock = Stock::where(
-                'product_id', $data->product_id,
-                // 'size'       => $data->size
+        $stock = Stock::where('product_id', $req->product_id);
+        $stock->delete();
 
-        );
-
-        return $stock->update($data);
+        return Stock::insert($data);
     }
 
     /**

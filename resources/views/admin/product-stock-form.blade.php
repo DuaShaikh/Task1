@@ -6,7 +6,7 @@
         <div class="col-sm-3 mt-2">
             <input type="text"
                 class="form-control @error('quantity') is-invalid @enderror" 
-                name="inStock[product_id]"
+                name="product_id"
                 value="{{$product}}" 
                 required>
             @error('product_id')<span class="invalid-feedback" role="alert" style="color:red"><strong>{{ $message }}</strong></span>@enderror
@@ -16,34 +16,57 @@
         <label for="inputPrice" class="col-sm-2 col-form-label mt-2">
             Size
         </label>
-      
+        @if (isset($stock))
+        @foreach ($stock as $key => $inStock )
         <div class="col-sm-3  mt-2 mb-2">
-            @foreach ($stock as $key => $inStock )
             <input type="hidden" name="inStock[{{$key}}][product_id]" value={{$inStock->product_id}}>
             <select class="form-control form-control-sm @error('size') is-invalid @enderror" name="inStock[{{$key}}][size]" 
             required>
                 <option selected value="">None</option>
-                <option value="{{$inStock->size}}"> 
+                <option value="{{$inStock->size}}" selected> 
                     {{$inStock->size}}
                 </option>
             </select>
-            @endforeach
             @error('size')<span class="invalid-feedback" role="alert" style="color:red"><strong>{{ $message }}</strong></span>@enderror
         </div>
+        @endforeach
+        @else
+        <div class="col-sm-3  mt-2 mb-2">
+            {{-- <input type="hidden" name="product_id"> --}}
+            <select class="form-control form-control-sm @error('size') is-invalid @enderror" name="size" 
+            required>
+                <option selected value="">None</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+            </select>
+            @error('size')<span class="invalid-feedback" role="alert" style="color:red"><strong>{{ $message }}</strong></span>@enderror
+        </div>
+        @endif
     </div>
     <div class="row mb-3">
         <label for="inputPrice" class="col-sm-2 col-form-label mt-2">
             Quantity
         </label>
+        @if (isset($stock))
+        @foreach ($stock as $key => $inStock )
         <div class="col-sm-3 mt-2">
-            @foreach ($stock as $key => $inStock )
             <input type="text" 
                 class="form-control @error('quantity') is-invalid @enderror" 
                 name="inStock[{{$key}}][quantity]"
                 required value="{{old('quantity',isset($inStock) ? $inStock->quantity : '') }}" >
             @error('quantity')<span class="invalid-feedback" role="alert" style="color:red"><strong>{{ $message }}</strong></span>@enderror
-            @endforeach
         </div>
+        @endforeach
+        @else
+        <div class="col-sm-3 mt-2">
+            <input type="text" 
+                class="form-control @error('quantity') is-invalid @enderror" 
+                name="quantity"
+                required value="{{old('quantity')}}" >
+            @error('quantity')<span class="invalid-feedback" role="alert" style="color:red"><strong>{{ $message }}</strong></span>@enderror
+        </div>
+        @endif
     </div>
     <div class="row mb-3">
         <div class="col-sm-6">
