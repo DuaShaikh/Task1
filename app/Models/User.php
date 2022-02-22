@@ -45,7 +45,9 @@ class User extends Authenticatable
         'gender',
         'phone',
         'address_id',
-        'media_id'
+        'media_id',
+        'provider_id',
+        'remember_token'
     ];
 
     protected $guarded = ['token'];

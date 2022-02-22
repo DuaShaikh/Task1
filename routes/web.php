@@ -1,7 +1,12 @@
 <?php
 
 use GuzzleHttp\Middleware;
+use App\Http\Livewire\LoginForm;
+use App\Http\Livewire\MediaForm;
+use App\Http\Livewire\AddressForm;
+use App\Http\Livewire\UserRegister;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\Shop\CartController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Shop\OrderController;
@@ -58,25 +63,34 @@ require __DIR__ . '/auth.php';
 Route::get('/register', function () {
     return view('user.register');
 });
+Route::post('/registerUser', UserRegister::class);
+Route::post('/address', AddressForm::class);
+Route::post('/media', MediaForm::class);
+
+// Route::get('/user-login', function () {
+//     return view('user.login');
+// });
+
+// Route::post('loginUser', LoginForm::class);
 
 Route::group(['namespace' => 'User'], function () {
 
     Route::get('dashboard/orders', [UserController::class, 'getUserItems'])->name('dashboard/orders');
-    Route::post('register', [UserController::class, 'postUser']);
-    Route::post('address', [AddressController::class, 'saveAddress']);
-    Route::post('media', [MediaController::class, 'uploadImage']);
+    // Route::post('register', [UserController::class, 'postUser']);
+    // Route::post('address', [AddressController::class, 'saveAddress']);
+    // Route::post('media', [MediaController::class, 'uploadImage']);
 });
 
 Route::group(['namespace' => 'Common'], function () {
     Route::post('media', [MediaController::class, 'uploadImage']);
 });
 
-// Route::get('/address', function () {
-//     return view('user.address');
-// });
-// Route::get('/media', function () {
-//     return view('common.media');
-// });
+Route::get('/address', function () {
+    return view('user.address');
+});
+Route::get('/media', function () {
+    return view('common.media');
+});
 
 Route::group(['namespace' => 'Shop'], function () {
 
@@ -89,6 +103,17 @@ Route::group(['namespace' => 'Shop'], function () {
     Route::post('order-item/{id}', [OrderItemController::class, 'orderItem']);
 });
 
+Route::get('/auth', function () {
+    return Socialite::driver('google')->redirect();
+});
+
+Route::get('google/callback', [LoginForm::class, 'handleGoogleCallback']);
+
+Route::get('/auth/facebook', function () {
+    return Socialite::driver('facebook')->redirect();
+});
+
+Route::get('facebook/callback', [LoginForm::class, 'handleFacebookCallback']);
 // Route::get('/order-detail', function () {
 //     return view('shop.order-detail');
 // });

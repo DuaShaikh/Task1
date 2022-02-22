@@ -110,7 +110,9 @@ a{
     transition:0.3s ease-in-out;
     color:#242424;
     text-align:left;
-    padding:50px;
+    /* padding:50px; */
+    padding-left: 10px;
+    padding-right: 10px;
 }
 .show-log-panel{
     display:block;
@@ -623,4 +625,13 @@ a{
 .page-container {
     position: relative;
     min-height: 75% !important;
+}
+
+.btn-facebook {
+    background-color: #405D9D;
+    color: #fff !important;
+}
+.btn-google {
+    background-color: #f5a733; 
+    color:white !important;
 }

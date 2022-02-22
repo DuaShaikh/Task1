@@ -38,10 +38,13 @@
     <link rel="stylesheet" href="{{ URL::asset('css/shop/style.css') }}" />
     
     <title>@yield('title')</title>
+
+    @livewireStyles
 </head>
 <body>
   <x-sub-navbar/>
   <x-navbar />
-    @yield('main')
+  @yield('main')
+  @livewireScripts
 </body>
 </html>
