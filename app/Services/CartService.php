@@ -41,7 +41,9 @@ class CartService
     {
         $data = Cart::where(
             [
-                'product_id' => $req->product_id, 'size' => $req->size
+                'product_id' => $req->product_id, 
+                'size'       => $req->size,
+                'user_id'    => auth()->user()->id
             ]
         )->count();
         if (auth()->check() && $data > 0) {

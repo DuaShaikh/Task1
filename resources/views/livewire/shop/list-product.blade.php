@@ -1,0 +1,44 @@
+<div class="container-lg" style="margin-top:100px">
+    <div class="card">
+        <div class="card-header d-flex justify-content-between">
+            <div class="col-md-3 mt-3">
+                LATEST PRODUCTS
+            </div>
+            <div class="col-md-6">
+                <div class="form"> 
+                    <i class="fa fa-search"></i>
+                    <input type="text" class="form-control form-input" placeholder="Search Product ..." wire:model='search'>  
+                </div>
+            </div>
+            <label  class="col-md-1 mt-3 d-flex flex-row-reverse" for="inputSort" class="form-label">Sort By:</label>
+            <div class="col-md-2 mt-2">
+                <select  class="form-select" wire:model='sortBy'>
+                  <option value="default" selected>Best Match</option>
+                  <option value="low">Price low to high</option>
+                  <option value="high">Price high to low</option>
+                </select>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="product_item">
+                @foreach($products as $product)
+                    <div class="col-lg-3 col-md-4 col-sm-4 mix sale product" style="display: inline-block; margin-left:70px"  data-bound="">
+                        <div class="single_product">
+                            <div class="product_image">
+                                <img src="{{url($product->productMedia->url)}}" alt="" style="width: 200px;height:200px">
+                                <div class="box-content">
+                                    <a href="view-product/{{$product->id}}}"><i class="fas fa-eye"></i></a>
+                                </div>										
+                            </div>
+                            <div class="product_btm_text">
+                                <h4>{{$product->pName}}</h4>
+                                <span class="price">Rs.{{$product->productPrice}}</span>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+                <span>{{ $products->links()}}</span>
+            </div>
+        </div>
+    </div>
+</div>
