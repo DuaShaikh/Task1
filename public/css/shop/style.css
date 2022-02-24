@@ -673,3 +673,21 @@ a{
     box-shadow: none;
     border: none
 }
+
+.fa-align-justify, .fa-th {
+    cursor: pointer;
+}
+
+.jumbotron {
+    background: #358CCE;
+    color: #FFF;
+    border-radius: 0px;
+    }
+    .jumbotron-sm { padding-top: 24px;
+    padding-bottom: 24px; }
+    .jumbotron small {
+    color: #FFF;
+    }
+    .h1 small {
+    font-size: 24px;
+    }

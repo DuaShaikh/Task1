@@ -20,7 +20,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="file"  placeholder="*" wire:model='photo'/>
+                                        <input type="file" class="form-control @error('photo') is-invalid @enderror" placeholder="*" wire:model='photo'/>
                                         @error('photo')<span class="invalid-feedback" role="alert" style="color:red"><strong>{{ $message }}</strong></span>@enderror
                                     </div>
                                     <input type="submit" class="btnRegister"  value="Register"/>

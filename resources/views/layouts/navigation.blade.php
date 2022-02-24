@@ -31,9 +31,15 @@
                     <x-nav-link :href="route('dashboard/product')" :active="request()->routeIs('dashboard/product')">
                         {{ __('Products') }}
                     </x-nav-link>
-                </div><div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard/category')" :active="request()->routeIs('dashboard/category')">
                         {{ __('Categories') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('dashboard/feedback')" :active="request()->routeIs('dashboard/feedback')">
+                        {{ __('Feedbacks') }}
                     </x-nav-link>
                 </div>
 
@@ -102,6 +108,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('dashboard/category')" :active="request()->routeIs('dashboard/category')">
                 {{ __('Categories') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('dashboard/feedback')" :active="request()->routeIs('dashboard/feedback')">
+                {{ __('Feedbacks') }}
             </x-responsive-nav-link>
             @endif
         </div>

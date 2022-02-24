@@ -16,6 +16,8 @@ class ListProduct extends Component
 
     public $sortBy;
 
+    public $showDiv = 'true';
+
     public $perPage = '6';
 
     protected $paginationTheme = 'bootstrap';
@@ -50,5 +52,20 @@ class ListProduct extends Component
                 return $query->where('pName', 'LIKE', "%$search%");
             })->latest()->paginate($this->perPage)
         ]);
+    }
+
+    public function closeCardDiv()
+    {
+        if ($this->showDiv =! $this->showDiv) {
+             $this->showDiv = $this->openTableDiv();
+        } else {
+            $this->showDiv === $this->showDiv;
+        }
+
+    }
+
+    public function openTableDiv()
+    {
+        return $this->showDiv === 'true' ? 'false' : 'true';
     }
 }

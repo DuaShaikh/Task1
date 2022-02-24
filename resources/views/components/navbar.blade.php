@@ -22,6 +22,9 @@
                       <a class="dropdown-item" href="#">Kid's Fashion</a>
                     </div>
                   </li>
+                  <li class="nav-item active home" style="font-size: 20px">
+                    <a class="nav-link" href="{{route('user.contact')}}">Contact Us</a>
+                  </li>
             </ul>
         </div>
     <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6iconLink">

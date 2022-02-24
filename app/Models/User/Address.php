@@ -29,7 +29,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @package  Laravel
  * @author   Dua <dua@example.com>
  * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://localhost/
+ * @link     http://laravel.me/
  */
 class Address extends Model
 {

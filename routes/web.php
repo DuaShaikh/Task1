@@ -36,7 +36,6 @@ Route::group(['namespace' => 'Shop', 'middleware' => ['auth', 'role'], 'prefix' 
     Route::get('/product/show-product/edit-product/stock-update', function () {
         return view('admin.product-stock-update');
     });
-
     Route::post('product/stocks', [StockController::class, 'addStocks']);
     Route::post('product/show-product/{id}/stock-update', [StockController::class, 'editStocks']);
 
@@ -47,6 +46,10 @@ Route::group(['namespace' => 'Shop', 'middleware' => ['auth', 'role'], 'prefix' 
     Route::get('delete-category/{id}', [CategoryController::class, 'deleteAdminCategories']);
     Route::get('category/show-category/{id}', [CategoryController::class, 'showAdminCategories']);
     Route::post('category/show-category/edit-category', [CategoryController::class, 'editAdminCategories']);
+
+    Route::get('feedback', function () {
+        return view('admin.contact-data');
+    })->name('dashboard/feedback');
 });
 
 
@@ -60,6 +63,9 @@ Route::group(['namespace' => 'user'], function () {
 
 require __DIR__ . '/auth.php';
 
+Route::get('/contact-us', function () {
+    return view('user.contact');
+})->name('user.contact');
 Route::get('/register', function () {
     return view('user.register');
 });
@@ -67,11 +73,6 @@ Route::post('/registerUser', UserRegister::class);
 Route::post('/address', AddressForm::class);
 Route::post('/media', MediaForm::class);
 
-// Route::get('/user-login', function () {
-//     return view('user.login');
-// });
-
-// Route::post('loginUser', LoginForm::class);
 
 Route::group(['namespace' => 'User'], function () {
 
