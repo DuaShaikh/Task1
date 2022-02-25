@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-sm-12 col-lg-12">
                     <h1 class="h1">
-                        Contact us <small>Feel free to contact us</small></h1>
+                        Contact us <br><small>Feel free to contact us</small></h1>
                 </div>
             </div>
         </div>
@@ -21,7 +21,7 @@
                     </div>
               @endif
           </div>
-      </div>
+    </div>
     <div class="container p-4" style="background-color: #d7d9db">
         <div class="well well-sm">
             <form wire:submit.prevent="contact" autocomplete="off">
