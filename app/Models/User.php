@@ -52,6 +52,8 @@ class User extends Authenticatable
 
     protected $guarded = ['token'];
 
+    protected $hidden = ['password'];
+
 
     /**
      * Get the user order associated with the order

@@ -70,8 +70,8 @@ Route::get('/register', function () {
     return view('user.register');
 });
 Route::post('/registerUser', UserRegister::class);
-Route::post('/address', AddressForm::class);
-Route::post('/media', MediaForm::class);
+// Route::post('/address', AddressForm::class);
+// Route::post('/media', MediaForm::class);
 
 
 Route::group(['namespace' => 'User'], function () {

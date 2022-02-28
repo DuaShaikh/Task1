@@ -20,21 +20,29 @@ class ContactData extends Component
     public function render()
     {
         return view('livewire.admin.contact-data', [
-            'contacts' => Contact::with(['userData']) ->orderByDesc('id')->get()
+            'contacts' => Contact::with(['userData'])->orderByDesc('id')->get()
         ]);
     }
 
-    public function feedback($id)
+    protected $rules = [
+        'feedbackReply' => 'min:5|max:255'
+    ];
+ 
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
+
+    public function feedback($id,$contact_id)
     { 
-        dd($this->feedbackReply);
-        $contacts = Contact::where('user_id',$id)->with(['userData'])->first();
+        $contacts = Contact::where(['id'=>$contact_id, 'user_id'=>$id])->with(['userData'])->first();
 
         $name = $contacts->userData->fullName;
         $email = $contacts->userData->email;
 
         $data = ['name' => $name, 'subject' => $contacts->subject, 'feedback' => $this->feedbackReply];
         $user['to'] = $email;
-        return Mail::send(
+        Mail::send(
             'user.feedback-mail',
             $data,
             function ($messages) use ($user) {
@@ -42,8 +50,10 @@ class ContactData extends Component
                 $messages->subject('Your Reply From ABC Shop');
             }
         );
-        $this->reset();
         session()->flash('mail', 'Email Send Successfully');
+        return redirect('admin/dashboard/feedback');
+        $this->reset();
+       
     }
     
 }
