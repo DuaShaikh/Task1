@@ -2,13 +2,14 @@ import React from 'react';
 import {Outlet, Navigate} from 'react-router-dom';
 
 const useAuth = () => {
-    const user = localStorage.getItem('users')
-    if(user) {
+    const auth_token = localStorage.getItem('auth_token')
+    if(auth_token) {
         return true
     } else {
         return false
     }
 }
+
 
 const ProtectedRoute = (props) => {
 
@@ -20,4 +21,3 @@ const ProtectedRoute = (props) => {
 }
 
 export default ProtectedRoute;
-c

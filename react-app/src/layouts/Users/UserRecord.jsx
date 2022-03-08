@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-const Profile = () => {
+const UserRecord = () => {
   const { id } = useParams();
   
   const [user, setUser] = useState([]);
@@ -66,4 +66,4 @@ const token = localStorage.getItem('auth_token');
   );
 }
 
-export default Profile;
+export default UserRecord;

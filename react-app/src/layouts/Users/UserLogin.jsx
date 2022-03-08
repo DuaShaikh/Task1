@@ -12,21 +12,23 @@ export default function UserLogin() {
     });
 
     const { email, password }  = user;
- 
+
     const onInputChange = e => {
         setUser({...user, [e.target.name]: e.target.value});
     }
 
-    const loginUser = async e => {
+    const loginUser = e => {
         e.preventDefault();
-        if(email && password ) {
-            const users = await axios.post("http://laravelbackend.me/api/user-login", user);
-            localStorage.setItem('users', JSON.stringify(users));
-               
-                navigate("/dashboard");
-        } else {
-            alert('Please Enter Correct Email/Password');
-        }
+        axios.get('/sanctum/csrf-cookie').then(response => {
+            axios.post(`api/user-login`, user).then(res=>{
+                if(res.data.status == 200) {
+                    localStorage.setItem('id', res.data.user.id);
+                    localStorage.setItem('auth_token', res.data.token);
+                    navigate("/dashboard");
+                }
+            });
+        
+        });   
       }
 
     return (
@@ -76,3 +78,4 @@ export default function UserLogin() {
         </div>
     );
 }
+

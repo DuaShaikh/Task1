@@ -6,6 +6,7 @@ import {Card, Button, Col, Row, Form} from 'react-bootstrap';
 
 export default function UserRegister(props) {
     const navigate = useNavigate ();
+
     const [user, setUser] = useState({
         'name'    : '',
         'email'   : '',
@@ -20,12 +21,18 @@ export default function UserRegister(props) {
         setUser({...user, [e.target.name]: e.target.value});
     }
 
-    const registerUser = async e => {
+    console.log(user);
+    const registerUser = e => {
         e.preventDefault();
-        await axios.post("http://laravelbackend.me/api/user-register", user);
-        alert('data submitted');
-        navigate('/');
-      }
+        axios.get('/sanctum/csrf-cookie').then(response => {
+            axios.post(`api/user-register`, user).then(res=>{
+                if(res.data.status == 200) {
+                    alert('data submitted');
+                    navigate('/');
+                }
+            });
+      });
+    }
 
     return (
         <div >
@@ -33,7 +40,7 @@ export default function UserRegister(props) {
                 <Card.Header>Register</Card.Header>
                 <Card.Body>
                         <Form onSubmit={registerUser}>
-                            <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
+                            <Form.Group as={Row} className="mb-3" >
                                 <Form.Label column sm={2}>
                                     Name
                                 </Form.Label>
@@ -47,7 +54,7 @@ export default function UserRegister(props) {
                                 </Col>
                             </Form.Group>
 
-                            <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
+                            <Form.Group as={Row} className="mb-3" >
                                 <Form.Label column sm={2}>
                                     Email
                                 </Form.Label>
@@ -61,7 +68,7 @@ export default function UserRegister(props) {
                                 </Col>
                             </Form.Group>
 
-                            <Form.Group as={Row} className="mb-3" controlId="formHorizontalPassword">
+                            <Form.Group as={Row} className="mb-3" >
                                 <Form.Label column sm={2}>
                                     Password
                                 </Form.Label>
@@ -75,7 +82,7 @@ export default function UserRegister(props) {
                                 </Col>
                             </Form.Group>
 
-                            <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
+                            <Form.Group as={Row} className="mb-3" >
                                 <Form.Label column sm={2}>
                                     Phone
                                 </Form.Label>

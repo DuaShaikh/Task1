@@ -2,32 +2,36 @@ import React from 'react';
 import {Nav, Navbar, Container, NavDropdown} from 'react-bootstrap';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
 import '../App.css';
+// import { useAuth } from './auth/AuthService';
 
 export default function NavbarContainer() {
+  
   const useAuth = () => {
-    const user = localStorage.getItem('users')
-    if(user) {
+    const auth_token = localStorage.getItem('auth_token')
+    if(auth_token) {
         return true
     } else {
         return false
     }
-}
+  }
 
+  const id = localStorage.getItem('id');
   const navigate = useNavigate();
   const location = useLocation();
   const user = useAuth();
 
   const logout = () => 
   {
-      localStorage.removeItem("users")
+      localStorage.removeItem("auth_token");
+      localStorage.removeItem("id");
       navigate("/");
   }
 
   return (
     <Navbar collapseOnSelect expand="lg" variant="dark" className='bg-purple-700'>
     <Container>
-    <Navbar.Brand href="#home">React-App</Navbar.Brand>
-    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+    <Navbar.Brand href="/">React-App</Navbar.Brand>
+    <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
     <Navbar.Collapse id="responsive-navbar-nav">
       <Nav className="me-auto">
       </Nav>
@@ -46,7 +50,7 @@ export default function NavbarContainer() {
                 id="nav-dropdown-dark-example"
                 title="Account"
                 menuVariant="dark">
-                <Link to="/dashboard/profile" className={location.pathname==='dashboard/profile' ? 'active' : 'unActive'} >Profile</Link>
+                <Link to={{ pathname : `/dashboard/profile/${parseInt(id)}` }} className={location.pathname === 'dashboard/profile' ? 'active' : 'unActive'} >Profile</Link>
                 <NavDropdown.Divider />
                 <NavDropdown.Item  onClick={logout} className='unActive'>Logout</NavDropdown.Item>
               </NavDropdown>
@@ -58,4 +62,5 @@ export default function NavbarContainer() {
     </Navbar>
   );
 }
+
 
